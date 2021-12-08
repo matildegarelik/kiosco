@@ -28,7 +28,7 @@ public:
 	void EliminarProducto(string NombreArchivo, int codigo);
 	void Ordenar(string Parametro);
 	void Buscar(string Parametro);
-	void ActualizarPrecio(string NombreArchivo, int codigo);
+	void ActualizarPrecio(string NombreArchivo, int codigo, int precio);
 	void GuardarCambios(string NombreArchivo, int indice);
 	
 	

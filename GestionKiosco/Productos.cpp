@@ -1,7 +1,26 @@
 #include "Productos.h"
 #include <vector>
 #include <fstream>
+#include <algorithm>
 using namespace std;
+bool ordP(Producto &x1, Producto &x2){
+	return (x1._nombre<x2._nombre);
+}
+bool ordC(Producto &x1, Producto &x2){
+	return (x1._codigo<x2._codigo);
+}
+bool ordT(Producto &x1, Producto &x2){
+	return (x1._tipo<x2._tipo);
+}
+bool ordM(Producto &x1, Producto &x2){
+	return (x1._marca<x2._marca);
+}
+bool ordS(Producto &x1, Producto &x2){
+	return (x1._stock<x2._stock);
+}
+bool ordPr(Producto &x1, Producto &x2){
+	return (x1._precio<x2._precio);
+}
 Productos::Productos() {
 	
 }
@@ -46,20 +65,57 @@ void Productos::ActualizarStock(string NombreArchivo, int codigo, int cantidad){
 	fstream archi(NombreArchivo, ios::binary|ios::in);
 	int aux;
 	for(int i=0; i<VectorProductos.size(); ++i){
-		if(VectorProductos._codigo==codigo){
+		if(VectorProductos[i]._codigo==codigo){
 			VectorProductos[i]._stock-=cantidad;
 			i=aux;
 			break;
 		}
 	}
 	archi.seekg(aux*sizeof(Producto));
-	archi.write(reinterpret_cast<char*>(&VectorProductos[i]),sizeof(Producto)); //Escribe el vector actualizado
+	archi.write(reinterpret_cast<char*>(&VectorProductos[aux]),sizeof(Producto)); //Escribe el vector actualizado
 }
 void Productos::AgregarProducto(string NombreArchivo, Producto aux){
-	fstream archi()
+	fstream archi(NombreArchivo, ios::binary|ios::in);
+	VectorProductos.push_back(aux);
+	for(int i=0; i<VectorProductos.size(); ++i){
+		archi.write(reinterpret_cast<char*>(&VectorProductos[i]),sizeof(Producto));
+	}
 }
-void Productos::EliminarProducto(string NombreArchivo, int codigo){}
-void Productos::Ordenar(string Parametro){}
-void Productos::Buscar(string Parametro){}
-void Productos::ActualizarPrecio(string NombreArchivo, int codigo){}
-void Productos::GuardarCambios(string NombreArchivo, int indice){}
+void Productos::EliminarProducto(string NombreArchivo, int codigo){
+	fstream archi(NombreArchivo, ios::binary);
+	int aux;
+	for(int i=0; i<VectorProductos.size(); ++i){
+		if(VectorProductos[i]._codigo==codigo){
+			VectorProductos.erase(VectorProductos.begin()+i);
+			aux=i;
+			break;
+		}
+	}
+	for(int i=aux; i<VectorProductos.size(); ++i){
+		archi.write(reinterpret_cast<char*>(&VectorProductos[i]),sizeof(Producto));
+	}
+}
+void Productos::Ordenar(string Parametro){
+	if(Parametro=="PRODUCTO")sort(VectorProductos.begin(), VectorProductos.end(),ordP );
+	if(Parametro=="CODIGO")sort(VectorProductos.begin(), VectorProductos.end(),ordC );
+	if(Parametro=="TIPO")sort(VectorProductos.begin(), VectorProductos.end(),ordT );
+	if(Parametro=="MARCA")sort(VectorProductos.begin(), VectorProductos.end(),ordM );
+	if(Parametro=="STOCK")sort(VectorProductos.begin(), VectorProductos.end(),ordS );
+	if(Parametro=="PRECIO")sort(VectorProductos.begin(), VectorProductos.end(),ordPr );
+	
+}
+void Productos::Buscar(string Parametro){
+}
+void Productos::ActualizarPrecio(string NombreArchivo, int codigo, int precio){ //Agregué el parametro precio porque no estaba
+	fstream archi(NombreArchivo, ios::binary|ios::in);							
+	for(int i=0; i<VectorProductos.size();++i){
+		if(VectorProductos[i]._codigo==codigo){
+			VectorProductos[i]._precio=precio;
+		}
+	}
+}
+void Productos::GuardarCambios(string NombreArchivo, int indice){
+	fstream archi(NombreArchivo, ios::binary|ios::in);
+	archi.seekg(indice*sizeof(Producto));
+	archi.write(reinterpret_cast<char*>(&VectorProductos[indice]),sizeof(Producto));
+}
