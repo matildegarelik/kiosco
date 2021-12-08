@@ -1,5 +1,9 @@
 #ifndef FIADOS_H
 #define FIADOS_H
+#include <string>
+#include <vector>
+#include "Venta.h"
+using namespace std;
 
 class Fiados {
 public:

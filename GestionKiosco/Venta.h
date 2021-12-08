@@ -1,5 +1,7 @@
 #ifndef VENTA_H
 #define VENTA_H
+#include "Venta.h"
+#include "Productos.h"
 
 struct Detalle{
 	Producto p;
@@ -7,7 +9,7 @@ struct Detalle{
 };
 
 struct Fiado{
-	Detalle;
+	Detalle d;
 	string cliente;
 	bool pagado=false;
 };
