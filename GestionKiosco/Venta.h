@@ -2,6 +2,8 @@
 #define VENTA_H
 #include "Venta.h"
 #include "Productos.h"
+#include <iostream>
+using namespace std;
 
 struct Detalle{
 	Producto p;
@@ -15,6 +17,11 @@ struct Compra{
 	Fecha f;
 	float total;
 };
+
+ostream &operator<<(ostream &o, Fecha &f) {
+	o << f.dia <<'/'<< f.mes<<'/'<<f.anio;
+	return o;
+}
 
 class Venta {
 public:
