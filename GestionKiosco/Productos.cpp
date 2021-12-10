@@ -3,37 +3,37 @@
 #include <fstream>
 #include <algorithm>
 using namespace std;
-bool ordP(Producto &x1, Producto &x2){
-	return (x1._nombre<x2._nombre);
+bool OrdenarPorNombre(Producto &x1, Producto &x2){
+	return (x1.VerNombre()<x2.VerNombre());
 }
-bool ordC(Producto &x1, Producto &x2){
-	return (x1._codigo<x2._codigo);
+bool OrdenarPorCodigo(Producto &x1, Producto &x2){
+	return (x1.VerCodigo()<x2.VerCodigo());
 }
-bool ordT(Producto &x1, Producto &x2){
-	return (x1._tipo<x2._tipo);
+bool OrdenarPorTipo(Producto &x1, Producto &x2){
+	return (x1.VerTipo()<x2.VerTipo());
 }
-bool ordM(Producto &x1, Producto &x2){
-	return (x1._marca<x2._marca);
+bool OrdenarPorMarca(Producto &x1, Producto &x2){
+	return (x1.VerMarca()<x2.VerMarca());
 }
-bool ordS(Producto &x1, Producto &x2){
-	return (x1._stock<x2._stock);
+bool OrdenarPorStock(Producto &x1, Producto &x2){
+	return (x1.VerStock()<x2.VerStock());
 }
-bool ordPr(Producto &x1, Producto &x2){
-	return (x1._precio<x2._precio);
+bool OrdenarPorPrecio(Producto &x1, Producto &x2){
+	return (x1.VerPrecio()<x2.VerPrecio());
 }
 Productos::Productos() {
 	
 }
-char*Productos::VerNombre (int x){return VectorProductos[x]._nombre;}
+/*char*Productos::VerNombre (int x){return VectorProductos[x]._nombre;}
 char*Productos::VerMarca (int x){return VectorProductos[x]._marca;}
 char*Productos::VerTipo (int x){return VectorProductos[x]._tipo;}
 int Productos::VerCodigo(int x){return VectorProductos[x]._codigo; }
 int Productos::VerStock(int x){return VectorProductos[x]._stock;}
-float Productos::VerPrecio(float x){return VectorProductos[x]._precio;}
+float Productos::VerPrecio(float x){return VectorProductos[x]._precio;}*/
 Producto Productos::BuscarProducto(int codigo){
 	Producto aux;
 	for(int i=0; i<VectorProductos.size(); ++i){
-		if(VectorProductos[i]._codigo==codigo){
+		if(VectorProductos[i].VerCodigo()==codigo){
 			VectorProductos[i]=aux;
 			return aux;
 		}
@@ -41,7 +41,7 @@ Producto Productos::BuscarProducto(int codigo){
 }
 int Productos::BuscarIndice(int codigo){
 	for(int i=0; i<VectorProductos.size(); ++i){
-		if(VectorProductos[i]._codigo==codigo) return i;
+		if(VectorProductos[i].VerCodigo()==codigo) return i;
 	}
 }
 void Productos::GuardarCambios(string NombreArchivo){
@@ -65,8 +65,8 @@ void Productos::ActualizarStock(string NombreArchivo, int codigo, int cantidad){
 	fstream archi(NombreArchivo, ios::binary|ios::in);
 	int aux;
 	for(int i=0; i<VectorProductos.size(); ++i){
-		if(VectorProductos[i]._codigo==codigo){
-			VectorProductos[i]._stock-=cantidad;
+		if(VectorProductos[i].VerCodigo()==codigo){
+			VectorProductos[i].CambiarStock(cantidad);
 			i=aux;
 			break;
 		}
@@ -85,7 +85,7 @@ void Productos::EliminarProducto(string NombreArchivo, int codigo){
 	fstream archi(NombreArchivo, ios::binary);
 	int aux;
 	for(int i=0; i<VectorProductos.size(); ++i){
-		if(VectorProductos[i]._codigo==codigo){
+		if(VectorProductos[i].VerCodigo()==codigo){
 			VectorProductos.erase(VectorProductos.begin()+i);
 			aux=i;
 			break;
@@ -96,21 +96,29 @@ void Productos::EliminarProducto(string NombreArchivo, int codigo){
 	}
 }
 void Productos::Ordenar(string Parametro){
-	if(Parametro=="PRODUCTO")sort(VectorProductos.begin(), VectorProductos.end(),ordP );
-	if(Parametro=="CODIGO")sort(VectorProductos.begin(), VectorProductos.end(),ordC );
-	if(Parametro=="TIPO")sort(VectorProductos.begin(), VectorProductos.end(),ordT );
-	if(Parametro=="MARCA")sort(VectorProductos.begin(), VectorProductos.end(),ordM );
-	if(Parametro=="STOCK")sort(VectorProductos.begin(), VectorProductos.end(),ordS );
-	if(Parametro=="PRECIO")sort(VectorProductos.begin(), VectorProductos.end(),ordPr );
+	if(Parametro=="PRODUCTO")sort(VectorProductos.begin(), VectorProductos.end(),OrdenarPorNombre );
+	if(Parametro=="CODIGO")sort(VectorProductos.begin(), VectorProductos.end(),OrdenarPorCodigo );
+	if(Parametro=="TIPO")sort(VectorProductos.begin(), VectorProductos.end(),OrdenarPorTipo );
+	if(Parametro=="MARCA")sort(VectorProductos.begin(), VectorProductos.end(),OrdenarPorMarca );
+	if(Parametro=="STOCK")sort(VectorProductos.begin(), VectorProductos.end(),OrdenarPorStock );
+	if(Parametro=="PRECIO")sort(VectorProductos.begin(), VectorProductos.end(),OrdenarPorPrecio );
 	
 }
-void Productos::Buscar(string Parametro){
+vector<Producto> Productos::Filtrar(string Parametro){
+	int D;
+	vector<Producto>aux;
+	for(int i=0; i<VectorProductos.size(); ++i){
+		string S1=VectorProductos[i].VerNombre();
+		D=S1.find(Parametro, i);
+		if(D!=string::npos) aux.push_back(VectorProductos[i]);
+	}
+	return aux;
 }
 void Productos::ActualizarPrecio(string NombreArchivo, int codigo, int precio){ //Agregué el parametro precio porque no estaba
 	fstream archi(NombreArchivo, ios::binary|ios::in);							
 	for(int i=0; i<VectorProductos.size();++i){
-		if(VectorProductos[i]._codigo==codigo){
-			VectorProductos[i]._precio=precio;
+		if(VectorProductos[i].VerCodigo()==codigo){
+			VectorProductos[i].ActualizarPrecio(precio);
 		}
 	}
 }
