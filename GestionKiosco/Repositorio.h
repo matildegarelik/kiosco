@@ -14,6 +14,7 @@ using namespace std;
 	T buscarPorIdentificador(string Identificador);
 	void guardarNuevo(T entidad);
 	void eliminar(T entidad);
+	void eliminarPermanente(T entidad);
 	vector<T> eliminarMultiple( vector<int> posiciones);
 	void actualizar(vector<T> registros);*/
 
@@ -131,6 +132,19 @@ public:
 				f.write(reinterpret_cast<char *> (&auxiliar), sizeof(auxiliar));
 			}
 			f.close();		
+		}
+	}
+		
+	void eliminarPermanente(T entidad){
+		auto it_remove = remove(m_registros.begin(),m_registros.end(),entidad);
+		if(it_remove != m_registros.end()){
+			m_registros.erase(it_remove);
+			
+			ofstream fout(nombre_archivo,ios::binary|ios::trunc);
+			for(int i=0;i<m_registros.size();i++) { 
+				fout.write(reinterpret_cast<char *> (&m_registros[i]), sizeof(m_registros[i]));
+			}
+			fout.close();		
 		}
 	}
 	

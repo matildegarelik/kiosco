@@ -21,7 +21,7 @@ public:
 	int VerStock(int x);
 	float VerPrecio(int x);
 	void ActualizarPrecio(int A);
-	Producto BuscarProducto(int codigo);
+	Producto BuscarProducto(int codigo) const;
 	int BuscarIndice(int codigo);
 	void GuardarCambios(string NombreArchivo);
 	void Lectura(string NombreArchivo);

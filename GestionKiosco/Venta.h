@@ -3,6 +3,7 @@
 #include "Venta.h"
 #include "Productos.h"
 #include <iostream>
+#include "Repositorio.h"
 using namespace std;
 
 struct Detalle{
@@ -12,6 +13,12 @@ struct Detalle{
 struct Fecha{
 	int dia, mes, anio;
 };
+
+struct DetalleYFecha{
+	Detalle d;
+	Fecha f;
+};
+
 struct Compra{
 	char cliente[50];
 	Fecha f;
@@ -21,6 +28,20 @@ struct Compra{
 ostream &operator<<(ostream &o, Fecha &f) {
 	o << f.dia <<'/'<< f.mes<<'/'<<f.anio;
 	return o;
+}
+
+bool operator==(Fecha f1, Fecha f2) {
+	return f1.dia==f2.dia and f1.mes==f2.mes and f1.anio==f2.anio;
+}
+
+bool operator==(Compra c1, Compra c2) {
+	return c1.cliente==c2.cliente and c1.f==c2.f and c1.total==c2.total;
+}
+bool operator==(Detalle d1, Detalle d2) {
+	return d1.cantidad ==d2.cantidad;
+}
+bool operator==(DetalleYFecha d1, DetalleYFecha d2) {
+	return d1.d==d2.d and d1.f==d2.f;
 }
 
 class Venta {
@@ -35,12 +56,11 @@ public:
 	void AgregarDetalle(int codigo, int cantidad, const Productos &prods);
 	void EliminarDetalle(int indice);
 	float CalcularTotal();
-	void Pagar(Productos &prods); // tambien actualiza stock en vector de productos
+	void Pagar(Productos &prods); // tambien actualiza stock en vector de productos y archivo de detalles
 	
-	void GuardarVenta(string nombre_archivo); //binario
 	
 	vector<Compra> CargarFiados(string archivo_fiados); //archivo binario
-	void MarcarPagado(string archivo_ventas, string archivo_fiados, int indice); //guarda vector y archivos
+	void MarcarPagado(Compra c); //guarda vector y archivos
 	void Ordenar();
 	
 private:
@@ -48,6 +68,10 @@ private:
 	char _cliente[50];
 	bool _pagado;
 	Fecha _fecha;
+	
+	Repositorio<Compra> repo_ventas;
+	Repositorio<Compra> repo_fiados;
+	Repositorio<DetalleYFecha> repo_detalles;
 };
 
 #endif

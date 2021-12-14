@@ -25,11 +25,12 @@ Productos::Productos() {
 	
 }
 
-Producto Productos::BuscarProducto(int codigo){
+Producto Productos::BuscarProducto(int codigo) const{
 	Producto aux;
 	for(int i=0; i<VectorProductos.size(); ++i){
 		if(VectorProductos[i]._codigo==codigo){
-			VectorProductos[i]=aux;
+			//VectorProductos[i]=aux;
+			aux = VectorProductos[i];
 			return aux;
 		}
 	}

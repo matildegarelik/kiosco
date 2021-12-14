@@ -3,8 +3,10 @@
 #include <cstring>
 using namespace std;
 
-Venta::Venta() {
-	
+Venta::Venta():
+	repo_ventas("ventas.dat"),
+	repo_fiados("fiados.dat"),
+	repo_detalles("detalles.dat"){
 }
 
 int Venta::VerCantidad(int indice){
@@ -31,72 +33,42 @@ void Venta::EliminarDetalle(int indice){
 }
 float Venta::CalcularTotal(){
 	float total=0;
-	for(Detalle d: &_detalles) total+=d.cantidad*d.p.VerPrecio();
+	for(Detalle &d: _detalles) total+=d.cantidad*d.p._precio;
 }
+
 void Venta::Pagar(Productos &prods){
 	// actualiza stock en vector de productos
-	for(Detalle d: &_detalles){
-		prods.ActualizarStock("productos.dat",d.p.VerCodigo(),d.cantidad);
-		prods.GuardarCambios("productos.dat",prods.BuscarIndice(d.p.VerCodigo()))
+	for(Detalle &d: _detalles){
+		prods.ActualizarStock("productos.dat",d.p._codigo,d.cantidad);
+		prods.GuardarCambios("productos.dat",prods.BuscarIndice(d.p._codigo));
+		
+		DetalleYFecha d_y_f = {d,_fecha};
+		repo_detalles.guardarNuevo(d_y_f);
+		
 	}
 	string arch;
 	// Guardar en archivo_ventas si se pago, sino en fiados
-	if(this->_pagado)arch ="ventas.dat";
-	else arch="fiados.dat";
-	GuardarVenta(arch);
-	
+	Compra c;
+	strcpy(c.cliente,_cliente);
+	c.f=_fecha;
+	c.total=CalcularTotal();
+	if(this->_pagado)repo_ventas.guardarNuevo(c);
+	else repo_fiados.guardarNuevo(c);
 }
 
-void Venta::GuardarVenta(string nombre_archivo){
-	//binario
-	Compra c = {_cliente,_fecha,CalcularTotal()};
-	ofstream f(archivo_ventas,ios::binary|ios::app);
-	f.write(reinterpret_cast<char*>(&c), sizeof(Compra));
-	f.close();
-}
 
 // FIADOS
 vector<Compra> Venta::CargarFiados(string archivo_fiados){
 	vector<Compra> fiados;
-	ifstream f(archivo_fiados,ios::binary|ios::ate);
-	int size = f.tellg()/sizeof(Compra);
-	f.seekg(0,ios::beg);
-	for(int i =0; i<size; ++i){
-		Compra c;
-		f.read(reinterpret_cast<char*>(&c), sizeof(c));
-		fiados.push_back(c);
-	}
+	fiados = repo_fiados.buscarTodos();
 	return fiados;
 }
-void Venta::MarcarPagado(string archivo_ventas, string archivo_fiados, int indice){
+void Venta::MarcarPagado(Compra c){
 	//borra registro compra de fiados y agrega a ventas ese registro
-	Compra pagada;
-	vector<Compra> fiados;
-	ifstream f(archivo_fiados,ios::binary|ios::ate);
-	int size = f.tellg()/sizeof(Compra);
-	f.seekg(indice*sizeof(Compra));
-	f.read(reinterpret_cast<char*>(&pagada),sizeof(pagada));
-	f.seekg(0,ios::beg);
-	for(int i =0; i<size; ++i){
-		Compra c;
-		f.read(reinterpret_cast<char*>(&c), sizeof(c));
-		fiados.push_back(c);
-	}
-	f.close();
-	if(indice!=fiados.size()-1){
-		for(int i=indice; i<fiados.size(); ++i)	fiados[i] = fiados[i+1];
-	fiados.pop_back();
-	
-	ofstream fout(archivo_fiados,ios::binary|ios::trunc);
-	for(Compra c: fiados) fout.write(reinterpret_cast<char*>(&c), sizeof(c));
-	fout.close();
-	
-	ofstream fout_ventas(archivo_ventas,ios::binary|ios::app);
-	fout_ventas.write(reinterpret_cast<char*>(&pagada),sizeof(pagada));
-	fout_ventas.close();
+	repo_fiados.eliminarPermanente(Compra c);
+	repo_ventas.guardarNuevo(c);
 	
 }
 void Venta::Ordenar(){
 	
 }
-
