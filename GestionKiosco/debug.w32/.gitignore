@@ -1,3 +1,4 @@
 *.exe
 /Repositorio.o
 *.o
+/Productos.o

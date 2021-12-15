@@ -6,6 +6,7 @@
 #include <algorithm>
 #include "Venta.h"
 #include "Productos.h"
+#include <iostream>
 
 using namespace std;
 
@@ -13,7 +14,8 @@ using namespace std;
 /* Prototipos de repositorio así los pueden usar sin leer el codigo --> No estan separados pq por ser templatizados tienen que estar adentro
 	Repositorio(string nombre_archivo);
 	vector<T> buscarTodos();
-	vector<T> buscarNoEliminados();	
+	vector<T> buscarNoEliminados();
+	bool existe(T entidad);
 	void verTodos();
 	T buscarPorIdentificador(string Identificador);
 	void guardarNuevo(T entidad);
@@ -55,7 +57,7 @@ public:
 	
 	
 	void verTodos(){
-		cout<<"Archivo:"<<nombre_archivo<<endl;
+		cout<<"Archivo:"<<nombre_archivo<<endl; //esto dsp hay que pasarlo a la ventana grafica
 		ifstream fin(nombre_archivo,ios::binary|ios::ate);
 		int cant_datos = fin.tellg()/sizeof(T);
 		fin.seekg(0);
@@ -101,6 +103,14 @@ public:
 		return entidad_retorno;
 	}
 	
+	bool existe(T entidad){
+		bool retorno = false;
+		auto it = find(m_registros.begin(),m_registros.end(),entidad);
+		if(it != m_registros.end()){
+			retorno = true;
+		}
+		return retorno;
+	}
 	
 	
 	//La opcion empleada es pasandole el vector, pero esta comentada la version buscando en el archivo y verificando si existe
@@ -203,12 +213,12 @@ public:
 
 	void cargarDatosDePruebaProducto(){
 		ofstream fout(nombre_archivo,ios::binary|ios::trunc);
-		
-		Producto p1 = {"barra chocolate", "arcor", "alimento", 001, 4, 100};
-		Producto p2 = {"chocolate", "arcor", "alimento", 002, 10, 200};
-		Producto p3 = {"caramelo", "sugus", "alimento", 003, 20, 5};
-		Producto p4 = {"desodorante", "rexona", "higiene", 004, 0, 160};
-		Producto p5 = {"desodorante", "nivea", "higiene", 005, 0, 15};
+
+		Producto p1 = {"barra chocolate", "arcor", "alimento", 1, 4, 100};
+		Producto p2 = {"chocolate", "arcor", "alimento", 2, 10, 200};
+		Producto p3 = {"caramelo", "sugus", "alimento", 3, 20, 5};
+		Producto p4 = {"desodorante", "rexona", "higiene", 4, 0, 160};
+		Producto p5 = {"desodorante", "nivea", "higiene", 5, 0, 15};
 		
 		fout.write(reinterpret_cast<char*> (&p1), sizeof(Producto));
 		fout.write(reinterpret_cast<char*> (&p2), sizeof(Producto));
@@ -219,11 +229,11 @@ public:
 	void cargarDatosDePruebaVenta(){
 		ofstream fout(nombre_archivo,ios::binary|ios::trunc);
 //		Fecha f1 = {2,10,2021};
-//		Compra c1 = {"lucas",f1 ,450;}
-//		Compra c2 = {"Mati", f1,500;}
-//		Compra c3 = {"Brian",f1,300;}
-//		Compra c4 = {"aaaa", f1,800;}
-//		Compra c5 = {"bbbb", f1,300;}
+//		Compra c1 = {"lucas",f1 ,450};
+//		Compra c2 = {"Mati", f1,500};
+//		Compra c3 = {"Brian",f1,300};
+//		Compra c4 = {"aaaa", f1,800};
+//		Compra c5 = {"bbbb", f1,300};
 //	
 //		fout.write(reinterpret_cast<char*> (&c1), sizeof(Compra));
 //		fout.write(reinterpret_cast<char*> (&c2), sizeof(Compra));
