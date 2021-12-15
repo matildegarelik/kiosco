@@ -65,7 +65,7 @@ vector<Compra> Venta::CargarFiados(string archivo_fiados){
 }
 void Venta::MarcarPagado(Compra c){
 	//borra registro compra de fiados y agrega a ventas ese registro
-	repo_fiados.eliminarPermanente(Compra c);
+	repo_fiados.eliminarPermanente(c);
 	repo_ventas.guardarNuevo(c);
 	
 }

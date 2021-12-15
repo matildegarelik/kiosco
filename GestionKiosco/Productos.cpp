@@ -21,6 +21,13 @@ bool OrdenarPorStock(Producto &x1, Producto &x2){
 bool OrdenarPorPrecio(Producto &x1, Producto &x2){
 	return (x1._precio<x2._precio);
 }
+	
+ostream &operator<<(ostream &o, Producto n){
+	o<<n._nombre<<"  "<<n._stock<<"  "<<n._precio<<endl;
+	return o;
+}
+	
+	
 Productos::Productos() {
 	
 }
