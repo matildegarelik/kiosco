@@ -1,12 +1,12 @@
 #include <wx/image.h>
 #include "Application.h"
-#include "WinExample.h"
+#include "Ventana2HIja.h"
 
 IMPLEMENT_APP(Application)
 
 bool Application::OnInit() {
 	wxInitAllImageHandlers();
-	WinExample *win = new WinExample(NULL);
+	Ventana2HIja *win = new Ventana2HIja(NULL);
 	win->Show();
 	return true;
 }

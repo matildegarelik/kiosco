@@ -25,7 +25,7 @@ struct Compra{
 	float total;
 };
 
-ostream &operator<<(ostream &o, Fecha &f) {
+/*ostream &operator<<(ostream &o, Fecha &f) {
 	o << f.dia <<'/'<< f.mes<<'/'<<f.anio;
 	return o;
 }
@@ -42,7 +42,7 @@ bool operator==(Detalle d1, Detalle d2) {
 }
 bool operator==(DetalleYFecha d1, DetalleYFecha d2) {
 	return d1.d==d2.d and d1.f==d2.f;
-}
+}*/
 
 class Venta {
 public:
@@ -69,9 +69,9 @@ private:
 	bool _pagado;
 	Fecha _fecha;
 	
-	Repositorio<Compra> repo_ventas;
-	Repositorio<Compra> repo_fiados;
-	Repositorio<DetalleYFecha> repo_detalles;
+	//Repositorio<Compra> repo_ventas;
+	//Repositorio<Compra> repo_fiados;
+	//Repositorio<DetalleYFecha> repo_detalles;
 };
 
 #endif
