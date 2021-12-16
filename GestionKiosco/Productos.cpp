@@ -5,16 +5,16 @@
 #include <string>
 using namespace std;
 bool OrdenarPorNombre(Producto &x1, Producto &x2){
-	return (x1._nombre<x2._nombre);
+	return strcmp(x1._nombre,x2._nombre)<0;
 }
 bool OrdenarPorCodigo(Producto &x1, Producto &x2){
 	return (x1._codigo<x2._codigo);
 }
 bool OrdenarPorTipo(Producto &x1, Producto &x2){
-	return (x1._tipo<x2._tipo);
+	return strcmp(x1._tipo,x2._tipo)<0;
 }
 bool OrdenarPorMarca(Producto &x1, Producto &x2){
-	return (x1._marca<x2._marca);
+	return strcmp(x1._marca,x2._marca)<0;
 }
 bool OrdenarPorStock(Producto &x1, Producto &x2){
 	return (x1._stock<x2._stock);
@@ -46,6 +46,7 @@ Producto Productos::BuscarProducto(int codigo) const{
 			return aux;
 		}
 	}
+	return aux;
 }
 char*Productos::VerNombre (int x){return VectorProductos[x]._nombre;}
 char*Productos::VerMarca (int x){return VectorProductos[x]._marca;}
@@ -55,25 +56,33 @@ int Productos::VerStock(int x){return VectorProductos[x]._stock;}
 float Productos::VerPrecio(int x){return VectorProductos[x]._precio;}
 int Productos::BuscarIndice(int codigo){
 	for(int i=0; i<VectorProductos.size(); ++i){
-		if(VectorProductos[i]._codigo==codigo) return i;
+		int aux;
+		for(int i=0; i<VectorProductos.size(); ++i){
+			if(VectorProductos[i]._codigo==codigo) aux=i;
+		}
+		return aux;
 	}
 }
 void Productos::GuardarCambios(string NombreArchivo){
-	fstream archi(NombreArchivo, ios::binary|ios::in|ios::trunc|ios::app);
+	fstream archi(NombreArchivo, ios::binary|ios::out|ios::trunc|);
 	for(int i=0; i<VectorProductos.size(); ++i){
 		archi.write(reinterpret_cast<char*>(&VectorProductos[i]),sizeof(Producto));
 	}
+	archi.close();
 }
 void Productos::Lectura(string NombreArchivo){
-	fstream archi(NombreArchivo, ios::binary|ios::out|ios::app); //Lectura del binario y se lo pasa a vector
-	Producto aux;												//Revisar 
+	fstream archi(NombreArchivo, ios::binary|ios::in|ios::app); //Lectura del binario y se lo pasa a vector
+	Producto aux;
+	VectorProductos.clear();//Revisar 
 	int n=archi.tellg();
 	int cant=n/sizeof(Producto);
 	VectorProductos.resize(cant);
 	archi.seekg(0);
+	archi.seekp(0);
 	for(int i=0; i<VectorProductos.size(); ++i){
 		archi.read(reinterpret_cast<char*>(&VectorProductos[i]),sizeof(Producto));
 	}
+	archi.close();
 }
 void Productos::ActualizarStock(string NombreArchivo, int codigo, int cantidad){
 	fstream archi(NombreArchivo, ios::binary|ios::in);
@@ -110,26 +119,25 @@ void Productos::EliminarProducto(string NombreArchivo, int codigo){
 	}
 }
 void Productos::Ordenar(string Parametro){
-	if(Parametro=="PRODUCTO")sort(VectorProductos.begin(), VectorProductos.end(),OrdenarPorNombre );
+	if(Parametro=="PRODUCTO")sort(VectorProductos.begin(), VectorProductos.end(), OrdenarPorNombre);
 	if(Parametro=="CODIGO")sort(VectorProductos.begin(), VectorProductos.end(),OrdenarPorCodigo );
 	if(Parametro=="TIPO")sort(VectorProductos.begin(), VectorProductos.end(),OrdenarPorTipo );
 	if(Parametro=="MARCA")sort(VectorProductos.begin(), VectorProductos.end(),OrdenarPorMarca );
-	if(Parametro=="STOCK")sort(VectorProductos.begin(), VectorProductos.end(),OrdenarPorStock );
-	if(Parametro=="PRECIO")sort(VectorProductos.begin(), VectorProductos.end(),OrdenarPorPrecio );
-	
+	if(Parametro=="PRECIO"){sort(VectorProductos.begin(), VectorProductos.end(),OrdenarPorPrecio );
 }
-vector<Producto> Productos::Filtrar(string Parametro){
-	int D;
+vector<Producto> Productos::Filtrar(string tipo ){ //Se modificó la función para que le llegue una string determinando el tipo a Filtrar		int D;
 	vector<Producto>aux;
+	cout<<VectorProductos.size()<<endl;
 	for(int i=0; i<VectorProductos.size(); ++i){
-		string S1=VectorProductos[i]._nombre;
-		D=S1.find(Parametro, i);
-		if(D!=string::npos) aux.push_back(VectorProductos[i]);
+		string S=VectorProductos[i]._tipo;
+		if(S==tipo){
+			aux.push_back(VectorProductos[i]);
+		}
 	}
 	return aux;
 }
 void Productos::ActualizarPrecio(string NombreArchivo, int codigo, int precio){ //Agregué el parametro precio porque no estaba
-	fstream archi(NombreArchivo, ios::binary|ios::in);							
+	//fstream archi(NombreArchivo, ios::binary|ios::in);							
 	for(int i=0; i<VectorProductos.size();++i){
 		if(VectorProductos[i]._codigo==codigo){
 			VectorProductos[i]._precio=precio;
