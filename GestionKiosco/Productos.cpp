@@ -2,6 +2,7 @@
 #include <vector>
 #include <fstream>
 #include <algorithm>
+#include <string>
 using namespace std;
 bool OrdenarPorNombre(Producto &x1, Producto &x2){
 	return (x1._nombre<x2._nombre);
@@ -26,10 +27,14 @@ ostream &operator<<(ostream &o, Producto n){
 	o<<n._nombre<<"  "<<n._stock<<"  "<<n._precio<<endl;
 	return o;
 }
+bool operator==(Producto a, Producto b){
+	return a._codigo == b._codigo;
+}
+
 	
-	
-Productos::Productos() {
-	
+Productos::Productos() :
+	repo_productos("productos.dat"){
+
 }
 
 Producto Productos::BuscarProducto(int codigo) const{
@@ -136,3 +141,18 @@ void Productos::GuardarCambios(string NombreArchivo, int indice){
 	archi.seekg(indice*sizeof(Producto));
 	archi.write(reinterpret_cast<char*>(&VectorProductos[indice]),sizeof(Producto));
 }
+
+string Productos :: obtenerIdentificador(Producto auxiliar){
+	return to_string(auxiliar._codigo);
+}
+
+bool Productos :: existe(int codigo){
+	bool retorno = false;
+	for(int i=0;i<VectorProductos.size();i++) { 
+		if(VectorProductos[i]._codigo == codigo){
+			retorno = true;
+		}
+	}
+	return retorno;
+	}
+	
