@@ -3,7 +3,7 @@
 #include <cstring>
 using namespace std;
 
-/*Venta::Venta():
+Venta::Venta():
 	repo_ventas("ventas.dat"),
 	repo_fiados("fiados.dat"),
 	repo_detalles("detalles.dat"){
@@ -72,4 +72,4 @@ void Venta::MarcarPagado(Compra c){
 void Venta::Ordenar(){
 	
 }
-*/
+
