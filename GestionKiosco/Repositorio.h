@@ -211,7 +211,7 @@ public:
 		f.close();					
 	}
 
-	void cargarDatosDePruebaProducto(){
+	/*void cargarDatosDePruebaProducto(){
 		ofstream fout(nombre_archivo,ios::binary|ios::trunc);
 
 		Producto p1 = {"barra chocolate", "arcor", "alimento", 1, 4, 100};
@@ -240,7 +240,7 @@ public:
 //		fout.write(reinterpret_cast<char*> (&c3), sizeof(Compra));
 //		fout.write(reinterpret_cast<char*> (&c4), sizeof(Compra));
 //		fout.write(reinterpret_cast<char*> (&c5), sizeof(Compra));
-	}
+	}*/
 		
 };
 

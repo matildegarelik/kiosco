@@ -3,6 +3,7 @@
 #include <fstream>
 #include <algorithm>
 #include <string>
+#include <cstring>
 using namespace std;
 bool OrdenarPorNombre(Producto &x1, Producto &x2){
 	return strcmp(x1._nombre,x2._nombre)<0;

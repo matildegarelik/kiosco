@@ -7,6 +7,8 @@ class Ventana6Hija : public Ventana6 {
 private:
 	
 protected:
+	void to_fiados( wxCommandEvent& event )  override;
+	void to_productos( wxCommandEvent& event )  override;
 	void ConsultarHistorial( wxCommandEvent& event )  override;
 	
 public:

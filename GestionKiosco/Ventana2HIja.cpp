@@ -1,5 +1,8 @@
 #include "Ventana2HIja.h"
 #include "HijaFiar.h"
+#include "Ventana1Hija.h"
+#include "Ventana3Hija.h"
+#include "BasePagarHija.h"
 
 Ventana2HIja::Ventana2HIja(wxWindow *parent) : Ventana2(parent) {
 	
@@ -21,5 +24,25 @@ void Ventana2HIja::OnClickVerFiar( wxCommandEvent& event )  {
 
 Ventana2HIja::~Ventana2HIja() {
 	
+}
+
+void Ventana2HIja::to_productos( wxCommandEvent& event )  {
+	Ventana1Hija *Ventana_Nueva = new Ventana1Hija(NULL);
+	Close();
+	Ventana_Nueva->Show();
+	event.Skip();
+}
+
+void Ventana2HIja::to_pedidos( wxCommandEvent& event )  {
+	Ventana3Hija *Ventana_Nueva = new Ventana3Hija(NULL);
+	Close();
+	Ventana_Nueva->Show();
+	event.Skip();
+}
+
+void Ventana2HIja::VerPagar( wxCommandEvent& event )  {
+	BasePagarHija ph(this);
+	ph.ShowModal();
+	event.Skip();
 }
 

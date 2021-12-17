@@ -9,25 +9,50 @@
 
 #include <wx/artprov.h>
 #include <wx/xrc/xmlres.h>
+#include <wx/button.h>
 #include <wx/string.h>
-#include <wx/stattext.h>
+#include <wx/bitmap.h>
+#include <wx/image.h>
+#include <wx/icon.h>
 #include <wx/gdicmn.h>
 #include <wx/font.h>
 #include <wx/colour.h>
 #include <wx/settings.h>
-#include <wx/textctrl.h>
-#include <wx/button.h>
-#include <wx/bitmap.h>
-#include <wx/image.h>
-#include <wx/icon.h>
+#include <wx/stattext.h>
 #include <wx/sizer.h>
-#include <wx/grid.h>
 #include <wx/frame.h>
+#include <wx/textctrl.h>
+#include <wx/grid.h>
 #include <wx/dialog.h>
 #include <wx/combobox.h>
 
 ///////////////////////////////////////////////////////////////////////////
 
+
+///////////////////////////////////////////////////////////////////////////////
+/// Class Ventana1
+///////////////////////////////////////////////////////////////////////////////
+class Ventana1 : public wxFrame
+{
+	private:
+
+	protected:
+		wxButton* m_btn_to_consultas;
+		wxStaticText* m_staticText14;
+		wxButton* m_btn_to_ventas;
+
+		// Virtual event handlers, override them in your derived class
+		virtual void to_consultas( wxCommandEvent& event ) { event.Skip(); }
+		virtual void to_ventas( wxCommandEvent& event ) { event.Skip(); }
+
+
+	public:
+
+		Ventana1( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 500,300 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
+
+		~Ventana1();
+
+};
 
 ///////////////////////////////////////////////////////////////////////////////
 /// Class Ventana2
@@ -37,6 +62,9 @@ class Ventana2 : public wxFrame
 	private:
 
 	protected:
+		wxButton* m_btn_to_productos;
+		wxStaticText* m_staticText13;
+		wxButton* m_btn_to_pedido;
 		wxStaticText* m_staticText4;
 		wxTextCtrl* m_codigo;
 		wxStaticText* m_staticText5;
@@ -49,13 +77,16 @@ class Ventana2 : public wxFrame
 		wxButton* m_btn_pagar;
 
 		// Virtual event handlers, override them in your derived class
+		virtual void to_productos( wxCommandEvent& event ) { event.Skip(); }
+		virtual void to_pedidos( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnClickAgregar( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnClickVerFiar( wxCommandEvent& event ) { event.Skip(); }
+		virtual void VerPagar( wxCommandEvent& event ) { event.Skip(); }
 
 
 	public:
 
-		Ventana2( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 500,300 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
+		Ventana2( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 531,300 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
 
 		~Ventana2();
 
@@ -84,21 +115,49 @@ class BaseFiar : public wxDialog
 };
 
 ///////////////////////////////////////////////////////////////////////////////
-/// Class Ventana5
+/// Class BasePagar
 ///////////////////////////////////////////////////////////////////////////////
-class Ventana5 : public wxFrame
+class BasePagar : public wxDialog
 {
 	private:
 
 	protected:
-		wxStaticText* m_staticText6;
-		wxGrid* m_tabla_fiados;
+		wxStaticText* m_staticText17;
+		wxTextCtrl* m_textCtrl9;
+		wxStaticText* m_staticText18;
+		wxTextCtrl* m_textCtrl10;
+		wxButton* m_button19;
 
 	public:
 
-		Ventana5( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 500,300 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
+		BasePagar( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxDEFAULT_DIALOG_STYLE );
 
-		~Ventana5();
+		~BasePagar();
+
+};
+
+///////////////////////////////////////////////////////////////////////////////
+/// Class Ventana3
+///////////////////////////////////////////////////////////////////////////////
+class Ventana3 : public wxFrame
+{
+	private:
+
+	protected:
+		wxButton* m_btn_to_venta;
+		wxStaticText* m_staticText15;
+		wxButton* m_btn_to_stock;
+
+		// Virtual event handlers, override them in your derived class
+		virtual void to_venta( wxCommandEvent& event ) { event.Skip(); }
+		virtual void to_stock( wxCommandEvent& event ) { event.Skip(); }
+
+
+	public:
+
+		Ventana3( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 500,300 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
+
+		~Ventana3();
 
 };
 
@@ -110,7 +169,9 @@ class Ventana4 : public wxFrame
 	private:
 
 	protected:
+		wxButton* m_btn_to_pedido;
 		wxStaticText* m_staticText7;
+		wxButton* m_btn_to_fiados;
 		wxStaticText* m_staticText8;
 		wxTextCtrl* m_textCtrl6;
 		wxStaticText* m_staticText9;
@@ -119,11 +180,42 @@ class Ventana4 : public wxFrame
 		wxStaticText* m_staticText10;
 		wxGrid* m_grid4;
 
+		// Virtual event handlers, override them in your derived class
+		virtual void to_pedido( wxCommandEvent& event ) { event.Skip(); }
+		virtual void to_fiados( wxCommandEvent& event ) { event.Skip(); }
+
+
 	public:
 
 		Ventana4( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 500,300 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
 
 		~Ventana4();
+
+};
+
+///////////////////////////////////////////////////////////////////////////////
+/// Class Ventana5
+///////////////////////////////////////////////////////////////////////////////
+class Ventana5 : public wxFrame
+{
+	private:
+
+	protected:
+		wxButton* m_btn_to_stock;
+		wxStaticText* m_staticText6;
+		wxButton* m_btn_to_consultas;
+		wxGrid* m_tabla_fiados;
+
+		// Virtual event handlers, override them in your derived class
+		virtual void to_stock( wxCommandEvent& event ) { event.Skip(); }
+		virtual void to_consultas( wxCommandEvent& event ) { event.Skip(); }
+
+
+	public:
+
+		Ventana5( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 500,300 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
+
+		~Ventana5();
 
 };
 
@@ -135,7 +227,9 @@ class Ventana6 : public wxFrame
 	private:
 
 	protected:
+		wxButton* m_btn_to_fiados;
 		wxStaticText* m_staticText11;
+		wxButton* m_btn_to_productos;
 		wxComboBox* m_comboBox1;
 		wxTextCtrl* m_textCtrl8;
 		wxButton* m_button10;
@@ -143,6 +237,8 @@ class Ventana6 : public wxFrame
 		wxGrid* m_grid5;
 
 		// Virtual event handlers, override them in your derived class
+		virtual void to_fiados( wxCommandEvent& event ) { event.Skip(); }
+		virtual void to_productos( wxCommandEvent& event ) { event.Skip(); }
 		virtual void ConsultarHistorial( wxCommandEvent& event ) { event.Skip(); }
 
 
