@@ -65,7 +65,7 @@ int Productos::BuscarIndice(int codigo){
 	}
 }
 void Productos::GuardarCambios(string NombreArchivo){
-	fstream archi(NombreArchivo, ios::binary|ios::out|ios::trunc|);
+	fstream archi(NombreArchivo, ios::binary|ios::out|ios::trunc);
 	for(int i=0; i<VectorProductos.size(); ++i){
 		archi.write(reinterpret_cast<char*>(&VectorProductos[i]),sizeof(Producto));
 	}
@@ -124,10 +124,12 @@ void Productos::Ordenar(string Parametro){
 	if(Parametro=="CODIGO")sort(VectorProductos.begin(), VectorProductos.end(),OrdenarPorCodigo );
 	if(Parametro=="TIPO")sort(VectorProductos.begin(), VectorProductos.end(),OrdenarPorTipo );
 	if(Parametro=="MARCA")sort(VectorProductos.begin(), VectorProductos.end(),OrdenarPorMarca );
-	if(Parametro=="PRECIO"){sort(VectorProductos.begin(), VectorProductos.end(),OrdenarPorPrecio );
+	if(Parametro=="PRECIO")sort(VectorProductos.begin(), VectorProductos.end(),OrdenarPorPrecio );
 }
-vector<Producto> Productos::Filtrar(string tipo ){ //Se modificó la función para que le llegue una string determinando el tipo a Filtrar		int D;
-	vector<Producto>aux;
+vector<Producto>Productos::Filtrar(string tipo){ 
+	//Se modificó la función para que le llegue una string determinando el tipo a Filtrar		int D;
+	
+	vector<Producto> aux;
 	cout<<VectorProductos.size()<<endl;
 	for(int i=0; i<VectorProductos.size(); ++i){
 		string S=VectorProductos[i]._tipo;
@@ -163,5 +165,5 @@ bool Productos :: existe(int codigo){
 		}
 	}
 	return retorno;
-	}
+}
 	

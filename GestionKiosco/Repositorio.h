@@ -4,8 +4,6 @@
 #include <vector>
 #include <fstream>
 #include <algorithm>
-#include "Venta.h"
-#include "Productos.h"
 #include <iostream>
 
 using namespace std;

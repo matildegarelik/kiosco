@@ -1,4 +1,4 @@
-#include "Productos.h"
+/*#include "Productos.h"
 #include "Productos.cpp"
 #include "Venta.h"
 #include "Repositorio.h"
@@ -6,9 +6,9 @@
 #include <fstream>
 #include <algorithm>
 #include <iostream>
-using namespace std;
+using namespace std;*/
 
-int main() {
+//int main() {
 //	Repositorio<Producto> repo_produtos("productos.dat");
 //	Venta v1;
 //	v1.repo_ventas.cargarDatosDePruebaProducto
@@ -37,5 +37,5 @@ int main() {
 	
 	
 	
-	return 0;
-}
+	//return 0;
+//}

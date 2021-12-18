@@ -26,24 +26,7 @@ struct Compra{
 	float total;
 };
 
-ostream &operator<<(ostream &o, Fecha &f) {
-	o << f.dia <<'/'<< f.mes<<'/'<<f.anio;
-	return o;
-}
 
-bool operator==(Fecha f1, Fecha f2) {
-	return f1.dia==f2.dia and f1.mes==f2.mes and f1.anio==f2.anio;
-}
-
-bool operator==(Compra c1, Compra c2) {
-	return c1.cliente==c2.cliente and c1.f==c2.f and c1.total==c2.total;
-}
-bool operator==(Detalle d1, Detalle d2) {
-	return d1.cantidad ==d2.cantidad;
-}
-bool operator==(DetalleYFecha d1, DetalleYFecha d2) {
-	return d1.d==d2.d and d1.f==d2.f;
-}
 
 class Venta {
 public:

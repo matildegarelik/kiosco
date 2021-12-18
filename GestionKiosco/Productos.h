@@ -3,6 +3,7 @@
 #define PRODUCTOS_H
 #include <string>
 #include "Repositorio.h"
+#include <fstream>
 using namespace std;
 
 struct Producto{
@@ -10,6 +11,7 @@ struct Producto{
 	int _codigo, _stock;
 	float _precio;
 };
+
 
 class Productos {
 public:
@@ -34,7 +36,7 @@ public:
 	void AgregarProducto(string NombreArchivo, Producto aux);
 	void EliminarProducto(string NombreArchivo, int codigo);
 	void Ordenar(string Parametro);
-	vector<Producto> Filtrar(string Parametro); //Busca por tipo o Producto 
+	vector<Producto> Filtrar(string tipo); //Busca por tipo o Producto 
 	void ActualizarPrecio(string NombreArchivo, int codigo, int precio);
 	void GuardarCambios(string NombreArchivo, int indice);
 	
