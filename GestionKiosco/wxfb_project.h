@@ -104,7 +104,11 @@ class BaseFiar : public wxDialog
 		wxTextCtrl* m_total;
 		wxStaticText* m_staticText10;
 		wxTextCtrl* m_cliente;
-		wxButton* m_button8;
+		wxButton* m_btn_fiar;
+
+		// Virtual event handlers, override them in your derived class
+		virtual void MarcarFIado( wxCommandEvent& event ) { event.Skip(); }
+
 
 	public:
 
@@ -123,10 +127,14 @@ class BasePagar : public wxDialog
 
 	protected:
 		wxStaticText* m_staticText17;
-		wxTextCtrl* m_textCtrl9;
+		wxTextCtrl* m_total;
 		wxStaticText* m_staticText18;
-		wxTextCtrl* m_textCtrl10;
-		wxButton* m_button19;
+		wxTextCtrl* m_cliente;
+		wxButton* m_btn_pagar;
+
+		// Virtual event handlers, override them in your derived class
+		virtual void MarcarPagado( wxCommandEvent& event ) { event.Skip(); }
+
 
 	public:
 

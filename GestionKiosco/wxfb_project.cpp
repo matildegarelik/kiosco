@@ -232,8 +232,8 @@ BaseFiar::BaseFiar( wxWindow* parent, wxWindowID id, const wxString& title, cons
 
 	bSizer9->Add( bSizer11, 1, wxEXPAND, 5 );
 
-	m_button8 = new wxButton( this, wxID_ANY, wxT("Fiar"), wxDefaultPosition, wxDefaultSize, 0 );
-	bSizer9->Add( m_button8, 0, wxALL|wxALIGN_CENTER_HORIZONTAL, 5 );
+	m_btn_fiar = new wxButton( this, wxID_ANY, wxT("Fiar"), wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer9->Add( m_btn_fiar, 0, wxALL|wxALIGN_CENTER_HORIZONTAL, 5 );
 
 
 	this->SetSizer( bSizer9 );
@@ -241,10 +241,16 @@ BaseFiar::BaseFiar( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	bSizer9->Fit( this );
 
 	this->Centre( wxBOTH );
+
+	// Connect Events
+	m_btn_fiar->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BaseFiar::MarcarFIado ), NULL, this );
 }
 
 BaseFiar::~BaseFiar()
 {
+	// Disconnect Events
+	m_btn_fiar->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BaseFiar::MarcarFIado ), NULL, this );
+
 }
 
 BasePagar::BasePagar( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxDialog( parent, id, title, pos, size, style )
@@ -261,8 +267,8 @@ BasePagar::BasePagar( wxWindow* parent, wxWindowID id, const wxString& title, co
 	m_staticText17->Wrap( -1 );
 	bSizer22->Add( m_staticText17, 0, wxALL, 5 );
 
-	m_textCtrl9 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-	bSizer22->Add( m_textCtrl9, 0, wxALL, 5 );
+	m_total = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer22->Add( m_total, 0, wxALL, 5 );
 
 
 	bSizer21->Add( bSizer22, 1, wxEXPAND, 5 );
@@ -274,14 +280,14 @@ BasePagar::BasePagar( wxWindow* parent, wxWindowID id, const wxString& title, co
 	m_staticText18->Wrap( -1 );
 	bSizer23->Add( m_staticText18, 0, wxALL, 5 );
 
-	m_textCtrl10 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-	bSizer23->Add( m_textCtrl10, 0, wxALL, 5 );
+	m_cliente = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer23->Add( m_cliente, 0, wxALL, 5 );
 
 
 	bSizer21->Add( bSizer23, 1, wxEXPAND, 5 );
 
-	m_button19 = new wxButton( this, wxID_ANY, wxT("Pagar"), wxDefaultPosition, wxDefaultSize, 0 );
-	bSizer21->Add( m_button19, 0, wxALL|wxALIGN_CENTER_HORIZONTAL, 5 );
+	m_btn_pagar = new wxButton( this, wxID_ANY, wxT("Pagar"), wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer21->Add( m_btn_pagar, 0, wxALL|wxALIGN_CENTER_HORIZONTAL, 5 );
 
 
 	this->SetSizer( bSizer21 );
@@ -289,10 +295,16 @@ BasePagar::BasePagar( wxWindow* parent, wxWindowID id, const wxString& title, co
 	bSizer21->Fit( this );
 
 	this->Centre( wxBOTH );
+
+	// Connect Events
+	m_btn_pagar->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BasePagar::MarcarPagado ), NULL, this );
 }
 
 BasePagar::~BasePagar()
 {
+	// Disconnect Events
+	m_btn_pagar->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BasePagar::MarcarPagado ), NULL, this );
+
 }
 
 Ventana3::Ventana3( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxFrame( parent, id, title, pos, size, style )
