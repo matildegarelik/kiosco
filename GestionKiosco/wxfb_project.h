@@ -156,10 +156,23 @@ class Ventana3 : public wxFrame
 		wxButton* m_btn_to_venta;
 		wxStaticText* m_staticText15;
 		wxButton* m_btn_to_stock;
+		wxStaticText* m_staticText8;
+		wxTextCtrl* m_codigo;
+		wxStaticText* m_staticText9;
+		wxTextCtrl* m_cantidad;
+		wxButton* m_botonAgregar;
+		wxStaticText* m_staticText10;
+		wxGrid* m_grilla;
+		wxButton* m_botonCerrar;
+		wxButton* m_botonGuardar;
 
 		// Virtual event handlers, override them in your derived class
 		virtual void to_venta( wxCommandEvent& event ) { event.Skip(); }
 		virtual void to_stock( wxCommandEvent& event ) { event.Skip(); }
+		virtual void AgregarProductoLista( wxCommandEvent& event ) { event.Skip(); }
+		virtual void ClickDerechoProducto( wxGridEvent& event ) { event.Skip(); }
+		virtual void CerrarVentana( wxCommandEvent& event ) { event.Skip(); }
+		virtual void GuardarArchivo( wxCommandEvent& event ) { event.Skip(); }
 
 
 	public:

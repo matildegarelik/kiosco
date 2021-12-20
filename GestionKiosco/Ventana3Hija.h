@@ -9,6 +9,10 @@ private:
 	Productos *_prods;
 	
 protected:
+	void ClickDerechoProducto( wxGridEvent& event )  override;
+	void CerrarVentana( wxCommandEvent& event )  override;
+	void AgregarProductoLista( wxCommandEvent& event )  override;
+	void GuardarArchivo( wxCommandEvent& event )  override;
 	void to_venta( wxCommandEvent& event )  override;
 	void to_stock( wxCommandEvent& event )  override;
 	
