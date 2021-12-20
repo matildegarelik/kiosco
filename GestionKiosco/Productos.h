@@ -12,6 +12,8 @@ struct Producto{
 	float _precio;
 };
 
+ostream &operator<<(ostream &o, Producto n);
+bool operator==(Producto a, Producto b);
 
 class Productos {
 public:
