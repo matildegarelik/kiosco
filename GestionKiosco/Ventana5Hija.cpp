@@ -43,7 +43,7 @@ void Ventana5Hija::to_stock( wxCommandEvent& event )  {
 }
 
 void Ventana5Hija::to_consultas( wxCommandEvent& event )  {
-	Ventana6Hija *Ventana_Nueva = new Ventana6Hija(NULL);
+	Ventana6Hija *Ventana_Nueva = new Ventana6Hija(NULL, _prods);
 	Close();
 	Ventana_Nueva->Show();
 	event.Skip();
@@ -57,7 +57,6 @@ void Ventana5Hija::m_tabla_fiadosOnGridCellLeftClick( wxGridEvent& event )  {
 		c.total=stof(wx_to_std(m_tabla_fiados->GetCellValue(event.GetRow(),2)));
 		v.MarcarPagado(c);
 		m_tabla_fiados->DeleteRows(event.GetRow());
-		
 	}
 	event.Skip();
 }
