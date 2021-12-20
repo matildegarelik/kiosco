@@ -341,6 +341,81 @@ Ventana3::Ventana3( wxWindow* parent, wxWindowID id, const wxString& title, cons
 
 	bSizer16->Add( bSizer17, 0, wxALIGN_CENTER_HORIZONTAL|wxEXPAND, 5 );
 
+	wxBoxSizer* bSizer10;
+	bSizer10 = new wxBoxSizer( wxHORIZONTAL );
+
+	m_staticText8 = new wxStaticText( this, wxID_ANY, wxT("Codigo: "), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText8->Wrap( -1 );
+	bSizer10->Add( m_staticText8, 0, wxALL, 5 );
+
+	m_codigo = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer10->Add( m_codigo, 0, wxALL, 5 );
+
+	m_staticText9 = new wxStaticText( this, wxID_ANY, wxT("Cantidad: "), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText9->Wrap( -1 );
+	bSizer10->Add( m_staticText9, 0, wxALL, 5 );
+
+	m_cantidad = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer10->Add( m_cantidad, 0, wxALL, 5 );
+
+	m_botonAgregar = new wxButton( this, wxID_ANY, wxT("Agregar"), wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer10->Add( m_botonAgregar, 0, wxALL, 5 );
+
+
+	bSizer16->Add( bSizer10, 0, wxEXPAND, 5 );
+
+	m_staticText10 = new wxStaticText( this, wxID_ANY, wxT("Ultimos ingresos:"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText10->Wrap( -1 );
+	bSizer16->Add( m_staticText10, 0, wxALL, 5 );
+
+	m_grilla = new wxGrid( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0 );
+
+	// Grid
+	m_grilla->CreateGrid( 0, 5 );
+	m_grilla->EnableEditing( false );
+	m_grilla->EnableGridLines( true );
+	m_grilla->EnableDragGridSize( false );
+	m_grilla->SetMargins( 0, 0 );
+
+	// Columns
+	m_grilla->SetColSize( 0, 80 );
+	m_grilla->SetColSize( 1, 115 );
+	m_grilla->SetColSize( 2, 114 );
+	m_grilla->SetColSize( 3, 107 );
+	m_grilla->SetColSize( 4, 64 );
+	m_grilla->EnableDragColMove( false );
+	m_grilla->EnableDragColSize( true );
+	m_grilla->SetColLabelValue( 0, wxT("Fecha") );
+	m_grilla->SetColLabelValue( 1, wxT("Producto") );
+	m_grilla->SetColLabelValue( 2, wxT("Marca") );
+	m_grilla->SetColLabelValue( 3, wxT("Codigo") );
+	m_grilla->SetColLabelValue( 4, wxT("Cantidad") );
+	m_grilla->SetColLabelValue( 5, wxEmptyString );
+	m_grilla->SetColLabelAlignment( wxALIGN_CENTER, wxALIGN_CENTER );
+
+	// Rows
+	m_grilla->EnableDragRowSize( true );
+	m_grilla->SetRowLabelSize( 0 );
+	m_grilla->SetRowLabelAlignment( wxALIGN_CENTER, wxALIGN_CENTER );
+
+	// Label Appearance
+
+	// Cell Defaults
+	m_grilla->SetDefaultCellAlignment( wxALIGN_LEFT, wxALIGN_TOP );
+	bSizer16->Add( m_grilla, 1, wxALL, 5 );
+
+	wxBoxSizer* bSizer29;
+	bSizer29 = new wxBoxSizer( wxHORIZONTAL );
+
+	m_botonCerrar = new wxButton( this, wxID_ANY, wxT("cerrar"), wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer29->Add( m_botonCerrar, 0, wxALL, 5 );
+
+	m_botonGuardar = new wxButton( this, wxID_ANY, wxT("Guardar"), wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer29->Add( m_botonGuardar, 0, wxALL, 5 );
+
+
+	bSizer16->Add( bSizer29, 0, wxBOTTOM|wxALIGN_RIGHT, 5 );
+
 
 	this->SetSizer( bSizer16 );
 	this->Layout();
@@ -350,6 +425,10 @@ Ventana3::Ventana3( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	// Connect Events
 	m_btn_to_venta->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Ventana3::to_venta ), NULL, this );
 	m_btn_to_stock->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Ventana3::to_stock ), NULL, this );
+	m_botonAgregar->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Ventana3::AgregarProductoLista ), NULL, this );
+	m_grilla->Connect( wxEVT_GRID_LABEL_RIGHT_CLICK, wxGridEventHandler( Ventana3::ClickDerechoProducto ), NULL, this );
+	m_botonCerrar->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Ventana3::CerrarVentana ), NULL, this );
+	m_botonGuardar->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Ventana3::GuardarArchivo ), NULL, this );
 }
 
 Ventana3::~Ventana3()
@@ -357,6 +436,10 @@ Ventana3::~Ventana3()
 	// Disconnect Events
 	m_btn_to_venta->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Ventana3::to_venta ), NULL, this );
 	m_btn_to_stock->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Ventana3::to_stock ), NULL, this );
+	m_botonAgregar->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Ventana3::AgregarProductoLista ), NULL, this );
+	m_grilla->Disconnect( wxEVT_GRID_LABEL_RIGHT_CLICK, wxGridEventHandler( Ventana3::ClickDerechoProducto ), NULL, this );
+	m_botonCerrar->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Ventana3::CerrarVentana ), NULL, this );
+	m_botonGuardar->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Ventana3::GuardarArchivo ), NULL, this );
 
 }
 
@@ -516,6 +599,10 @@ Ventana5::Ventana5( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	m_tabla_fiados->SetMargins( 0, 0 );
 
 	// Columns
+	m_tabla_fiados->SetColSize( 0, 80 );
+	m_tabla_fiados->SetColSize( 1, 79 );
+	m_tabla_fiados->SetColSize( 2, 80 );
+	m_tabla_fiados->SetColSize( 3, 80 );
 	m_tabla_fiados->EnableDragColMove( false );
 	m_tabla_fiados->EnableDragColSize( true );
 	m_tabla_fiados->SetColLabelValue( 0, wxT("Cliente") );

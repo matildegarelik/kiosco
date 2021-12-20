@@ -12,7 +12,7 @@ Pedido::Pedido() {
 }
 
 
-void Pedido :: agregarProducto(int cod, int cant, const Productos &prod ){
+void Pedido :: agregarProducto(int cod, int cant, Productos &prod ){
 
 	if(prod.existe(cod)){
 		Producto aux;
@@ -39,7 +39,7 @@ void Pedido :: armarArchivoTexto(vector<int> cantidades){
 	arch.close();
 }
 
-void Pedido :: eliminarProducto(int cod){
+void Pedido :: eliminarProducto(int cod, Productos &prod){
 	
 	if(prod.existe(cod)){
 		for(int i=0;i<lista_pedido.size();i++) { 

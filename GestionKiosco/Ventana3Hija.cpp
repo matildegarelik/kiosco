@@ -24,3 +24,20 @@ Ventana3Hija::~Ventana3Hija() {
 	
 }
 
+
+void Ventana3Hija::AgregarProductoLista( wxCommandEvent& event )  {
+	event.Skip();
+}
+
+void Ventana3Hija::GuardarArchivo( wxCommandEvent& event )  {
+	event.Skip();
+}
+
+void Ventana3Hija::CerrarVentana( wxCommandEvent& event )  {
+	event.Skip();
+}
+
+void Ventana3Hija::ClickDerechoProducto( wxGridEvent& event )  {
+	event.Skip();
+}
+

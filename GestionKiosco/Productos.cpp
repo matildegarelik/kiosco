@@ -39,7 +39,7 @@ Productos::Productos() :
 }
 
 Producto Productos::BuscarProducto(int codigo) const{
-	Producto aux={"ERROR\0","ERROR\0","ERRoR\0",0,VectorProductos.size(),0};
+	Producto aux={"ERROR\0","ERROR\0","ERRoR\0",0,0,0};
 	for(int i=0; i<VectorProductos.size(); ++i){
 		if(VectorProductos[i]._codigo==codigo){
 			//VectorProductos[i]=aux;
