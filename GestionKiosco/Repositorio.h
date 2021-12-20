@@ -62,7 +62,7 @@ public:
 		T aux;
 		for(int i=0;i<cant_datos;i++) { 
 			fin.read(reinterpret_cast<char *> (&aux), sizeof (aux));
-			cout<<aux<<endl;
+			cout<<aux._nombre<<endl;
 		}
 		cout<<endl;
 		fin.close();
@@ -160,6 +160,7 @@ public:
 			
 			if(entidad == auxiliar){
 				m_registros[i].eliminado = true;
+				f.seekp(i*sizeof(T));
 				f.write(reinterpret_cast<char *> (&auxiliar), sizeof(auxiliar));
 			}
 			f.close();		

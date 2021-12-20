@@ -26,6 +26,13 @@ struct Compra{
 	float total;
 };
 
+bool operator==(Fecha f1, Fecha f2);
+bool operator==(Compra c1, Compra c2);
+bool operator==(Detalle d1, Detalle d2);
+bool operator==(DetalleYFecha d1, DetalleYFecha d2);
+
+ostream &operator<<(ostream &o, Fecha &f);
+
 
 
 class Venta {
