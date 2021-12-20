@@ -70,6 +70,12 @@ void Venta::MarcarPagado(Compra c){
 	repo_ventas.guardarNuevo(c);	
 }
 
+void Venta::MarcarPagado(int indice){
+	//borra registro compra de fiados y agrega a ventas ese registro
+	Compra c = repo_fiados.eliminarPermanente(indice);
+	repo_ventas.guardarNuevo(c);	
+}
+
 void Venta::Ordenar(){
 	
 }

@@ -178,6 +178,22 @@ public:
 			fout.close();		
 		}
 	}
+		
+	T eliminarPermanente(int i){
+		ifstream fin(nombre_archivo,ios::binary);
+		fin.seekg(i*sizeof(T));
+		T aux;
+		fin.read(reinterpret_cast<char*>(&aux), sizeof(T));
+		fin.close();
+		
+		ofstream fout(nombre_archivo,ios::binary|ios::trunc);
+		m_registros.erase(m_registros.begin()+i);
+		for(int i=0;i<m_registros.size();i++) { 
+			fout.write(reinterpret_cast<char *> (&m_registros[i]), sizeof(m_registros[i]));
+		}
+		fout.close();		
+		return aux;
+	}
 	
 	
 	//La version comentada lo elimina permanentemente mientras que la activa lo elimina logicamente
