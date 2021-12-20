@@ -16,6 +16,7 @@ inline std::string wx_to_std(const wxString &wx_str) {
 BasePagarHija::BasePagarHija(wxWindow *parent,Venta *venta, Productos *prods) : BasePagar(parent) {
 	_venta= venta;
 	_prods=prods;
+	m_total->SetValue(to_string(_venta->CalcularTotal()));
 }
 
 BasePagarHija::~BasePagarHija() {
@@ -30,5 +31,6 @@ void BasePagarHija::MarcarPagado( wxCommandEvent& event )  {
 	_venta->Pagar(*_prods);
 	
 	event.Skip();
+	this->Close();
 }
 

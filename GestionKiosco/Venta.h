@@ -43,8 +43,9 @@ public:
 	void Pagar(Productos &prods); // tambien actualiza stock en vector de productos y archivo de detalles
 	
 	
-	vector<Compra> CargarFiados(string archivo_fiados); //archivo binario
+	vector<Compra> CargarFiados(); //archivo binario
 	void MarcarPagado(Compra c); //guarda vector y archivos
+	void MarcarPagado(int indice); //guarda vector y archivos
 	void Ordenar();
 	
 private:

@@ -115,11 +115,13 @@ public:
 	void guardarNuevo(T entidad){ 
 		ofstream fout(nombre_archivo,ios::binary|ios::out|ios::app);
 		
-		auto it = find(m_registros.begin(),m_registros.end(),entidad);
+		/*auto it = find(m_registros.begin(),m_registros.end(),entidad);
 		if(it != m_registros.end()){
 			fout.write(reinterpret_cast<char *> (&entidad), sizeof(entidad));
 			m_registros.push_back(entidad);
-		}
+		}*/
+		fout.write(reinterpret_cast<char *> (&entidad), sizeof(entidad));
+		m_registros.push_back(entidad);
 		fout.close();
 		//		
 		//		fstream f(nombre_archivo,ios::binary|ios::in|ios::out|ios::ate);

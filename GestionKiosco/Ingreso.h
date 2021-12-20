@@ -7,11 +7,12 @@ using namespace std;
 class Ingreso {
 public:
 	Ingreso(int cod_prod, const Productos &prods, int cant, Fecha f);
-	void GuardarCambios(string archivo_ingresos, string archivo_productos, Productos &prods);
+	void GuardarCambios(Productos &prods);
 private:
 	Producto _producto;
 	int _cantidad;
 	Fecha _fecha;
+	Repositorio<DetalleYFecha> repo_ingresos;
 };
 
 #endif

@@ -18,7 +18,7 @@ inline std::string wx_to_std(const wxString &wx_str) {
 HijaFiar::HijaFiar(wxWindow *parent, Venta *venta, Productos *prods) : BaseFiar(parent) {
 	_venta= venta;
 	_prods=prods;
-	
+	m_total->SetValue(to_string(_venta->CalcularTotal()));
 }
 
 HijaFiar::~HijaFiar() {

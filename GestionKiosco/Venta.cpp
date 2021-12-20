@@ -34,6 +34,7 @@ void Venta::EliminarDetalle(int indice){
 float Venta::CalcularTotal(){
 	float total=0;
 	for(Detalle &d: _detalles) total+=d.cantidad*d.p._precio;
+	return total;
 }
 
 void Venta::Pagar(Productos &prods){
@@ -58,7 +59,7 @@ void Venta::Pagar(Productos &prods){
 
 
 // FIADOS
-vector<Compra> Venta::CargarFiados(string archivo_fiados){
+vector<Compra> Venta::CargarFiados(){
 	vector<Compra> fiados;
 	fiados = repo_fiados.buscarTodos();
 	return fiados;
@@ -66,9 +67,9 @@ vector<Compra> Venta::CargarFiados(string archivo_fiados){
 void Venta::MarcarPagado(Compra c){
 	//borra registro compra de fiados y agrega a ventas ese registro
 	repo_fiados.eliminarPermanente(c);
-	repo_ventas.guardarNuevo(c);
-	
+	repo_ventas.guardarNuevo(c);	
 }
+
 void Venta::Ordenar(){
 	
 }

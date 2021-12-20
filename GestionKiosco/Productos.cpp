@@ -35,17 +35,18 @@ bool operator==(Producto a, Producto b){
 	
 Productos::Productos() :
 	repo_productos("productos.dat"){
-
+	VectorProductos = repo_productos.buscarTodos();
 }
 
 Producto Productos::BuscarProducto(int codigo) const{
-	Producto aux;
+	Producto aux={"ERROR\0","ERROR\0","ERRoR\0",0,VectorProductos.size(),0};
 	for(int i=0; i<VectorProductos.size(); ++i){
 		if(VectorProductos[i]._codigo==codigo){
 			//VectorProductos[i]=aux;
 			aux = VectorProductos[i];
 			return aux;
 		}
+		cout<<VectorProductos.size()<<endl;
 	}
 	return aux;
 }
@@ -99,11 +100,8 @@ void Productos::ActualizarStock(string NombreArchivo, int codigo, int cantidad){
 	archi.write(reinterpret_cast<char*>(&VectorProductos[aux]),sizeof(Producto)); //Escribe el vector actualizado
 }
 void Productos::AgregarProducto(string NombreArchivo, Producto aux){
-	fstream archi(NombreArchivo, ios::binary|ios::in);
 	VectorProductos.push_back(aux);
-	for(int i=0; i<VectorProductos.size(); ++i){
-		archi.write(reinterpret_cast<char*>(&VectorProductos[i]),sizeof(Producto));
-	}
+	repo_productos.guardarNuevo(aux);
 }
 void Productos::EliminarProducto(string NombreArchivo, int codigo){
 	fstream archi(NombreArchivo, ios::binary);

@@ -80,13 +80,14 @@ class Ventana2 : public wxFrame
 		virtual void to_productos( wxCommandEvent& event ) { event.Skip(); }
 		virtual void to_pedidos( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnClickAgregar( wxCommandEvent& event ) { event.Skip(); }
+		virtual void m_grillaOnGridCellLeftClick( wxGridEvent& event ) { event.Skip(); }
 		virtual void OnClickVerFiar( wxCommandEvent& event ) { event.Skip(); }
 		virtual void VerPagar( wxCommandEvent& event ) { event.Skip(); }
 
 
 	public:
 
-		Ventana2( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 531,300 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
+		Ventana2( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 521,300 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
 
 		~Ventana2();
 
@@ -181,16 +182,17 @@ class Ventana4 : public wxFrame
 		wxStaticText* m_staticText7;
 		wxButton* m_btn_to_fiados;
 		wxStaticText* m_staticText8;
-		wxTextCtrl* m_textCtrl6;
+		wxTextCtrl* m_codigo;
 		wxStaticText* m_staticText9;
-		wxTextCtrl* m_textCtrl7;
-		wxButton* m_button5;
+		wxTextCtrl* m_cantidad;
+		wxButton* m_btn_ingreso;
 		wxStaticText* m_staticText10;
-		wxGrid* m_grid4;
+		wxGrid* m_grilla;
 
 		// Virtual event handlers, override them in your derived class
 		virtual void to_pedido( wxCommandEvent& event ) { event.Skip(); }
 		virtual void to_fiados( wxCommandEvent& event ) { event.Skip(); }
+		virtual void Ingresar( wxCommandEvent& event ) { event.Skip(); }
 
 
 	public:
@@ -217,6 +219,7 @@ class Ventana5 : public wxFrame
 		// Virtual event handlers, override them in your derived class
 		virtual void to_stock( wxCommandEvent& event ) { event.Skip(); }
 		virtual void to_consultas( wxCommandEvent& event ) { event.Skip(); }
+		virtual void m_tabla_fiadosOnGridCellLeftClick( wxGridEvent& event ) { event.Skip(); }
 
 
 	public:

@@ -10,6 +10,7 @@ private:
 	Productos *prods;
 	Venta _venta;
 protected:
+	void m_grillaOnGridCellLeftClick( wxGridEvent& event )  override;
 	void to_productos( wxCommandEvent& event )  override;
 	void to_pedidos( wxCommandEvent& event )  override;
 	void VerPagar( wxCommandEvent& event )  override;
