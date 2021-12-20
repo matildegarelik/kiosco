@@ -51,11 +51,12 @@ void Ventana5Hija::to_consultas( wxCommandEvent& event )  {
 
 void Ventana5Hija::m_tabla_fiadosOnGridCellLeftClick( wxGridEvent& event )  {
 	if(event.GetCol()==3){
-		Compra c ;
-		strcpy(c.cliente, wx_to_std(m_tabla_fiados->GetCellValue(event.GetRow(),0)).c_str());
-		c.f={19,12,2021};
-		c.total=stof(wx_to_std(m_tabla_fiados->GetCellValue(event.GetRow(),2)));
-		v.MarcarPagado(c);
+		//Compra c ;
+		//strcpy(c.cliente, wx_to_std(m_tabla_fiados->GetCellValue(event.GetRow(),0)).c_str());
+		//c.f={19,12,2021};
+		//c.total=stof(wx_to_std(m_tabla_fiados->GetCellValue(event.GetRow(),2)));
+		//v.MarcarPagado(c);
+		v.MarcarPagado(event.GetRow());
 		m_tabla_fiados->DeleteRows(event.GetRow());
 	}
 	event.Skip();
