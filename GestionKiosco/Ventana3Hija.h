@@ -3,7 +3,6 @@
 #include "wxfb_project.h"
 #include "Productos.h"
 #include "Pedido.h"
-#include "WxFunciones.h"
 
 class Ventana3Hija : public Ventana3 {
 	
