@@ -1,6 +1,7 @@
 //#include "WxFunciones.h"
 #include <wx/string.h>
 #include <string>
+using namespace std;
 
 
 /// para convertir un c-string, o una constante, a wxString
@@ -15,5 +16,6 @@ inline wxString std_to_wx(const std::string &std_str) {
 inline std::string wx_to_std(const wxString &wx_str) {
 	return static_cast<const char*>(wx_str.To8BitData());
 }
+
 
 

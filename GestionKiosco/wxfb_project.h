@@ -95,7 +95,7 @@ class Ventana2 : public wxFrame
 
 	public:
 
-		Ventana2( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 521,300 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
+		Ventana2( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 800,500 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
 
 		~Ventana2();
 
@@ -216,7 +216,7 @@ class Ventana4 : public wxFrame
 
 	public:
 
-		Ventana4( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 500,300 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
+		Ventana4( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 800,500 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
 
 		~Ventana4();
 
@@ -243,7 +243,7 @@ class Ventana5 : public wxFrame
 
 	public:
 
-		Ventana5( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 500,300 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
+		Ventana5( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 800,500 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
 
 		~Ventana5();
 
@@ -260,21 +260,22 @@ class Ventana6 : public wxFrame
 		wxButton* m_btn_to_fiados;
 		wxStaticText* m_staticText11;
 		wxButton* m_btn_to_productos;
-		wxComboBox* m_comboBox1;
-		wxTextCtrl* m_textCtrl8;
+		wxComboBox* m_dropdown;
+		wxTextCtrl* m_param;
 		wxButton* m_button10;
 		wxStaticText* m_staticText12;
-		wxGrid* m_grid5;
+		wxGrid* m_grilla;
 
 		// Virtual event handlers, override them in your derived class
 		virtual void to_fiados( wxCommandEvent& event ) { event.Skip(); }
 		virtual void to_productos( wxCommandEvent& event ) { event.Skip(); }
+		virtual void CambioOpcion( wxCommandEvent& event ) { event.Skip(); }
 		virtual void ConsultarHistorial( wxCommandEvent& event ) { event.Skip(); }
 
 
 	public:
 
-		Ventana6( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 500,300 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
+		Ventana6( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 800,500 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
 
 		~Ventana6();
 
