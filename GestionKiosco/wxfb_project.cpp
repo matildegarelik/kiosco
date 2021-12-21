@@ -130,16 +130,16 @@ Ventana2::Ventana2( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	bSizer13->Add( m_btn_to_productos, 0, wxALL, 5 );
 
 
-	bSizer13->Add( 130, 0, 1, wxALIGN_CENTER_VERTICAL|wxEXPAND, 5 );
+	bSizer13->Add( 130, 0, 1, 0, 5 );
 
 	m_staticText13 = new wxStaticText( this, wxID_ANY, wxT("Ventas"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText13->Wrap( -1 );
 	m_staticText13->SetFont( wxFont( 18, wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false, wxT("Arial") ) );
 
-	bSizer13->Add( m_staticText13, 0, wxALL|wxALIGN_CENTER_HORIZONTAL, 5 );
+	bSizer13->Add( m_staticText13, 0, wxALL, 5 );
 
 
-	bSizer13->Add( 50, 0, 1, wxEXPAND, 5 );
+	bSizer13->Add( 50, 0, 1, 0, 5 );
 
 	m_btn_to_pedido = new wxButton( this, wxID_ANY, wxT("Pedido>>"), wxDefaultPosition, wxDefaultSize, 0 );
 	bSizer13->Add( m_btn_to_pedido, 0, wxALL, 5 );
@@ -519,7 +519,7 @@ Ventana4::Ventana4( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	m_staticText7->Wrap( -1 );
 	m_staticText7->SetFont( wxFont( 18, wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false, wxT("Arial") ) );
 
-	bSizer18->Add( m_staticText7, 0, wxALL|wxALIGN_CENTER_HORIZONTAL, 5 );
+	bSizer18->Add( m_staticText7, 0, wxALL, 5 );
 
 
 	bSizer18->Add( 0, 0, 1, wxEXPAND, 5 );
@@ -634,7 +634,7 @@ Ventana5::Ventana5( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	m_staticText6->Wrap( -1 );
 	m_staticText6->SetFont( wxFont( 18, wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false, wxT("Arial") ) );
 
-	bSizer19->Add( m_staticText6, 0, wxALL|wxALIGN_CENTER_HORIZONTAL, 5 );
+	bSizer19->Add( m_staticText6, 0, wxALL, 5 );
 
 
 	bSizer19->Add( 0, 0, 1, wxEXPAND, 5 );
@@ -720,7 +720,7 @@ Ventana6::Ventana6( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	m_staticText11->Wrap( -1 );
 	m_staticText11->SetFont( wxFont( 18, wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false, wxT("Arial") ) );
 
-	bSizer20->Add( m_staticText11, 0, wxALL|wxALIGN_CENTER_HORIZONTAL, 5 );
+	bSizer20->Add( m_staticText11, 0, wxALL, 5 );
 
 
 	bSizer20->Add( 0, 0, 1, wxEXPAND, 5 );
@@ -734,11 +734,16 @@ Ventana6::Ventana6( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	wxBoxSizer* bSizer12;
 	bSizer12 = new wxBoxSizer( wxHORIZONTAL );
 
-	m_comboBox1 = new wxComboBox( this, wxID_ANY, wxT("Productos mas vendidos\nVentas por cliente\nVentas por producto\nVentas en (fecha)"), wxDefaultPosition, wxDefaultSize, 0, NULL, 0 );
-	bSizer12->Add( m_comboBox1, 0, wxALL, 5 );
+	m_dropdown = new wxComboBox( this, wxID_ANY, wxT("Seleccionar..."), wxDefaultPosition, wxDefaultSize, 0, NULL, 0 );
+	m_dropdown->Append( wxT("Productos mas vendidos") );
+	m_dropdown->Append( wxT("Ultimas ventas") );
+	m_dropdown->Append( wxT("Ventas por producto") );
+	m_dropdown->Append( wxT("Ventas por cliente") );
+	m_dropdown->SetSelection( 0 );
+	bSizer12->Add( m_dropdown, 0, wxALL, 5 );
 
-	m_textCtrl8 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-	bSizer12->Add( m_textCtrl8, 0, wxALL, 5 );
+	m_param = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer12->Add( m_param, 0, wxALL, 5 );
 
 	m_button10 = new wxButton( this, wxID_ANY, wxT("Buscar"), wxDefaultPosition, wxDefaultSize, 0 );
 	bSizer12->Add( m_button10, 0, wxALL, 5 );
@@ -750,31 +755,31 @@ Ventana6::Ventana6( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	m_staticText12->Wrap( -1 );
 	bSizer11->Add( m_staticText12, 0, wxALL, 5 );
 
-	m_grid5 = new wxGrid( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0 );
+	m_grilla = new wxGrid( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0 );
 
 	// Grid
-	m_grid5->CreateGrid( 0, 5 );
-	m_grid5->EnableEditing( true );
-	m_grid5->EnableGridLines( true );
-	m_grid5->EnableDragGridSize( false );
-	m_grid5->SetMargins( 0, 0 );
+	m_grilla->CreateGrid( 0, 5 );
+	m_grilla->EnableEditing( true );
+	m_grilla->EnableGridLines( true );
+	m_grilla->EnableDragGridSize( false );
+	m_grilla->SetMargins( 0, 0 );
 
 	// Columns
-	m_grid5->EnableDragColMove( false );
-	m_grid5->EnableDragColSize( true );
-	m_grid5->SetColLabelSize( 0 );
-	m_grid5->SetColLabelAlignment( wxALIGN_CENTER, wxALIGN_CENTER );
+	m_grilla->EnableDragColMove( false );
+	m_grilla->EnableDragColSize( true );
+	m_grilla->SetColLabelSize( 0 );
+	m_grilla->SetColLabelAlignment( wxALIGN_CENTER, wxALIGN_CENTER );
 
 	// Rows
-	m_grid5->EnableDragRowSize( true );
-	m_grid5->SetRowLabelSize( 00 );
-	m_grid5->SetRowLabelAlignment( wxALIGN_CENTER, wxALIGN_CENTER );
+	m_grilla->EnableDragRowSize( true );
+	m_grilla->SetRowLabelSize( 00 );
+	m_grilla->SetRowLabelAlignment( wxALIGN_CENTER, wxALIGN_CENTER );
 
 	// Label Appearance
 
 	// Cell Defaults
-	m_grid5->SetDefaultCellAlignment( wxALIGN_LEFT, wxALIGN_TOP );
-	bSizer11->Add( m_grid5, 1, wxALL|wxEXPAND, 5 );
+	m_grilla->SetDefaultCellAlignment( wxALIGN_LEFT, wxALIGN_TOP );
+	bSizer11->Add( m_grilla, 1, wxALL|wxEXPAND, 5 );
 
 
 	this->SetSizer( bSizer11 );
@@ -785,6 +790,7 @@ Ventana6::Ventana6( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	// Connect Events
 	m_btn_to_fiados->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Ventana6::to_fiados ), NULL, this );
 	m_btn_to_productos->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Ventana6::to_productos ), NULL, this );
+	m_dropdown->Connect( wxEVT_COMMAND_COMBOBOX_SELECTED, wxCommandEventHandler( Ventana6::CambioOpcion ), NULL, this );
 	m_button10->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Ventana6::ConsultarHistorial ), NULL, this );
 }
 
@@ -793,6 +799,7 @@ Ventana6::~Ventana6()
 	// Disconnect Events
 	m_btn_to_fiados->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Ventana6::to_fiados ), NULL, this );
 	m_btn_to_productos->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Ventana6::to_productos ), NULL, this );
+	m_dropdown->Disconnect( wxEVT_COMMAND_COMBOBOX_SELECTED, wxCommandEventHandler( Ventana6::CambioOpcion ), NULL, this );
 	m_button10->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Ventana6::ConsultarHistorial ), NULL, this );
 
 }

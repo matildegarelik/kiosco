@@ -30,7 +30,7 @@ bool operator==(Fecha f1, Fecha f2);
 bool operator==(Compra c1, Compra c2);
 bool operator==(Detalle d1, Detalle d2);
 bool operator==(DetalleYFecha d1, DetalleYFecha d2);
-
+bool operator<(Fecha f1, Fecha f2);
 ostream &operator<<(ostream &o, Fecha &f);
 
 
@@ -54,6 +54,11 @@ public:
 	void MarcarPagado(Compra c); //guarda vector y archivos
 	void MarcarPagado(int indice); //guarda vector y archivos
 	void Ordenar();
+	
+	vector<Detalle> prods_mas_vendidos(Productos &prods);
+	vector<Compra> ultimas_ventas(Productos &prods);
+	vector<DetalleYFecha> ventas_por_producto(int codigo, Productos &prods);
+	vector<DetalleYFecha> ventas_por_cliente(string nombre, Productos &prods);
 	
 private:
 	vector<Detalle> _detalles;
