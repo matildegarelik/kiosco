@@ -46,12 +46,17 @@ class Ventana1 : public wxFrame
 		wxButton* m_btn_nuevaventa;
 		wxComboBox* m_ordenarpor;
 		wxTextCtrl* m_buscar;
-		wxGrid* m_grid6;
+		wxGrid* m_grilla;
 		wxButton* m_btn_agregarproducto;
 
 		// Virtual event handlers, override them in your derived class
 		virtual void to_consultas( wxCommandEvent& event ) { event.Skip(); }
 		virtual void to_ventas( wxCommandEvent& event ) { event.Skip(); }
+		virtual void AgregarStockBoton( wxCommandEvent& event ) { event.Skip(); }
+		virtual void HacerPedidoBoton( wxCommandEvent& event ) { event.Skip(); }
+		virtual void NuevaVentaBoton( wxCommandEvent& event ) { event.Skip(); }
+		virtual void DobleClickCellLeft( wxGridEvent& event ) { event.Skip(); }
+		virtual void AgregarProductoBoton( wxCommandEvent& event ) { event.Skip(); }
 
 
 	public:
@@ -59,6 +64,114 @@ class Ventana1 : public wxFrame
 		Ventana1( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 500,300 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
 
 		~Ventana1();
+
+};
+
+///////////////////////////////////////////////////////////////////////////////
+/// Class BaseAgregarStock
+///////////////////////////////////////////////////////////////////////////////
+class BaseAgregarStock : public wxDialog
+{
+	private:
+
+	protected:
+		wxStaticText* m_staticText22;
+		wxTextCtrl* m_txt_codigo;
+		wxStaticText* Cantidad;
+		wxTextCtrl* m_textCtrl15;
+		wxButton* m_btn_agregarstock;
+
+		// Virtual event handlers, override them in your derived class
+		virtual void OnButtonClickAgregarStock( wxCommandEvent& event ) { event.Skip(); }
+
+
+	public:
+
+		BaseAgregarStock( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxDEFAULT_DIALOG_STYLE );
+
+		~BaseAgregarStock();
+
+};
+
+///////////////////////////////////////////////////////////////////////////////
+/// Class AgregarProducto
+///////////////////////////////////////////////////////////////////////////////
+class AgregarProducto : public wxDialog
+{
+	private:
+
+	protected:
+		wxStaticText* m_staticText24;
+		wxStaticText* m_staticText25;
+		wxStaticText* m_staticText26;
+		wxStaticText* m_staticText27;
+		wxStaticText* m_staticText28;
+		wxStaticText* m_staticText29;
+		wxTextCtrl* m_txt_nombre;
+		wxTextCtrl* m_txt_marca;
+		wxTextCtrl* m_txt_tipo;
+		wxTextCtrl* m_txt_codigo;
+		wxTextCtrl* m_txt_sock;
+		wxTextCtrl* m_txt_precio;
+		wxButton* m_btn_agregarproductos;
+
+		// Virtual event handlers, override them in your derived class
+		virtual void OnButonClickAgregarProducto( wxCommandEvent& event ) { event.Skip(); }
+
+
+	public:
+
+		AgregarProducto( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxDEFAULT_DIALOG_STYLE );
+
+		~AgregarProducto();
+
+};
+
+///////////////////////////////////////////////////////////////////////////////
+/// Class ActualizarPrecio_Eliminar
+///////////////////////////////////////////////////////////////////////////////
+class ActualizarPrecio_Eliminar : public wxDialog
+{
+	private:
+
+	protected:
+		wxButton* m_btn_actualizarprecio;
+		wxButton* m_btn_eliminarproducto;
+
+		// Virtual event handlers, override them in your derived class
+		virtual void OnButtonClickActualizarPrecio( wxCommandEvent& event ) { event.Skip(); }
+		virtual void OnButtonClickEliminarProducto( wxCommandEvent& event ) { event.Skip(); }
+
+
+	public:
+
+		ActualizarPrecio_Eliminar( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxDEFAULT_DIALOG_STYLE );
+
+		~ActualizarPrecio_Eliminar();
+
+};
+
+///////////////////////////////////////////////////////////////////////////////
+/// Class ActualizarPrecio
+///////////////////////////////////////////////////////////////////////////////
+class ActualizarPrecio : public wxDialog
+{
+	private:
+
+	protected:
+		wxStaticText* m_staticText30;
+		wxTextCtrl* m_txt_nuevoprecio;
+		wxButton* m_btn_nuevoprecio;
+
+		// Virtual event handlers, override them in your derived class
+		virtual void OnButtonClickNuevoPrecio( wxCommandEvent& event ) { event.Skip(); }
+
+
+	public:
+
+		ActualizarPrecio( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxDEFAULT_DIALOG_STYLE );
+
+		~ActualizarPrecio();
 
 };
 

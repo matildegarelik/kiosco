@@ -24,3 +24,29 @@ void Ventana1Hija::to_consultas( wxCommandEvent& event )  {
 	event.Skip();
 }
 
+void Ventana1Hija::AgregarStockBoton( wxCommandEvent& event )  {
+	BaseAgregarStock *win=new BaseAgregarStock(this);
+	win->ShowModal();
+	//event.Skip();
+}
+
+void Ventana1Hija::HacerPedidoBoton( wxCommandEvent& event )  {
+	event.Skip();
+}
+
+void Ventana1Hija::NuevaVentaBoton( wxCommandEvent& event )  {
+	event.Skip();
+}
+
+void Ventana1Hija::DobleClickCellLeft( wxGridEvent& event )  {
+	ActualizarPrecio_Eliminar *win=new ActualizarPrecio_Eliminar(this);
+	win->ShowModal();
+	//event.Skip();
+}
+
+void Ventana1Hija::AgregarProductoBoton( wxCommandEvent& event )  {
+	AgregarProducto *win=new AgregarProducto(this);
+	win->ShowModal();
+	//event.Skip();
+}
+

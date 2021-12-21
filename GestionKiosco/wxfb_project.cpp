@@ -53,6 +53,12 @@ Ventana1::Ventana1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	bSizer26->Add( m_btn_nuevaventa, 0, wxALL, 5 );
 
 	m_ordenarpor = new wxComboBox( this, wxID_ANY, wxT("Ordenar Por:"), wxDefaultPosition, wxDefaultSize, 0, NULL, 0 );
+	m_ordenarpor->Append( wxT("PRODUCTO") );
+	m_ordenarpor->Append( wxT("CODIGO") );
+	m_ordenarpor->Append( wxT("TIPO") );
+	m_ordenarpor->Append( wxT("MARCA") );
+	m_ordenarpor->Append( wxT("STOCK") );
+	m_ordenarpor->Append( wxT("PRECIO") );
 	bSizer26->Add( m_ordenarpor, 0, wxALL, 5 );
 
 	m_buscar = new wxTextCtrl( this, wxID_ANY, wxT("Buscar:"), wxDefaultPosition, wxDefaultSize, 0 );
@@ -61,38 +67,38 @@ Ventana1::Ventana1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 
 	bSizer14->Add( bSizer26, 0, wxALIGN_CENTER_HORIZONTAL, 5 );
 
-	m_grid6 = new wxGrid( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0 );
+	m_grilla = new wxGrid( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0 );
 
 	// Grid
-	m_grid6->CreateGrid( 0, 6 );
-	m_grid6->EnableEditing( true );
-	m_grid6->EnableGridLines( true );
-	m_grid6->EnableDragGridSize( false );
-	m_grid6->SetMargins( 0, 0 );
+	m_grilla->CreateGrid( 0, 6 );
+	m_grilla->EnableEditing( true );
+	m_grilla->EnableGridLines( true );
+	m_grilla->EnableDragGridSize( false );
+	m_grilla->SetMargins( 0, 0 );
 
 	// Columns
-	m_grid6->EnableDragColMove( false );
-	m_grid6->EnableDragColSize( true );
-	m_grid6->SetColLabelValue( 0, wxT("PRODUCTO") );
-	m_grid6->SetColLabelValue( 1, wxT("CÓDIGO") );
-	m_grid6->SetColLabelValue( 2, wxT("TIPO") );
-	m_grid6->SetColLabelValue( 3, wxT("MARCA") );
-	m_grid6->SetColLabelValue( 4, wxT("STOCK") );
-	m_grid6->SetColLabelValue( 5, wxT("PRECIO") );
-	m_grid6->SetColLabelValue( 6, wxEmptyString );
-	m_grid6->SetColLabelValue( 7, wxEmptyString );
-	m_grid6->SetColLabelAlignment( wxALIGN_CENTER, wxALIGN_CENTER );
+	m_grilla->EnableDragColMove( false );
+	m_grilla->EnableDragColSize( true );
+	m_grilla->SetColLabelValue( 0, wxT("PRODUCTO") );
+	m_grilla->SetColLabelValue( 1, wxT("CÓDIGO") );
+	m_grilla->SetColLabelValue( 2, wxT("TIPO") );
+	m_grilla->SetColLabelValue( 3, wxT("MARCA") );
+	m_grilla->SetColLabelValue( 4, wxT("STOCK") );
+	m_grilla->SetColLabelValue( 5, wxT("PRECIO") );
+	m_grilla->SetColLabelValue( 6, wxEmptyString );
+	m_grilla->SetColLabelValue( 7, wxEmptyString );
+	m_grilla->SetColLabelAlignment( wxALIGN_CENTER, wxALIGN_CENTER );
 
 	// Rows
-	m_grid6->EnableDragRowSize( true );
-	m_grid6->SetRowLabelSize( 0 );
-	m_grid6->SetRowLabelAlignment( wxALIGN_CENTER, wxALIGN_CENTER );
+	m_grilla->EnableDragRowSize( true );
+	m_grilla->SetRowLabelSize( 0 );
+	m_grilla->SetRowLabelAlignment( wxALIGN_CENTER, wxALIGN_CENTER );
 
 	// Label Appearance
 
 	// Cell Defaults
-	m_grid6->SetDefaultCellAlignment( wxALIGN_LEFT, wxALIGN_TOP );
-	bSizer14->Add( m_grid6, 1, wxALL|wxEXPAND, 5 );
+	m_grilla->SetDefaultCellAlignment( wxALIGN_LEFT, wxALIGN_TOP );
+	bSizer14->Add( m_grilla, 1, wxALL|wxEXPAND, 5 );
 
 	m_btn_agregarproducto = new wxButton( this, wxID_ANY, wxT("Agregar Producto"), wxDefaultPosition, wxDefaultSize, 0 );
 	bSizer14->Add( m_btn_agregarproducto, 0, wxALIGN_RIGHT|wxALL, 5 );
@@ -106,6 +112,11 @@ Ventana1::Ventana1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	// Connect Events
 	m_btn_to_consultas->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Ventana1::to_consultas ), NULL, this );
 	m_btn_to_ventas->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Ventana1::to_ventas ), NULL, this );
+	m_btn_agregarstock->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Ventana1::AgregarStockBoton ), NULL, this );
+	m_btn_hacerpedido->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Ventana1::HacerPedidoBoton ), NULL, this );
+	m_btn_nuevaventa->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Ventana1::NuevaVentaBoton ), NULL, this );
+	m_grilla->Connect( wxEVT_GRID_CELL_LEFT_DCLICK, wxGridEventHandler( Ventana1::DobleClickCellLeft ), NULL, this );
+	m_btn_agregarproducto->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Ventana1::AgregarProductoBoton ), NULL, this );
 }
 
 Ventana1::~Ventana1()
@@ -113,6 +124,221 @@ Ventana1::~Ventana1()
 	// Disconnect Events
 	m_btn_to_consultas->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Ventana1::to_consultas ), NULL, this );
 	m_btn_to_ventas->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Ventana1::to_ventas ), NULL, this );
+	m_btn_agregarstock->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Ventana1::AgregarStockBoton ), NULL, this );
+	m_btn_hacerpedido->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Ventana1::HacerPedidoBoton ), NULL, this );
+	m_btn_nuevaventa->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Ventana1::NuevaVentaBoton ), NULL, this );
+	m_grilla->Disconnect( wxEVT_GRID_CELL_LEFT_DCLICK, wxGridEventHandler( Ventana1::DobleClickCellLeft ), NULL, this );
+	m_btn_agregarproducto->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Ventana1::AgregarProductoBoton ), NULL, this );
+
+}
+
+BaseAgregarStock::BaseAgregarStock( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxDialog( parent, id, title, pos, size, style )
+{
+	this->SetSizeHints( wxDefaultSize, wxDefaultSize );
+
+	wxGridSizer* gSizer1;
+	gSizer1 = new wxGridSizer( 0, 2, 0, 0 );
+
+	m_staticText22 = new wxStaticText( this, wxID_ANY, wxT("Codigo"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText22->Wrap( -1 );
+	gSizer1->Add( m_staticText22, 0, wxALL, 5 );
+
+	m_txt_codigo = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	gSizer1->Add( m_txt_codigo, 0, wxALL, 5 );
+
+	Cantidad = new wxStaticText( this, wxID_ANY, wxT("Cantidad"), wxDefaultPosition, wxDefaultSize, 0 );
+	Cantidad->Wrap( -1 );
+	gSizer1->Add( Cantidad, 0, wxALL, 5 );
+
+	m_textCtrl15 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	gSizer1->Add( m_textCtrl15, 0, wxALL, 5 );
+
+	wxBoxSizer* bSizer28;
+	bSizer28 = new wxBoxSizer( wxVERTICAL );
+
+
+	gSizer1->Add( bSizer28, 1, wxEXPAND, 5 );
+
+	wxBoxSizer* bSizer29;
+	bSizer29 = new wxBoxSizer( wxVERTICAL );
+
+	m_btn_agregarstock = new wxButton( this, wxID_ANY, wxT("AgregarStock"), wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer29->Add( m_btn_agregarstock, 0, wxALL, 5 );
+
+
+	gSizer1->Add( bSizer29, 1, wxEXPAND, 5 );
+
+
+	this->SetSizer( gSizer1 );
+	this->Layout();
+	gSizer1->Fit( this );
+
+	this->Centre( wxBOTH );
+
+	// Connect Events
+	m_btn_agregarstock->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BaseAgregarStock::OnButtonClickAgregarStock ), NULL, this );
+}
+
+BaseAgregarStock::~BaseAgregarStock()
+{
+	// Disconnect Events
+	m_btn_agregarstock->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BaseAgregarStock::OnButtonClickAgregarStock ), NULL, this );
+
+}
+
+AgregarProducto::AgregarProducto( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxDialog( parent, id, title, pos, size, style )
+{
+	this->SetSizeHints( wxDefaultSize, wxDefaultSize );
+
+	wxBoxSizer* bSizer30;
+	bSizer30 = new wxBoxSizer( wxHORIZONTAL );
+
+	wxBoxSizer* bSizer31;
+	bSizer31 = new wxBoxSizer( wxVERTICAL );
+
+	m_staticText24 = new wxStaticText( this, wxID_ANY, wxT("Nombre"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText24->Wrap( -1 );
+	bSizer31->Add( m_staticText24, 0, wxALL, 5 );
+
+	m_staticText25 = new wxStaticText( this, wxID_ANY, wxT("Marca"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText25->Wrap( -1 );
+	bSizer31->Add( m_staticText25, 0, wxALL, 5 );
+
+	m_staticText26 = new wxStaticText( this, wxID_ANY, wxT("Tipo"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText26->Wrap( -1 );
+	bSizer31->Add( m_staticText26, 0, wxALL, 5 );
+
+	m_staticText27 = new wxStaticText( this, wxID_ANY, wxT("Codigo"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText27->Wrap( -1 );
+	bSizer31->Add( m_staticText27, 0, wxALL, 5 );
+
+	m_staticText28 = new wxStaticText( this, wxID_ANY, wxT("Stock"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText28->Wrap( -1 );
+	bSizer31->Add( m_staticText28, 0, wxALL, 5 );
+
+	m_staticText29 = new wxStaticText( this, wxID_ANY, wxT("Precio"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText29->Wrap( -1 );
+	bSizer31->Add( m_staticText29, 0, wxALL, 5 );
+
+
+	bSizer30->Add( bSizer31, 1, wxEXPAND, 5 );
+
+	wxBoxSizer* bSizer33;
+	bSizer33 = new wxBoxSizer( wxVERTICAL );
+
+	m_txt_nombre = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer33->Add( m_txt_nombre, 0, wxBOTTOM, 5 );
+
+	m_txt_marca = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer33->Add( m_txt_marca, 0, wxBOTTOM, 5 );
+
+	m_txt_tipo = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer33->Add( m_txt_tipo, 0, wxBOTTOM, 5 );
+
+	m_txt_codigo = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer33->Add( m_txt_codigo, 0, wxBOTTOM, 5 );
+
+	m_txt_sock = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer33->Add( m_txt_sock, 0, wxBOTTOM, 5 );
+
+	m_txt_precio = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer33->Add( m_txt_precio, 0, wxBOTTOM, 5 );
+
+	m_btn_agregarproductos = new wxButton( this, wxID_ANY, wxT("Agregar Producto"), wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer33->Add( m_btn_agregarproductos, 0, wxEXPAND|wxALIGN_RIGHT, 5 );
+
+
+	bSizer30->Add( bSizer33, 1, wxEXPAND, 5 );
+
+
+	this->SetSizer( bSizer30 );
+	this->Layout();
+	bSizer30->Fit( this );
+
+	this->Centre( wxBOTH );
+
+	// Connect Events
+	m_btn_agregarproductos->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( AgregarProducto::OnButonClickAgregarProducto ), NULL, this );
+}
+
+AgregarProducto::~AgregarProducto()
+{
+	// Disconnect Events
+	m_btn_agregarproductos->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( AgregarProducto::OnButonClickAgregarProducto ), NULL, this );
+
+}
+
+ActualizarPrecio_Eliminar::ActualizarPrecio_Eliminar( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxDialog( parent, id, title, pos, size, style )
+{
+	this->SetSizeHints( wxDefaultSize, wxDefaultSize );
+
+	wxBoxSizer* bSizer34;
+	bSizer34 = new wxBoxSizer( wxVERTICAL );
+
+	m_btn_actualizarprecio = new wxButton( this, wxID_ANY, wxT("Actualizar Precio"), wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer34->Add( m_btn_actualizarprecio, 0, wxALL, 5 );
+
+	m_btn_eliminarproducto = new wxButton( this, wxID_ANY, wxT("Eliminar Producto"), wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer34->Add( m_btn_eliminarproducto, 0, wxALL, 5 );
+
+
+	this->SetSizer( bSizer34 );
+	this->Layout();
+	bSizer34->Fit( this );
+
+	this->Centre( wxBOTH );
+
+	// Connect Events
+	m_btn_actualizarprecio->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( ActualizarPrecio_Eliminar::OnButtonClickActualizarPrecio ), NULL, this );
+	m_btn_eliminarproducto->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( ActualizarPrecio_Eliminar::OnButtonClickEliminarProducto ), NULL, this );
+}
+
+ActualizarPrecio_Eliminar::~ActualizarPrecio_Eliminar()
+{
+	// Disconnect Events
+	m_btn_actualizarprecio->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( ActualizarPrecio_Eliminar::OnButtonClickActualizarPrecio ), NULL, this );
+	m_btn_eliminarproducto->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( ActualizarPrecio_Eliminar::OnButtonClickEliminarProducto ), NULL, this );
+
+}
+
+ActualizarPrecio::ActualizarPrecio( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxDialog( parent, id, title, pos, size, style )
+{
+	this->SetSizeHints( wxDefaultSize, wxDefaultSize );
+
+	wxBoxSizer* bSizer35;
+	bSizer35 = new wxBoxSizer( wxVERTICAL );
+
+	wxBoxSizer* bSizer36;
+	bSizer36 = new wxBoxSizer( wxHORIZONTAL );
+
+	m_staticText30 = new wxStaticText( this, wxID_ANY, wxT("Nuevo Precio"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText30->Wrap( -1 );
+	bSizer36->Add( m_staticText30, 0, wxALL, 5 );
+
+	m_txt_nuevoprecio = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer36->Add( m_txt_nuevoprecio, 0, wxALL, 5 );
+
+
+	bSizer35->Add( bSizer36, 1, wxEXPAND, 5 );
+
+	m_btn_nuevoprecio = new wxButton( this, wxID_ANY, wxT("Actualizar Precio"), wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer35->Add( m_btn_nuevoprecio, 0, wxALL, 5 );
+
+
+	this->SetSizer( bSizer35 );
+	this->Layout();
+	bSizer35->Fit( this );
+
+	this->Centre( wxBOTH );
+
+	// Connect Events
+	m_btn_nuevoprecio->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( ActualizarPrecio::OnButtonClickNuevoPrecio ), NULL, this );
+}
+
+ActualizarPrecio::~ActualizarPrecio()
+{
+	// Disconnect Events
+	m_btn_nuevoprecio->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( ActualizarPrecio::OnButtonClickNuevoPrecio ), NULL, this );
 
 }
 
