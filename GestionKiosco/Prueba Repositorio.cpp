@@ -35,6 +35,9 @@ using namespace std;
 	
 	
 	
-	
+	int x;
+	cin>>x;
 	return 0;
 }*/
+	
+}

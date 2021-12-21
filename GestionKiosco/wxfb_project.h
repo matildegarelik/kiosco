@@ -20,11 +20,11 @@
 #include <wx/settings.h>
 #include <wx/stattext.h>
 #include <wx/sizer.h>
-#include <wx/frame.h>
+#include <wx/combobox.h>
 #include <wx/textctrl.h>
 #include <wx/grid.h>
+#include <wx/frame.h>
 #include <wx/dialog.h>
-#include <wx/combobox.h>
 
 ///////////////////////////////////////////////////////////////////////////
 
@@ -40,6 +40,13 @@ class Ventana1 : public wxFrame
 		wxButton* m_btn_to_consultas;
 		wxStaticText* m_staticText14;
 		wxButton* m_btn_to_ventas;
+		wxButton* m_btn_agregarstock;
+		wxButton* m_btn_hacerpedido;
+		wxButton* m_btn_nuevaventa;
+		wxComboBox* m_ordenarpor;
+		wxTextCtrl* m_buscar;
+		wxGrid* m_grid6;
+		wxButton* m_btn_agregarproducto;
 
 		// Virtual event handlers, override them in your derived class
 		virtual void to_consultas( wxCommandEvent& event ) { event.Skip(); }
@@ -139,7 +146,7 @@ class BasePagar : public wxDialog
 
 	public:
 
-		BasePagar( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxDEFAULT_DIALOG_STYLE );
+		BasePagar( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 184,125 ), long style = wxDEFAULT_DIALOG_STYLE );
 
 		~BasePagar();
 

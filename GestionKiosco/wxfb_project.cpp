@@ -40,6 +40,63 @@ Ventana1::Ventana1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 
 	bSizer14->Add( bSizer15, 0, wxEXPAND, 5 );
 
+	wxBoxSizer* bSizer26;
+	bSizer26 = new wxBoxSizer( wxHORIZONTAL );
+
+	m_btn_agregarstock = new wxButton( this, wxID_ANY, wxT("Agregar Stock"), wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer26->Add( m_btn_agregarstock, 0, wxALL, 5 );
+
+	m_btn_hacerpedido = new wxButton( this, wxID_ANY, wxT("Hacer Pedido"), wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer26->Add( m_btn_hacerpedido, 0, wxALL, 5 );
+
+	m_btn_nuevaventa = new wxButton( this, wxID_ANY, wxT("Nueva Venta"), wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer26->Add( m_btn_nuevaventa, 0, wxALL, 5 );
+
+	m_ordenarpor = new wxComboBox( this, wxID_ANY, wxT("Ordenar Por:"), wxDefaultPosition, wxDefaultSize, 0, NULL, 0 );
+	bSizer26->Add( m_ordenarpor, 0, wxALL, 5 );
+
+	m_buscar = new wxTextCtrl( this, wxID_ANY, wxT("Buscar:"), wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer26->Add( m_buscar, 0, wxALL, 5 );
+
+
+	bSizer14->Add( bSizer26, 0, wxALIGN_CENTER_HORIZONTAL, 5 );
+
+	m_grid6 = new wxGrid( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0 );
+
+	// Grid
+	m_grid6->CreateGrid( 0, 6 );
+	m_grid6->EnableEditing( true );
+	m_grid6->EnableGridLines( true );
+	m_grid6->EnableDragGridSize( false );
+	m_grid6->SetMargins( 0, 0 );
+
+	// Columns
+	m_grid6->EnableDragColMove( false );
+	m_grid6->EnableDragColSize( true );
+	m_grid6->SetColLabelValue( 0, wxT("PRODUCTO") );
+	m_grid6->SetColLabelValue( 1, wxT("CÓDIGO") );
+	m_grid6->SetColLabelValue( 2, wxT("TIPO") );
+	m_grid6->SetColLabelValue( 3, wxT("MARCA") );
+	m_grid6->SetColLabelValue( 4, wxT("STOCK") );
+	m_grid6->SetColLabelValue( 5, wxT("PRECIO") );
+	m_grid6->SetColLabelValue( 6, wxEmptyString );
+	m_grid6->SetColLabelValue( 7, wxEmptyString );
+	m_grid6->SetColLabelAlignment( wxALIGN_CENTER, wxALIGN_CENTER );
+
+	// Rows
+	m_grid6->EnableDragRowSize( true );
+	m_grid6->SetRowLabelSize( 0 );
+	m_grid6->SetRowLabelAlignment( wxALIGN_CENTER, wxALIGN_CENTER );
+
+	// Label Appearance
+
+	// Cell Defaults
+	m_grid6->SetDefaultCellAlignment( wxALIGN_LEFT, wxALIGN_TOP );
+	bSizer14->Add( m_grid6, 1, wxALL|wxEXPAND, 5 );
+
+	m_btn_agregarproducto = new wxButton( this, wxID_ANY, wxT("Agregar Producto"), wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer14->Add( m_btn_agregarproducto, 0, wxALIGN_RIGHT|wxALL, 5 );
+
 
 	this->SetSizer( bSizer14 );
 	this->Layout();
@@ -236,7 +293,7 @@ BaseFiar::BaseFiar( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	bSizer9->Add( bSizer11, 1, wxEXPAND, 5 );
 
 	m_btn_fiar = new wxButton( this, wxID_ANY, wxT("Fiar"), wxDefaultPosition, wxDefaultSize, 0 );
-	bSizer9->Add( m_btn_fiar, 0, wxALL|wxALIGN_CENTER_HORIZONTAL, 5 );
+	bSizer9->Add( m_btn_fiar, 0, wxALIGN_CENTER_HORIZONTAL, 5 );
 
 
 	this->SetSizer( bSizer9 );
@@ -290,12 +347,11 @@ BasePagar::BasePagar( wxWindow* parent, wxWindowID id, const wxString& title, co
 	bSizer21->Add( bSizer23, 1, wxEXPAND, 5 );
 
 	m_btn_pagar = new wxButton( this, wxID_ANY, wxT("Pagar"), wxDefaultPosition, wxDefaultSize, 0 );
-	bSizer21->Add( m_btn_pagar, 0, wxALL|wxALIGN_CENTER_HORIZONTAL, 5 );
+	bSizer21->Add( m_btn_pagar, 0, wxALIGN_CENTER_HORIZONTAL, 5 );
 
 
 	this->SetSizer( bSizer21 );
 	this->Layout();
-	bSizer21->Fit( this );
 
 	this->Centre( wxBOTH );
 
@@ -407,7 +463,7 @@ Ventana3::Ventana3( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	wxBoxSizer* bSizer29;
 	bSizer29 = new wxBoxSizer( wxHORIZONTAL );
 
-	m_botonCerrar = new wxButton( this, wxID_ANY, wxT("cerrar"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_botonCerrar = new wxButton( this, wxID_ANY, wxT("Cerrar"), wxDefaultPosition, wxDefaultSize, 0 );
 	bSizer29->Add( m_botonCerrar, 0, wxALL, 5 );
 
 	m_botonGuardar = new wxButton( this, wxID_ANY, wxT("Guardar"), wxDefaultPosition, wxDefaultSize, 0 );
