@@ -977,13 +977,17 @@ Ventana6::Ventana6( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	m_grilla = new wxGrid( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0 );
 
 	// Grid
-	m_grilla->CreateGrid( 0, 5 );
+	m_grilla->CreateGrid( 0, 4 );
 	m_grilla->EnableEditing( true );
 	m_grilla->EnableGridLines( true );
 	m_grilla->EnableDragGridSize( false );
 	m_grilla->SetMargins( 0, 0 );
 
 	// Columns
+	m_grilla->SetColSize( 0, 147 );
+	m_grilla->SetColSize( 1, 122 );
+	m_grilla->SetColSize( 2, 121 );
+	m_grilla->SetColSize( 3, 142 );
 	m_grilla->EnableDragColMove( false );
 	m_grilla->EnableDragColSize( true );
 	m_grilla->SetColLabelSize( 0 );

@@ -108,9 +108,9 @@ vector<Detalle> Venta::prods_mas_vendidos(Productos &prods){
 
 vector<Compra> Venta::ultimas_ventas(Productos &prods){
 	vector<Compra> ventas = repo_ventas.buscarTodos();
-	vector<Compra> fiados = repo_fiados.buscarTodos();
-	ventas.insert(ventas.end(),fiados.begin(),fiados.end());
-	sort(ventas.begin(),ventas.end(),cmp_fecha);
+	//vector<Compra> fiados = repo_fiados.buscarTodos();
+	//ventas.insert(ventas.end(),fiados.begin(),fiados.end());
+	//sort(ventas.begin(),ventas.end(),cmp_fecha);
 	vector<Compra> ult_ventas;
 	for(size_t i =0; i<10;++i) ult_ventas.push_back(ventas[i]);
 	return ult_ventas;
