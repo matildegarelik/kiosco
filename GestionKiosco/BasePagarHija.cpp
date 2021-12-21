@@ -28,9 +28,11 @@ void BasePagarHija::MarcarPagado( wxCommandEvent& event )  {
 	_venta->SetFecha(18,12,2021);
 	_venta->SetPago(true);
 	
-	_venta->Pagar(*_prods);
+	_venta->Pagar(/**_prods*/);
+	
+	EndModal(1);
 	
 	event.Skip();
-	this->Close();
+	//this->Close();
 }
 

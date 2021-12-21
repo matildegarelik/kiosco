@@ -38,7 +38,7 @@ Ventana1::Ventana1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	bSizer15->Add( m_btn_to_ventas, 0, wxALL, 5 );
 
 
-	bSizer14->Add( bSizer15, 0, wxALIGN_CENTER_HORIZONTAL|wxEXPAND, 5 );
+	bSizer14->Add( bSizer15, 0, wxEXPAND, 5 );
 
 
 	this->SetSizer( bSizer14 );
@@ -88,7 +88,7 @@ Ventana2::Ventana2( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	bSizer13->Add( m_btn_to_pedido, 0, wxALL, 5 );
 
 
-	bSizer5->Add( bSizer13, 0, wxALIGN_CENTER_HORIZONTAL|wxEXPAND, 5 );
+	bSizer5->Add( bSizer13, 0, wxEXPAND, 5 );
 
 	wxBoxSizer* bSizer6;
 	bSizer6 = new wxBoxSizer( wxHORIZONTAL );
@@ -339,7 +339,7 @@ Ventana3::Ventana3( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	bSizer17->Add( m_btn_to_stock, 0, wxALL, 5 );
 
 
-	bSizer16->Add( bSizer17, 0, wxALIGN_CENTER_HORIZONTAL|wxEXPAND, 5 );
+	bSizer16->Add( bSizer17, 0, wxEXPAND, 5 );
 
 	wxBoxSizer* bSizer10;
 	bSizer10 = new wxBoxSizer( wxHORIZONTAL );
@@ -587,7 +587,7 @@ Ventana5::Ventana5( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	bSizer19->Add( m_btn_to_consultas, 0, wxALL, 5 );
 
 
-	bSizer8->Add( bSizer19, 0, wxEXPAND|wxALIGN_CENTER_HORIZONTAL, 5 );
+	bSizer8->Add( bSizer19, 0, wxEXPAND, 5 );
 
 	m_tabla_fiados = new wxGrid( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0 );
 

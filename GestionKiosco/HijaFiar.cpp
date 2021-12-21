@@ -30,8 +30,9 @@ void HijaFiar::MarcarFIado( wxCommandEvent& event )  {
 	_venta->SetFecha(18,12,2021);
 	_venta->SetPago(false);
 	
-	_venta->Pagar(*_prods);
+	_venta->Pagar(/**_prods*/);
 	
+	EndModal(1);
 	event.Skip();
 }
 

@@ -7,7 +7,7 @@
 #include <iostream>
 using namespace std;
 
-int main() {
+/*int main() {
 	Repositorio<Producto> repo_produtos("productos.dat");
 //	Venta v1;
 //	v1.repo_ventas.cargarDatosDePruebaProducto
@@ -37,4 +37,4 @@ int main() {
 	
 	
 	return 0;
-}
+}*/

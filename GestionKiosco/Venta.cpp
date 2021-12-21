@@ -37,9 +37,9 @@ float Venta::CalcularTotal(){
 	return total;
 }
 
-void Venta::Pagar(Productos &prods){
+void Venta::Pagar(/*Productos &prods*/){
 	// actualiza stock en vector de productos
-	for(Detalle &d: _detalles){
+	/*for(Detalle &d: _detalles){
 		prods.ActualizarStock("productos.dat",d.p._codigo,d.cantidad);
 		prods.GuardarCambios("productos.dat",prods.BuscarIndice(d.p._codigo));
 		
@@ -47,13 +47,13 @@ void Venta::Pagar(Productos &prods){
 		repo_detalles.guardarNuevo(d_y_f);
 		
 	}
-	string arch;
+	string arch;*/
 	// Guardar en archivo_ventas si se pago, sino en fiados
 	Compra c;
 	strcpy(c.cliente,_cliente);
 	c.f=_fecha;
 	c.total=CalcularTotal();
-	if(this->_pagado)repo_ventas.guardarNuevo(c);
+	if(_pagado)repo_ventas.guardarNuevo(c);
 	else repo_fiados.guardarNuevo(c);
 }
 

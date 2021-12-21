@@ -48,7 +48,7 @@ public:
 	void EliminarDetalle(int indice);
 	float CalcularTotal();
 	void Pagar(Productos &prods); // tambien actualiza stock en vector de productos y archivo de detalles
-	
+	void Pagar();
 	
 	vector<Compra> CargarFiados(); //archivo binario
 	void MarcarPagado(Compra c); //guarda vector y archivos
