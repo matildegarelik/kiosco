@@ -55,6 +55,9 @@ void Ventana3Hija::AgregarProductoLista( wxCommandEvent& event )  {
 void Ventana3Hija::GuardarArchivo( wxCommandEvent& event )  {
 	_pedido.armarArchivoTexto();
 	wxMessageBox("muy bien");
+	
+	m_grilla->DeleteRows(0,_pedido.getTamanio());
+	_pedido.vaciarVectores();
 	event.Skip();
 }
 

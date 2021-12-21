@@ -33,7 +33,9 @@ string getFechaActualString(){
 		
 
 Pedido::Pedido() {
-	this->nombre_archivo = "PedidoArchivo.txt";
+	string fe = getFechaActualString();
+	string a = fe.substr(0,fe.find(':',0)-1);
+	this->nombre_archivo = "PedidoArchivo  "+ a + ".txt";
 }
 
 
@@ -48,6 +50,10 @@ void Pedido :: agregarProducto(int cod, int cant, Productos &prod ){
 
 }
 
+void Pedido :: vaciarVectores(){
+	cantidades.clear();
+	lista_pedido.clear();
+}
 
 void Pedido :: armarArchivoTexto(){
  
@@ -77,3 +83,6 @@ void Pedido :: eliminarProducto(int cod, Productos &prod){
 	
 }
 
+int Pedido :: getTamanio(){
+	return cantidades.size();
+}
