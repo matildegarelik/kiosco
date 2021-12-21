@@ -25,6 +25,7 @@
 #include <wx/grid.h>
 #include <wx/frame.h>
 #include <wx/dialog.h>
+#include <wx/statbox.h>
 
 ///////////////////////////////////////////////////////////////////////////
 
@@ -170,7 +171,6 @@ class Ventana3 : public wxFrame
 		wxButton* m_botonAgregar;
 		wxStaticText* m_staticText10;
 		wxGrid* m_grilla;
-		wxButton* m_botonCerrar;
 		wxButton* m_botonGuardar;
 
 		// Virtual event handlers, override them in your derived class
@@ -178,7 +178,6 @@ class Ventana3 : public wxFrame
 		virtual void to_stock( wxCommandEvent& event ) { event.Skip(); }
 		virtual void AgregarProductoLista( wxCommandEvent& event ) { event.Skip(); }
 		virtual void ClickDerechoProducto( wxGridEvent& event ) { event.Skip(); }
-		virtual void CerrarVentana( wxCommandEvent& event ) { event.Skip(); }
 		virtual void GuardarArchivo( wxCommandEvent& event ) { event.Skip(); }
 
 
@@ -278,6 +277,29 @@ class Ventana6 : public wxFrame
 		Ventana6( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 500,300 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
 
 		~Ventana6();
+
+};
+
+///////////////////////////////////////////////////////////////////////////////
+/// Class VetanaError
+///////////////////////////////////////////////////////////////////////////////
+class VetanaError : public wxDialog
+{
+	private:
+
+	protected:
+		wxStaticText* m_texto;
+		wxButton* m_botonCerrar;
+
+		// Virtual event handlers, override them in your derived class
+		virtual void CerrarVentana( wxCommandEvent& event ) { event.Skip(); }
+
+
+	public:
+
+		VetanaError( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 364,199 ), long style = wxDEFAULT_DIALOG_STYLE );
+
+		~VetanaError();
 
 };
 
