@@ -1,4 +1,3 @@
-*.zpr
 *.o
 /ventas.dat
-/GestionKiosco.zpr
+

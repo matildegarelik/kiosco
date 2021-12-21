@@ -797,19 +797,28 @@ Ventana6::~Ventana6()
 
 }
 
-VetanaError::VetanaError( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxDialog( parent, id, title, pos, size, style )
+VetanaValidar::VetanaValidar( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxDialog( parent, id, title, pos, size, style )
 {
 	this->SetSizeHints( wxDefaultSize, wxDefaultSize );
 
 	wxStaticBoxSizer* sbSizer1;
-	sbSizer1 = new wxStaticBoxSizer( new wxStaticBox( this, wxID_ANY, wxT("Error!") ), wxVERTICAL );
+	sbSizer1 = new wxStaticBoxSizer( new wxStaticBox( this, wxID_ANY, wxT("Advertencia!") ), wxVERTICAL );
 
 	m_texto = new wxStaticText( sbSizer1->GetStaticBox(), wxID_ANY, wxT("Error de la ventana\n"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_texto->Wrap( -1 );
-	sbSizer1->Add( m_texto, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL, 5 );
+	sbSizer1->Add( m_texto, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxEXPAND, 5 );
 
-	m_botonCerrar = new wxButton( sbSizer1->GetStaticBox(), wxID_ANY, wxT("Cerrar"), wxDefaultPosition, wxDefaultSize, 0 );
-	sbSizer1->Add( m_botonCerrar, 0, wxALL|wxALIGN_CENTER_HORIZONTAL, 5 );
+	wxBoxSizer* bSizer27;
+	bSizer27 = new wxBoxSizer( wxHORIZONTAL );
+
+	m_button34 = new wxButton( sbSizer1->GetStaticBox(), wxID_ANY, wxT("Pasar a la próxima pestaña"), wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer27->Add( m_button34, 0, wxALL, 5 );
+
+	m_button35 = new wxButton( sbSizer1->GetStaticBox(), wxID_ANY, wxT("Mantenerse en la misma"), wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer27->Add( m_button35, 0, wxALL, 5 );
+
+
+	sbSizer1->Add( bSizer27, 1, wxALIGN_CENTER_HORIZONTAL, 5 );
 
 
 	this->SetSizer( sbSizer1 );
@@ -818,12 +827,14 @@ VetanaError::VetanaError( wxWindow* parent, wxWindowID id, const wxString& title
 	this->Centre( wxBOTH );
 
 	// Connect Events
-	m_botonCerrar->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( VetanaError::CerrarVentana ), NULL, this );
+	m_button34->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( VetanaValidar::PasarPestania ), NULL, this );
+	m_button35->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( VetanaValidar::MantenersePestania ), NULL, this );
 }
 
-VetanaError::~VetanaError()
+VetanaValidar::~VetanaValidar()
 {
 	// Disconnect Events
-	m_botonCerrar->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( VetanaError::CerrarVentana ), NULL, this );
+	m_button34->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( VetanaValidar::PasarPestania ), NULL, this );
+	m_button35->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( VetanaValidar::MantenersePestania ), NULL, this );
 
 }

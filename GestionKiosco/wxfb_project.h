@@ -282,25 +282,27 @@ class Ventana6 : public wxFrame
 };
 
 ///////////////////////////////////////////////////////////////////////////////
-/// Class VetanaError
+/// Class VetanaValidar
 ///////////////////////////////////////////////////////////////////////////////
-class VetanaError : public wxDialog
+class VetanaValidar : public wxDialog
 {
 	private:
 
 	protected:
 		wxStaticText* m_texto;
-		wxButton* m_botonCerrar;
+		wxButton* m_button34;
+		wxButton* m_button35;
 
 		// Virtual event handlers, override them in your derived class
-		virtual void CerrarVentana( wxCommandEvent& event ) { event.Skip(); }
+		virtual void PasarPestania( wxCommandEvent& event ) { event.Skip(); }
+		virtual void MantenersePestania( wxCommandEvent& event ) { event.Skip(); }
 
 
 	public:
 
-		VetanaError( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 364,199 ), long style = wxDEFAULT_DIALOG_STYLE );
+		VetanaValidar( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 364,199 ), long style = wxDEFAULT_DIALOG_STYLE );
 
-		~VetanaError();
+		~VetanaValidar();
 
 };
 
