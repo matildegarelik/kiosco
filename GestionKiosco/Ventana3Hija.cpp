@@ -3,22 +3,49 @@
 #include "Ventana4HIja.h"
 #include "WxFunciones.cpp"
 #include <wx/msgdlg.h>
+#include "VentanaValidarHija.h"
 
 Ventana3Hija::Ventana3Hija(wxWindow *parent, Productos *prods) : Ventana3(parent) {
 	_prods=prods;
 }
 
 void Ventana3Hija::to_venta( wxCommandEvent& event )  {
-	Ventana2HIja *Ventana_Nueva = new Ventana2HIja(NULL, _prods);
-	Close();
-	Ventana_Nueva->Show();
+	
+	VentanaValidarHija Ventana_val(this);
+		
+	if(_pedido.getTamanio() == 0){
+		Ventana2HIja *Ventana_Nueva = new Ventana2HIja(NULL, _prods);
+		Close();
+		Ventana_Nueva->Show();
+		event.Skip();
+	}else{
+		if(Ventana_val.ShowModal()==1){
+			Ventana2HIja *Ventana_Nueva = new Ventana2HIja(NULL, _prods);
+			Close();
+			Ventana_Nueva->Show();
+			event.Skip();
+		}
+	}
 	event.Skip();
 }
 
 void Ventana3Hija::to_stock( wxCommandEvent& event )  {
-	Ventana4HIja *Ventana_Nueva = new Ventana4HIja(NULL, _prods);
-	Close();
-	Ventana_Nueva->Show();
+
+	VentanaValidarHija Ventana_val(this);
+
+	if(_pedido.getTamanio() == 0){
+		Ventana4HIja *Ventana_Nueva = new Ventana4HIja(NULL, _prods);
+		Close();
+		Ventana_Nueva->Show();
+		event.Skip();
+	}else{
+		if(Ventana_val.ShowModal()==1){
+			Ventana4HIja *Ventana_Nueva = new Ventana4HIja(NULL, _prods);
+			Close();
+			Ventana_Nueva->Show();
+			event.Skip();
+		}
+	}
 	event.Skip();
 }
 

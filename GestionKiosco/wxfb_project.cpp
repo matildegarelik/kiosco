@@ -612,9 +612,9 @@ Ventana3::Ventana3( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	m_grilla->SetMargins( 0, 0 );
 
 	// Columns
-	m_grilla->SetColSize( 0, 80 );
-	m_grilla->SetColSize( 1, 154 );
-	m_grilla->SetColSize( 2, 140 );
+	m_grilla->SetColSize( 0, 216 );
+	m_grilla->SetColSize( 1, 249 );
+	m_grilla->SetColSize( 2, 207 );
 	m_grilla->SetColSize( 3, 107 );
 	m_grilla->EnableDragColMove( false );
 	m_grilla->EnableDragColSize( true );
@@ -738,11 +738,11 @@ Ventana4::Ventana4( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	m_grilla->SetMargins( 0, 0 );
 
 	// Columns
-	m_grilla->SetColSize( 0, 80 );
-	m_grilla->SetColSize( 1, 115 );
-	m_grilla->SetColSize( 2, 114 );
-	m_grilla->SetColSize( 3, 107 );
-	m_grilla->SetColSize( 4, 64 );
+	m_grilla->SetColSize( 0, 147 );
+	m_grilla->SetColSize( 1, 205 );
+	m_grilla->SetColSize( 2, 182 );
+	m_grilla->SetColSize( 3, 170 );
+	m_grilla->SetColSize( 4, 76 );
 	m_grilla->EnableDragColMove( false );
 	m_grilla->EnableDragColSize( true );
 	m_grilla->SetColLabelValue( 0, wxT("Fecha") );
@@ -826,10 +826,10 @@ Ventana5::Ventana5( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	m_tabla_fiados->SetMargins( 0, 0 );
 
 	// Columns
-	m_tabla_fiados->SetColSize( 0, 80 );
-	m_tabla_fiados->SetColSize( 1, 79 );
-	m_tabla_fiados->SetColSize( 2, 80 );
-	m_tabla_fiados->SetColSize( 3, 80 );
+	m_tabla_fiados->SetColSize( 0, 208 );
+	m_tabla_fiados->SetColSize( 1, 223 );
+	m_tabla_fiados->SetColSize( 2, 228 );
+	m_tabla_fiados->SetColSize( 3, 121 );
 	m_tabla_fiados->EnableDragColMove( false );
 	m_tabla_fiados->EnableDragColSize( true );
 	m_tabla_fiados->SetColLabelValue( 0, wxT("Cliente") );
