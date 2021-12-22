@@ -6,6 +6,28 @@
 #include "Ventana4HIja.h"
 #include "Ventana5Hija.h"
 #include "Ventana3Hija.h"
+#include <vector>
+using namespace std;
+
+bool OrdenarPorNombre(Producto &x1, Producto &x2){
+	return strcmp(x1._nombre,x2._nombre)<0;
+}
+bool OrdenarPorCodigo(Producto &x1, Producto &x2){
+	return (x1._codigo<x2._codigo);
+}
+bool OrdenarPorTipo(Producto &x1, Producto &x2){
+	return strcmp(x1._tipo,x2._tipo)<0;
+}
+bool OrdenarPorMarca(Producto &x1, Producto &x2){
+	return strcmp(x1._marca,x2._marca)<0;
+}
+bool OrdenarPorStock(Producto &x1, Producto &x2){
+	return (x1._stock<x2._stock);
+}
+bool OrdenarPorPrecio(Producto &x1, Producto &x2){
+	return (x1._precio<x2._precio);
+}
+						
 Ventana1Hija::Ventana1Hija(wxWindow *parent, Productos *prods) : Ventana1(parent) {
 	this->prods=prods;
 	this->Actualizar();
@@ -79,5 +101,22 @@ void Ventana1Hija::FiadosBoton( wxCommandEvent& event )  {
 	Close();
 	Ventana_Nueva->Show();
 	event.Skip();
+}
+
+void Ventana1Hija::ComboBoxOrdenarPor( wxCommandEvent& event )  {
+	vector<Producto>::iterator A, B;
+	tie(A, B)=prods->iteradores();
+	int t=m_grilla->GetNumberRows();
+	if(m_ordenarpor>=0){
+		if(m_ordenarpor->GetSelection()==0) sort(A,B,OrdenarPorNombre);
+		if(m_ordenarpor->GetSelection()==1) sort(A,B,OrdenarPorCodigo);
+		if(m_ordenarpor->GetSelection()==2) sort(A,B,OrdenarPorTipo);
+		if(m_ordenarpor->GetSelection()==3) sort(A,B,OrdenarPorMarca);
+		if(m_ordenarpor->GetSelection()==4) sort(A,B,OrdenarPorStock);
+		if(m_ordenarpor->GetSelection()==5) sort(A,B,OrdenarPorPrecio);
+	}
+	Actualizar();
+	
+	
 }
 

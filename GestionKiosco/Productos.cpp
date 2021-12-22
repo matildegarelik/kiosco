@@ -4,25 +4,9 @@
 #include <algorithm>
 #include <string>
 #include <cstring>
+#include <tuple>
 using namespace std;
-bool OrdenarPorNombre(Producto &x1, Producto &x2){
-	return strcmp(x1._nombre,x2._nombre)<0;
-}
-bool OrdenarPorCodigo(Producto &x1, Producto &x2){
-	return (x1._codigo<x2._codigo);
-}
-bool OrdenarPorTipo(Producto &x1, Producto &x2){
-	return strcmp(x1._tipo,x2._tipo)<0;
-}
-bool OrdenarPorMarca(Producto &x1, Producto &x2){
-	return strcmp(x1._marca,x2._marca)<0;
-}
-bool OrdenarPorStock(Producto &x1, Producto &x2){
-	return (x1._stock<x2._stock);
-}
-bool OrdenarPorPrecio(Producto &x1, Producto &x2){
-	return (x1._precio<x2._precio);
-}
+
 	
 ostream &operator<<(ostream &o, Producto n){
 	o<<n._nombre<<"  "<<n._stock<<"  "<<n._precio<<endl;
@@ -118,13 +102,13 @@ void Productos::EliminarProducto(string NombreArchivo, int codigo){
 		archi.write(reinterpret_cast<char*>(&VectorProductos[i]),sizeof(Producto));
 	}
 }
-void Productos::Ordenar(string Parametro){
-	if(Parametro=="PRODUCTO")sort(VectorProductos.begin(), VectorProductos.end(), OrdenarPorNombre);
-	if(Parametro=="CODIGO")sort(VectorProductos.begin(), VectorProductos.end(),OrdenarPorCodigo );
-	if(Parametro=="TIPO")sort(VectorProductos.begin(), VectorProductos.end(),OrdenarPorTipo );
-	if(Parametro=="MARCA")sort(VectorProductos.begin(), VectorProductos.end(),OrdenarPorMarca );
-	if(Parametro=="PRECIO")sort(VectorProductos.begin(), VectorProductos.end(),OrdenarPorPrecio );
-}
+tuple<vector<Producto>::iterator,vector<Producto>::iterator> Productos::iteradores(){
+		vector<Producto>::iterator A, B;
+		A=VectorProductos.begin();
+		B=VectorProductos.end();
+		return make_tuple(A, B);
+	}
+
 vector<Producto>Productos::Filtrar(string tipo){ 
 	//Se modificó la función para que le llegue una string determinando el tipo a Filtrar		int D;
 	
