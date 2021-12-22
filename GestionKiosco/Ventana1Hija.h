@@ -15,6 +15,7 @@ protected:
 	void NuevaVentaBoton( wxCommandEvent& event )  override;
 	void to_consultas( wxCommandEvent& event )  override;
 	void to_ventas( wxCommandEvent& event )  override;
+	void Actualizar();
 	
 public:
 	Ventana1Hija(wxWindow *parent=NULL, Productos *prods=NULL);

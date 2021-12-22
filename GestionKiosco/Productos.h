@@ -35,7 +35,8 @@ public:
 	void Lectura(string NombreArchivo);
 	void ActualizarStock(string NombreArchivo, int codigo, int cantidad);
 	
-	void AgregarProducto(string NombreArchivo, Producto aux);
+	int DevolverTamanio();
+	void AgregarProducto(Producto aux);
 	void EliminarProducto(string NombreArchivo, int codigo);
 	void Ordenar(string Parametro);
 	vector<Producto> Filtrar(string tipo); //Busca por tipo o Producto 

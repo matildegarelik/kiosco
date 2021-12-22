@@ -138,7 +138,7 @@ vector<Producto>Productos::Filtrar(string tipo){
 	}
 	return aux;
 }
-void Productos::ActualizarPrecio(string NombreArchivo, int codigo, int precio){ //Agregué el parametro precio porque no estaba
+void Productos::ActualizarPrecio(string NombreArchivo, int codigo, int precio){ //ué el parametro precio porque no estaba
 	//fstream archi(NombreArchivo, ios::binary|ios::in);							
 	for(int i=0; i<VectorProductos.size();++i){
 		if(VectorProductos[i]._codigo==codigo){

@@ -77,12 +77,18 @@ Ventana1::Ventana1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	m_grilla->SetMargins( 0, 0 );
 
 	// Columns
+	m_grilla->SetColSize( 0, 79 );
+	m_grilla->SetColSize( 1, 80 );
+	m_grilla->SetColSize( 2, 80 );
+	m_grilla->SetColSize( 3, 80 );
+	m_grilla->SetColSize( 4, 80 );
+	m_grilla->SetColSize( 5, 80 );
 	m_grilla->EnableDragColMove( false );
 	m_grilla->EnableDragColSize( true );
-	m_grilla->SetColLabelValue( 0, wxT("PRODUCTO") );
-	m_grilla->SetColLabelValue( 1, wxT("CÓDIGO") );
-	m_grilla->SetColLabelValue( 2, wxT("TIPO") );
-	m_grilla->SetColLabelValue( 3, wxT("MARCA") );
+	m_grilla->SetColLabelValue( 0, wxT("CÓDIGO") );
+	m_grilla->SetColLabelValue( 1, wxT("PRODUCTO") );
+	m_grilla->SetColLabelValue( 2, wxT("MARCA") );
+	m_grilla->SetColLabelValue( 3, wxT("TIPO") );
 	m_grilla->SetColLabelValue( 4, wxT("STOCK") );
 	m_grilla->SetColLabelValue( 5, wxT("PRECIO") );
 	m_grilla->SetColLabelValue( 6, wxEmptyString );
@@ -984,10 +990,6 @@ Ventana6::Ventana6( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	m_grilla->SetMargins( 0, 0 );
 
 	// Columns
-	m_grilla->SetColSize( 0, 147 );
-	m_grilla->SetColSize( 1, 122 );
-	m_grilla->SetColSize( 2, 121 );
-	m_grilla->SetColSize( 3, 142 );
 	m_grilla->EnableDragColMove( false );
 	m_grilla->EnableDragColSize( true );
 	m_grilla->SetColLabelSize( 0 );
