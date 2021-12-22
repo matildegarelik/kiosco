@@ -7,7 +7,27 @@
 #include <tuple>
 using namespace std;
 
-	
+
+	bool OrdenarPorNombre(Producto &x1, Producto &x2){
+		return strcmp(x1._nombre,x2._nombre)<0;
+	}
+	bool OrdenarPorCodigo(Producto &x1, Producto &x2){
+		return (x1._codigo<x2._codigo);
+	}
+	bool OrdenarPorTipo(Producto &x1, Producto &x2){
+		return strcmp(x1._tipo,x2._tipo)<0;
+		}
+	bool OrdenarPorMarca(Producto &x1, Producto &x2){
+		return strcmp(x1._marca,x2._marca)<0;
+		}
+	bool OrdenarPorStock(Producto &x1, Producto &x2){
+		return (x1._stock<x2._stock);
+	}
+	bool OrdenarPorPrecio(Producto &x1, Producto &x2){
+		return (x1._precio<x2._precio);
+	}
+
+
 ostream &operator<<(ostream &o, Producto n){
 	o<<n._nombre<<"  "<<n._stock<<"  "<<n._precio<<endl;
 	return o;
@@ -23,14 +43,14 @@ Productos::Productos() :
 }
 
 Producto Productos::BuscarProducto(int codigo) const{
-	Producto aux={"ERROR\0","ERROR\0","ERRoR\0",0,0,0};
+	Producto aux;
 	for(int i=0; i<VectorProductos.size(); ++i){
 		if(VectorProductos[i]._codigo==codigo){
 			//VectorProductos[i]=aux;
 			aux = VectorProductos[i];
 			return aux;
 		}
-		cout<<VectorProductos.size()<<endl;
+//		cout<<VectorProductos.size()<<endl;
 	}
 	return aux;
 }
@@ -88,19 +108,11 @@ void Productos::AgregarProducto(Producto aux){
 	VectorProductos.push_back(aux);
 	repo_productos.guardarNuevo(aux);
 }
-void Productos::EliminarProducto(string NombreArchivo, int codigo){
-	fstream archi(NombreArchivo, ios::binary);
-	int aux;
-	for(int i=0; i<VectorProductos.size(); ++i){
-		if(VectorProductos[i]._codigo==codigo){
-			VectorProductos.erase(VectorProductos.begin()+i);
-			aux=i;
-			break;
-		}
-	}
-	for(int i=aux; i<VectorProductos.size(); ++i){
-		archi.write(reinterpret_cast<char*>(&VectorProductos[i]),sizeof(Producto));
-	}
+void Productos::EliminarProducto(int codigo){
+	Producto p = BuscarProducto(codigo);
+	auto it = remove(VectorProductos.begin(), VectorProductos.end(),p);
+	VectorProductos.erase(it);
+	repo_productos.eliminarPermanente(p);
 }
 tuple<vector<Producto>::iterator,vector<Producto>::iterator> Productos::iteradores(){
 		vector<Producto>::iterator A, B;
@@ -122,13 +134,16 @@ vector<Producto>Productos::Filtrar(string tipo){
 	}
 	return aux;
 }
-void Productos::ActualizarPrecio(string NombreArchivo, int codigo, int precio){ //ué el parametro precio porque no estaba
-	//fstream archi(NombreArchivo, ios::binary|ios::in);							
+void Productos::ActualizarPrecio( int codigo, float precio){ //ué el parametro precio porque no estaba
+	int pos;
+	Producto p;
 	for(int i=0; i<VectorProductos.size();++i){
 		if(VectorProductos[i]._codigo==codigo){
 			VectorProductos[i]._precio=precio;
+			p = VectorProductos[i];
+			pos = i;
 		}
-	}
+	}repo_productos.actualizarParametro(p,pos);
 }
 void Productos::GuardarCambios(string NombreArchivo, int indice){
 	fstream archi(NombreArchivo, ios::binary|ios::in);

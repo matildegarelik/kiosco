@@ -1,20 +1,21 @@
 #include "ActualizarPrecioYEliminar.h"
-#include "ActualizarPrecioProducto.h"
 #include "WxFunciones.cpp"
-ActualizarPrecioYEliminar::ActualizarPrecioYEliminar(wxWindow *parent) : ActualizarPrecio_Eliminar(parent) {
-	
+ActualizarPrecioYEliminar::ActualizarPrecioYEliminar(wxWindow *parent, Productos *prods, int codigo) : ActualizarPrecio_Eliminar(parent) {
+	this->prods = prods;
+	m_codigo = codigo;
 }
 
 void ActualizarPrecioYEliminar::OnButtonClickActualizarPrecio( wxCommandEvent& event )  {
-	ActualizarPrecioProducto *win= new ActualizarPrecioProducto(this);
-	win->Show();
-	float nuevo_precio = stoi(wx_to_std(m_actualizarPrecio));
 	
+	float nuevo_precio = stof(wx_to_std(m_precio_nuevo->GetValue()));
+	prods->ActualizarPrecio(m_codigo,nuevo_precio);
 	EndModal(1);
 }
 
 void ActualizarPrecioYEliminar::OnButtonClickEliminarProducto( wxCommandEvent& event )  {
-	event.Skip();
+	
+	prods->EliminarProducto(m_codigo);
+	EndModal(1);
 }
 
 ActualizarPrecioYEliminar::~ActualizarPrecioYEliminar() {

@@ -6,6 +6,9 @@
 #include "Ventana4HIja.h"
 #include "Ventana5Hija.h"
 #include "Ventana3Hija.h"
+#include "Productos.h"
+#include "wxfb_project.h"
+#include "ActualizarPrecioYEliminar.h"
 Ventana1Hija::Ventana1Hija(wxWindow *parent, Productos *prods) : Ventana1(parent) {
 	this->prods=prods;
 	this->Actualizar();
@@ -19,7 +22,7 @@ void Ventana1Hija::to_ventas( wxCommandEvent& event )  {
 }
 void Ventana1Hija::Actualizar(){
 	//Producto aux;                                      
-	m_grilla->DeleteRows(0,prods->DevolverTamanio());
+	m_grilla->DeleteRows(0,m_grilla->GetColSize(0));
 	for(int i=0; i<prods->DevolverTamanio(); ++i){
 		m_grilla->AppendRows(1);
 		//m_grilla->SetSelectionMode(wxGrid::wxGridSelectRows);
@@ -62,13 +65,13 @@ void Ventana1Hija::HacerPedidoBoton( wxCommandEvent& event )  {
 
 
 void Ventana1Hija::DobleClickCellLeft( wxGridEvent& event )  {
-	m_grilla->MoveCursorRightBlock();
-	codigo = stoi(wx_to_std(m_grilla->GetCellValue(m_grilla->GetPosition())));
-	prods->ActualizarPrecio();
-	Producto p = prods->BuscarProducto(codigo);
-	ActualizarPrecio_Eliminar *win=new ActualizarPrecio_Eliminar(this/*, prods, event.getrow()*/);
+	
+	int indice = m_grilla->GetGridCursorRow();
+	int codigo = prods->VerCodigo(indice);
+	
+	ActualizarPrecioYEliminar *win = new ActualizarPrecioYEliminar(NULL, prods, codigo);/*, prods, event.getrow()*/
 	if(win->ShowModal() == 1){
-		m_grilla->SetCellValue(= codigo
+		Actualizar();
 	}
 	event.Skip();
 }
@@ -87,12 +90,20 @@ void Ventana1Hija::FiadosBoton( wxCommandEvent& event )  {
 	event.Skip();
 }
 
-void Ventana1Hija::OneClickCellLeft( wxGridEvent& event )  {
-	
-	event.Skip();
-}
-
 void Ventana1Hija::ComboBoxOrdenarPor( wxCommandEvent& event )  {
-	event.Skip();
+	
+	vector<Producto>::iterator A, B;
+	tie(A, B)=prods->iteradores();
+	int t=m_grilla->GetNumberRows();
+	if(m_ordenarpor>=0){
+		if(m_ordenarpor->GetSelection()==0) sort(A,B,OrdenarPorNombre);
+		if(m_ordenarpor->GetSelection()==1) sort(A,B,OrdenarPorCodigo);
+		if(m_ordenarpor->GetSelection()==2) sort(A,B,OrdenarPorTipo);
+		if(m_ordenarpor->GetSelection()==3) sort(A,B,OrdenarPorMarca);
+		if(m_ordenarpor->GetSelection()==4) sort(A,B,OrdenarPorStock);
+		if(m_ordenarpor->GetSelection()==5) sort(A,B,OrdenarPorPrecio);
+	}
+	Actualizar();
+	
 }
 

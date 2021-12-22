@@ -19,7 +19,7 @@ using namespace std;
 //	repo_produtos.verTodos();
 //	cout<<endl;
 //	
-//	Producto nuevo = {"barra frutal", "arcor", "alimento", 006, 4, 100};
+	Producto nuevo = {"barra frutal", "arcor", "alimento", 006, 4, 100};
 //	repo_produtos.guardarNuevo(nuevo);
 //	
 //	repo_produtos.verTodos();
@@ -32,17 +32,17 @@ using namespace std;
 //	Compra nueva = {"cccc", 3,10,2020,300}:
 //	repo_ventas.guardarNuevo(nueva);
 //	repo_ventas.eliminarPermanente(nueva);
-	//Producto p = {"chocolate blanco\0","milka\0","golosinas\0",1210,10,34.99};
+	Producto p = {"chocolate blanco\0","milka\0","golosinas\0",1210,10,34.99};
 	//Detalle d = {p,2};
 	//Fecha _fecha = {21,12,2021};
 	//DetalleYFecha d_y_f = {d,_fecha};
 	//Repositorio<DetalleYFecha> repo_detalles("detalles.dat");
 	//repo_detalles.guardarNuevo(d_y_f);
-	Venta v;
-	v.ventas_por_cliente("matilde");
+//	Venta v;
+//	v.ventas_por_cliente("matilde");
 	
-	int f;
-	cin>>f;
+//	int f;
+//	cin>>f;
 	return 0;
 }*/
 	

@@ -1,3 +1,5 @@
 *.o
 /ventas.dat
 
+/wxfb_project.cpp
+*.dat

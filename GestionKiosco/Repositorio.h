@@ -20,7 +20,9 @@ using namespace std;
 	void eliminar(T entidad);
 	void eliminarPermanente(T entidad);
 	vector<T> eliminarMultiple( vector<int> posiciones);
-	void actualizar(vector<T> registros);*/
+	void actualizar(vector<T> registros);
+	void actualizarParametro(T parametro_a_actualizar, int pos) 
+*/
 
 
 template<typename T>
@@ -171,31 +173,17 @@ public:
 		auto it_remove = remove(m_registros.begin(),m_registros.end(),entidad);
 		if(it_remove != m_registros.end()){
 			m_registros.erase(it_remove);
-			
+	
 			ofstream fout(nombre_archivo,ios::binary|ios::trunc);
-			for(int i=0;i<m_registros.size();i++) { 
-				fout.write(reinterpret_cast<char *> (&m_registros[i]), sizeof(m_registros[i]));
+			for(int i = 0; i<m_registros.size(); i++) { 
+				fout.write(reinterpret_cast<char *> (& m_registros[i]), sizeof(T));
 			}
 			fout.close();		
 		}
 	}
-		
-	T eliminarPermanente(int i){
-		ifstream fin(nombre_archivo,ios::binary);
-		fin.seekg(i*sizeof(T));
-		T aux;
-		fin.read(reinterpret_cast<char*>(&aux), sizeof(T));
-		fin.close();
-		
-		ofstream fout(nombre_archivo,ios::binary|ios::trunc);
-		m_registros.erase(m_registros.begin()+i);
-		for(int i=0;i<m_registros.size();i++) { 
-			fout.write(reinterpret_cast<char *> (&m_registros[i]), sizeof(m_registros[i]));
-		}
-		fout.close();		
-		return aux;
-	}
-	
+			
+	T eliminarPermanente(int i){		ifstream fin(nombre_archivo,ios::binary);		fin.seekg(i*sizeof(T));		T aux;		fin.read(reinterpret_cast<char*>(&aux), sizeof(T));		fin.close();				ofstream fout(nombre_archivo,ios::binary|ios::trunc);		m_registros.erase(m_registros.begin()+i);		for(int i=0;i<m_registros.size();i++) { 				fout.write(reinterpret_cast<char *> (&m_registros[i]), sizeof(m_registros[i]));		}		fout.close();				return aux;	}
+			
 	
 	//La version comentada lo elimina permanentemente mientras que la activa lo elimina logicamente
 	vector<T> eliminarMultiple( vector<int> posiciones){
@@ -259,6 +247,18 @@ public:
 //		fout.write(reinterpret_cast<char*> (&c5), sizeof(Compra));
 	}*/
 		
+	void actualizarParametro(T entidad, int pos){
+		
+		fstream f(nombre_archivo,ios::binary|ios::in|ios::ate);
+		
+		int cant_datos = f.tellg()/sizeof(T);
+		f.seekg(0);
+		f.seekp(pos*sizeof(T));
+		f.write(reinterpret_cast<char *> (&entidad),sizeof(entidad));
+
+		m_registros[pos] = entidad;
+	}
+	
 };
 
 

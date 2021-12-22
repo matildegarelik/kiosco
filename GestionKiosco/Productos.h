@@ -12,6 +12,13 @@ struct Producto{
 	float _precio;
 };
 
+bool OrdenarPorCodigo(Producto &x1, Producto &x2);
+bool OrdenarPorNombre(Producto &x1, Producto &x2);
+bool OrdenarPorTipo(Producto &x1, Producto &x2);
+bool OrdenarPorMarca(Producto &x1, Producto &x2);
+bool OrdenarPorStock(Producto &x1, Producto &x2);
+bool OrdenarPorPrecio(Producto &x1, Producto &x2);
+
 ostream &operator<<(ostream &o, Producto n);
 bool operator==(Producto a, Producto b);
 
@@ -38,9 +45,9 @@ public:
 	tuple<vector<Producto>::iterator,vector<Producto>::iterator> iteradores();
 	int DevolverTamanio();
 	void AgregarProducto(Producto aux);
-	void EliminarProducto(string NombreArchivo, int codigo);
+	void EliminarProducto( int codigo);
 	vector<Producto> Filtrar(string tipo); //Busca por tipo o Producto 
-	void ActualizarPrecio(string NombreArchivo, int codigo, int precio);
+	void ActualizarPrecio(int codigo, float precio);
 	void GuardarCambios(string NombreArchivo, int indice);
 	
 	string obtenerIdentificador(Producto entidad);
