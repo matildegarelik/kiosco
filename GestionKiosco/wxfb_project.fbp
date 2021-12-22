@@ -57,7 +57,7 @@
             <property name="window_name"></property>
             <property name="window_style">wxTAB_TRAVERSAL</property>
             <property name="xrc_skip_sizer">1</property>
-            <object class="wxBoxSizer" expanded="1">
+            <object class="wxBoxSizer" expanded="0">
                 <property name="minimum_size"></property>
                 <property name="name">bSizer14</property>
                 <property name="orient">wxVERTICAL</property>
@@ -692,7 +692,7 @@
                         <property name="close_button">1</property>
                         <property name="col_label_horiz_alignment">wxALIGN_CENTER</property>
                         <property name="col_label_size"></property>
-                        <property name="col_label_values">&quot;PRODUCTO&quot; &quot;CÓDIGO&quot; &quot;TIPO&quot; &quot;MARCA&quot; &quot;STOCK&quot; &quot;PRECIO&quot; &quot;&quot; &quot;&quot;</property>
+                        <property name="col_label_values">&quot;CÓDIGO&quot; &quot;PRODUCTO&quot; &quot;MARCA&quot; &quot;TIPO&quot; &quot;STOCK&quot; &quot;PRECIO&quot; &quot;&quot; &quot;&quot;</property>
                         <property name="col_label_vert_alignment">wxALIGN_CENTER</property>
                         <property name="cols">6</property>
                         <property name="column_sizes">79,80,80,80,80,80</property>

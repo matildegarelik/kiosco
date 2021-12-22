@@ -62,9 +62,14 @@ void Ventana1Hija::HacerPedidoBoton( wxCommandEvent& event )  {
 
 
 void Ventana1Hija::DobleClickCellLeft( wxGridEvent& event )  {
-	
+	m_grilla->MoveCursorRightBlock();
+	codigo = stoi(wx_to_std(m_grilla->GetCellValue(m_grilla->GetPosition())));
+	prods->ActualizarPrecio();
+	Producto p = prods->BuscarProducto(codigo);
 	ActualizarPrecio_Eliminar *win=new ActualizarPrecio_Eliminar(this/*, prods, event.getrow()*/);
-	win->ShowModal();
+	if(win->ShowModal() == 1){
+		m_grilla->SetCellValue(= codigo
+	}
 	event.Skip();
 }
 
@@ -83,6 +88,11 @@ void Ventana1Hija::FiadosBoton( wxCommandEvent& event )  {
 }
 
 void Ventana1Hija::OneClickCellLeft( wxGridEvent& event )  {
+	
+	event.Skip();
+}
+
+void Ventana1Hija::ComboBoxOrdenarPor( wxCommandEvent& event )  {
 	event.Skip();
 }
 

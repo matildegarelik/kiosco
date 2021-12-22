@@ -35,10 +35,10 @@ public:
 	void Lectura(string NombreArchivo);
 	void ActualizarStock(string NombreArchivo, int codigo, int cantidad);
 	
+	tuple<vector<Producto>::iterator,vector<Producto>::iterator> iteradores();
 	int DevolverTamanio();
 	void AgregarProducto(Producto aux);
 	void EliminarProducto(string NombreArchivo, int codigo);
-	void Ordenar(string Parametro);
 	vector<Producto> Filtrar(string tipo); //Busca por tipo o Producto 
 	void ActualizarPrecio(string NombreArchivo, int codigo, int precio);
 	void GuardarCambios(string NombreArchivo, int indice);

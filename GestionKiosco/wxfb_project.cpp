@@ -85,10 +85,10 @@ Ventana1::Ventana1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	m_grilla->SetColSize( 5, 80 );
 	m_grilla->EnableDragColMove( false );
 	m_grilla->EnableDragColSize( true );
-	m_grilla->SetColLabelValue( 0, wxT("PRODUCTO") );
-	m_grilla->SetColLabelValue( 1, wxT("CÓDIGO") );
-	m_grilla->SetColLabelValue( 2, wxT("TIPO") );
-	m_grilla->SetColLabelValue( 3, wxT("MARCA") );
+	m_grilla->SetColLabelValue( 0, wxT("CODIGO") );
+	m_grilla->SetColLabelValue( 1, wxT("NOMBRE") );
+	m_grilla->SetColLabelValue( 2, wxT("MARCA") );
+	m_grilla->SetColLabelValue( 3, wxT("TIPO") );
 	m_grilla->SetColLabelValue( 4, wxT("STOCK") );
 	m_grilla->SetColLabelValue( 5, wxT("PRECIO") );
 	m_grilla->SetColLabelValue( 6, wxEmptyString );

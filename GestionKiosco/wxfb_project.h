@@ -55,7 +55,7 @@ class Ventana1 : public wxFrame
 		virtual void AgregarStockBoton( wxCommandEvent& event ) { event.Skip(); }
 		virtual void HacerPedidoBoton( wxCommandEvent& event ) { event.Skip(); }
 		virtual void FiadosBoton( wxCommandEvent& event ) { event.Skip(); }
-		virtual void OneClickCellLeft( wxGridEvent& event ) { event.Skip(); }
+		virtual void ComboBoxOrdenarPor( wxCommandEvent& event ) { event.Skip(); }
 		virtual void DobleClickCellLeft( wxGridEvent& event ) { event.Skip(); }
 		virtual void AgregarProductoBoton( wxCommandEvent& event ) { event.Skip(); }
 

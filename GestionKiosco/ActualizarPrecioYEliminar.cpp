@@ -10,6 +10,7 @@ void ActualizarPrecioYEliminar::OnButtonClickActualizarPrecio( wxCommandEvent& e
 	win->Show();
 	float nuevo_precio = stoi(wx_to_std(m_actualizarPrecio));
 	
+	EndModal(1);
 }
 
 void ActualizarPrecioYEliminar::OnButtonClickEliminarProducto( wxCommandEvent& event )  {
