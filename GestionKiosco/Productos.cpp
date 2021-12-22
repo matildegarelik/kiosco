@@ -72,6 +72,9 @@ void Productos::GuardarCambios(string NombreArchivo){
 	}
 	archi.close();
 }
+int Productos::DevolverTamanio(){
+	return VectorProductos.size();
+}
 void Productos::Lectura(string NombreArchivo){
 	fstream archi(NombreArchivo, ios::binary|ios::in|ios::app); //Lectura del binario y se lo pasa a vector
 	Producto aux;
@@ -99,7 +102,7 @@ void Productos::ActualizarStock(string NombreArchivo, int codigo, int cantidad){
 	archi.seekg(aux*sizeof(Producto));
 	archi.write(reinterpret_cast<char*>(&VectorProductos[aux]),sizeof(Producto)); //Escribe el vector actualizado
 }
-void Productos::AgregarProducto(string NombreArchivo, Producto aux){
+void Productos::AgregarProducto(Producto aux){
 	VectorProductos.push_back(aux);
 	repo_productos.guardarNuevo(aux);
 }
@@ -137,7 +140,7 @@ vector<Producto>Productos::Filtrar(string tipo){
 	}
 	return aux;
 }
-void Productos::ActualizarPrecio(string NombreArchivo, int codigo, int precio){ //Agregué el parametro precio porque no estaba
+void Productos::ActualizarPrecio(string NombreArchivo, int codigo, int precio){ //ué el parametro precio porque no estaba
 	//fstream archi(NombreArchivo, ios::binary|ios::in);							
 	for(int i=0; i<VectorProductos.size();++i){
 		if(VectorProductos[i]._codigo==codigo){
