@@ -4,6 +4,7 @@
 #include "Venta.h"
 #include "Ingreso.h"
 #include "WxFunciones.cpp"
+#include <wx/msgdlg.h>
 
 string to_string(Fecha f){
 	return to_string(f.dia)+'/'+to_string(f.mes)+'/'+to_string(f.anio);
@@ -44,10 +45,21 @@ void Ventana4HIja::to_fiados( wxCommandEvent& event )  {
 }
 
 void Ventana4HIja::Ingresar( wxCommandEvent& event )  {
-	Fecha f = {19,12,2021};
-	Ingreso nuevo(stoi(wx_to_std(m_codigo->GetValue())), *_prods,stoi(wx_to_std(m_cantidad->GetValue())),f);
-	nuevo.GuardarCambios(*_prods);
-	
+	if(m_codigo->IsEmpty()){
+		wxMessageBox("Ingresar codigo producto","Aviso");
+	}else{
+		if(_prods->existe(stoi( wx_to_std(m_codigo->GetValue())))){
+			if(m_cantidad->IsEmpty()){
+				wxMessageBox("Ingresar cantidad","Aviso");
+			}else{
+				Fecha f = {19,12,2021};
+				Ingreso nuevo(stoi(wx_to_std(m_codigo->GetValue())), *_prods,stoi(wx_to_std(m_cantidad->GetValue())),f);
+				nuevo.GuardarCambios(*_prods);
+			}
+		}else{
+			wxMessageBox("No existe un producto con ese codigo","Error");
+		}
+	}
 	/*vector<DetalleYFecha> ult_ingresos = repo_ingresos.buscarTodos();
 	DetalleYFecha u = ult_ingresos[ult_ingresos.size()-1];
 	
@@ -58,7 +70,9 @@ void Ventana4HIja::Ingresar( wxCommandEvent& event )  {
 		m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,3,std_to_wx(to_string(d.d.p._codigo)));
 		m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,4,std_to_wx(to_string(d.d.cantidad)));
 	*/
-	
+	Ventana4HIja *Ventana_Nueva = new Ventana4HIja(NULL, _prods);
+	Close();
+	Ventana_Nueva->Show();
 	event.Skip();
 }
 

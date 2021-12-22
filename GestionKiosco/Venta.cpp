@@ -24,7 +24,9 @@ void Venta::SetCliente(string cliente){
 	strcpy(_cliente, cliente.c_str());
 }
 void Venta::SetFecha(int dia, int mes, int anio){
-	_fecha = Fecha{dia,mes,anio};
+	_fecha.dia=dia;
+	_fecha.mes=mes;
+	_fecha.anio=anio;
 }
 void Venta::SetPago(bool pago){
 	_pagado=pago;
@@ -44,16 +46,16 @@ float Venta::CalcularTotal(){
 	return total;
 }
 
-void Venta::Pagar(/*Productos &prods*/){
+
+void Venta::Pagar(Productos &prods){
 	// actualiza stock en vector de productos
-	/*for(Detalle &d: _detalles){
+	for(Detalle &d: _detalles){
 		prods.ActualizarStock("productos.dat",d.p._codigo,d.cantidad);
 		prods.GuardarCambios("productos.dat",prods.BuscarIndice(d.p._codigo));
 		
 		DetalleYFecha d_y_f = {d,_fecha};
 		repo_detalles.guardarNuevo(d_y_f);
-		
-	}*/
+	}
 	
 	// Guardar en archivo_ventas si se pago, sino en fiados
 	Compra c;
@@ -87,36 +89,62 @@ void Venta::Ordenar(){
 	
 }
 
-vector<Detalle> Venta::prods_mas_vendidos(Productos &prods){
+vector<Detalle> Venta::prods_mas_vendidos(){
 	vector<DetalleYFecha> detalles = repo_detalles.buscarTodos();
 	vector<Producto> ps;
 	vector<Detalle> det;
 	
 	for(DetalleYFecha &d: detalles){
-		if(find(ps.begin(),ps.end(),d.d.p)!=ps.end()){
+		if(find(ps.begin(),ps.end(),d.d.p)==ps.end()){
 			ps.push_back(d.d.p);
 			det.push_back(d.d);
 		}else{
 			auto it = find(ps.begin(),ps.end(),d.d.p);
+			
 			auto it2 = det.begin()+(it-ps.begin());
-			it2->cantidad+=d.d.cantidad;
+			//cout<<(*det.begin()).cantidad<<endl;
+			(*it2).cantidad+=d.d.cantidad;
 		}
 	}
 	sort(det.begin(),det.end(),cmp_cantidad);
+	reverse(det.begin(),det.end());
 	return det;
 }
 
-vector<Compra> Venta::ultimas_ventas(Productos &prods){
+vector<Compra> Venta::ultimas_ventas(){
 	vector<Compra> ventas = repo_ventas.buscarTodos();
-	//vector<Compra> fiados = repo_fiados.buscarTodos();
-	//ventas.insert(ventas.end(),fiados.begin(),fiados.end());
-	//sort(ventas.begin(),ventas.end(),cmp_fecha);
-	vector<Compra> ult_ventas;
-	for(size_t i =0; i<10;++i) ult_ventas.push_back(ventas[i]);
-	return ult_ventas;
+	cout<<ventas.size()<<endl;
+	vector<Compra> fiados = repo_fiados.buscarTodos();
+	ventas.insert(ventas.end(),fiados.begin(),fiados.end());
+	sort(ventas.begin(),ventas.end(),cmp_fecha);
+	
+	if(ventas.size()>10){
+		vector<Compra> ult_ventas;
+		for(size_t i =0; i<10;++i) ult_ventas.push_back(ventas[i]);
+		return ult_ventas;
+	}else{
+		return ventas;
+	}
 }
-vector<DetalleYFecha> Venta::ventas_por_producto(int codigo, Productos &prods){}
-vector<DetalleYFecha> Venta::ventas_por_cliente(string nombre, Productos &prods){}
+vector<DetalleYFecha> Venta::ventas_por_producto(int codigo){
+	vector<DetalleYFecha> todos = repo_detalles.buscarTodos();
+	vector<DetalleYFecha> det_prod;
+	for(DetalleYFecha &d: todos){
+		if(d.d.p._codigo==codigo) det_prod.push_back(d);
+	}
+	return det_prod;
+}
+vector<Compra> Venta::ventas_por_cliente(string nombre){
+	vector<Compra> todos = repo_ventas.buscarTodos();
+	vector<Compra> det_cliente;
+	for(Compra &c: todos){
+		string cliente = c.cliente;
+		if(cliente==nombre){
+			det_cliente.push_back(c);
+		}
+	}
+	return det_cliente;
+}
 
 
 bool operator==(Fecha f1, Fecha f2) {

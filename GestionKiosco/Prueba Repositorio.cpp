@@ -7,7 +7,7 @@
 #include <iostream>
 using namespace std;
 
-int main() {
+/*int main() {
 //	Repositorio<Producto> repo_produtos("productos.dat");
 //	Venta v1;
 //	v1.repo_ventas.cargarDatosDePruebaProducto
@@ -32,17 +32,17 @@ int main() {
 //	Compra nueva = {"cccc", 3,10,2020,300}:
 //	repo_ventas.guardarNuevo(nueva);
 //	repo_ventas.eliminarPermanente(nueva);
-	Productos prods;
+	//Producto p = {"chocolate blanco\0","milka\0","golosinas\0",1210,10,34.99};
+	//Detalle d = {p,2};
+	//Fecha _fecha = {21,12,2021};
+	//DetalleYFecha d_y_f = {d,_fecha};
+	//Repositorio<DetalleYFecha> repo_detalles("detalles.dat");
+	//repo_detalles.guardarNuevo(d_y_f);
 	Venta v;
-	//vector<Compra> ults = v.ultimas_ventas(prods);
-	vector<Compra> ults;
-	Compra x={"matilde\0",Fecha{21,12,2021},100};
-	ults.push_back(x);
-	for(Compra c: ults) cout<<c.total<<endl;
-	
+	v.ventas_por_cliente("matilde");
 	
 	int f;
 	cin>>f;
 	return 0;
-}
+}*/
 	

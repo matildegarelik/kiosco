@@ -977,7 +977,7 @@ Ventana6::Ventana6( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	m_grilla = new wxGrid( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0 );
 
 	// Grid
-	m_grilla->CreateGrid( 0, 4 );
+	m_grilla->CreateGrid( 1, 3 );
 	m_grilla->EnableEditing( true );
 	m_grilla->EnableGridLines( true );
 	m_grilla->EnableDragGridSize( false );

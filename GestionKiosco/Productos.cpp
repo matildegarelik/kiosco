@@ -87,18 +87,19 @@ void Productos::Lectura(string NombreArchivo){
 	archi.close();
 }
 void Productos::ActualizarStock(string NombreArchivo, int codigo, int cantidad){
-	fstream archi(NombreArchivo, ios::binary|ios::in);
+	fstream archi(NombreArchivo, ios::binary|ios::in|ios::out);
 	int aux;
-	for(int i=0; i<VectorProductos.size(); ++i){
+	for(size_t i=0; i<VectorProductos.size(); ++i){
 		if(VectorProductos[i]._codigo==codigo){
-			VectorProductos[i]._stock=cantidad;
-			i=aux;
+			VectorProductos[i]._stock-=cantidad;
+			aux=i;
 			break;
 		}
 	}
 	archi.seekg(aux*sizeof(Producto));
 	archi.write(reinterpret_cast<char*>(&VectorProductos[aux]),sizeof(Producto)); //Escribe el vector actualizado
 }
+
 void Productos::AgregarProducto(string NombreArchivo, Producto aux){
 	VectorProductos.push_back(aux);
 	repo_productos.guardarNuevo(aux);

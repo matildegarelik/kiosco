@@ -21,6 +21,7 @@ void Ingreso::GuardarCambios(Productos &prods){
 	Detalle d = {_producto,_cantidad};
 	DetalleYFecha df = {d,_fecha}; 
 	repo_ingresos.guardarNuevo(df);
+	
 	//Actualizar vector productos y binario con stock
 	prods.ActualizarStock("productos.dat",_producto._codigo,-_cantidad);// negativo para q la sume
 	prods.GuardarCambios("productos.dat",prods.BuscarIndice(_producto._codigo));

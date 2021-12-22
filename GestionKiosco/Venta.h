@@ -55,10 +55,10 @@ public:
 	void MarcarPagado(int indice); //guarda vector y archivos
 	void Ordenar();
 	
-	vector<Detalle> prods_mas_vendidos(Productos &prods);
-	vector<Compra> ultimas_ventas(Productos &prods);
-	vector<DetalleYFecha> ventas_por_producto(int codigo, Productos &prods);
-	vector<DetalleYFecha> ventas_por_cliente(string nombre, Productos &prods);
+	vector<Detalle> prods_mas_vendidos();
+	vector<Compra> ultimas_ventas();
+	vector<DetalleYFecha> ventas_por_producto(int codigo);
+	vector<Compra> ventas_por_cliente(string nombre);
 	
 private:
 	vector<Detalle> _detalles;
