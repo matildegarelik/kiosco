@@ -100,7 +100,7 @@ void Productos::ActualizarStock(string NombreArchivo, int codigo, int cantidad){
 	archi.write(reinterpret_cast<char*>(&VectorProductos[aux]),sizeof(Producto)); //Escribe el vector actualizado
 }
 
-void Productos::AgregarProducto(string NombreArchivo, Producto aux){
+void Productos::AgregarProducto(Producto aux){
 	VectorProductos.push_back(aux);
 	repo_productos.guardarNuevo(aux);
 }
@@ -164,5 +164,8 @@ bool Productos :: existe(int codigo){
 		}
 	}
 	return retorno;
+}
+int Productos::DevolverTamanio(){
+	return VectorProductos.size();
 }
 	

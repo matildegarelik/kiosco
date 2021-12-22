@@ -8,11 +8,11 @@ class Ventana1Hija : public Ventana1 {
 private:
 	Productos *prods;
 protected:
+	void FiadosBoton( wxCommandEvent& event )  override;
 	void AgregarProductoBoton( wxCommandEvent& event )  override;
 	void DobleClickCellLeft( wxGridEvent& event )  override;
 	void AgregarStockBoton( wxCommandEvent& event )  override;
 	void HacerPedidoBoton( wxCommandEvent& event )  override;
-	void NuevaVentaBoton( wxCommandEvent& event )  override;
 	void to_consultas( wxCommandEvent& event )  override;
 	void to_ventas( wxCommandEvent& event )  override;
 	void Actualizar();
