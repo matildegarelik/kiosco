@@ -121,6 +121,7 @@ Ventana1::Ventana1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	m_btn_agregarstock->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Ventana1::AgregarStockBoton ), NULL, this );
 	m_btn_hacerpedido->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Ventana1::HacerPedidoBoton ), NULL, this );
 	m_btn_fiados->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Ventana1::FiadosBoton ), NULL, this );
+	m_grilla->Connect( wxEVT_GRID_CELL_LEFT_CLICK, wxGridEventHandler( Ventana1::OneClickCellLeft ), NULL, this );
 	m_grilla->Connect( wxEVT_GRID_CELL_LEFT_DCLICK, wxGridEventHandler( Ventana1::DobleClickCellLeft ), NULL, this );
 	m_btn_agregarproducto->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Ventana1::AgregarProductoBoton ), NULL, this );
 }
@@ -133,6 +134,7 @@ Ventana1::~Ventana1()
 	m_btn_agregarstock->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Ventana1::AgregarStockBoton ), NULL, this );
 	m_btn_hacerpedido->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Ventana1::HacerPedidoBoton ), NULL, this );
 	m_btn_fiados->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Ventana1::FiadosBoton ), NULL, this );
+	m_grilla->Disconnect( wxEVT_GRID_CELL_LEFT_CLICK, wxGridEventHandler( Ventana1::OneClickCellLeft ), NULL, this );
 	m_grilla->Disconnect( wxEVT_GRID_CELL_LEFT_DCLICK, wxGridEventHandler( Ventana1::DobleClickCellLeft ), NULL, this );
 	m_btn_agregarproducto->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Ventana1::AgregarProductoBoton ), NULL, this );
 
@@ -223,74 +225,55 @@ AgregarProducto::~AgregarProducto()
 ActualizarPrecio_Eliminar::ActualizarPrecio_Eliminar( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxDialog( parent, id, title, pos, size, style )
 {
 	this->SetSizeHints( wxDefaultSize, wxDefaultSize );
+	this->SetBackgroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_INACTIVEBORDER ) );
 
 	wxBoxSizer* bSizer34;
 	bSizer34 = new wxBoxSizer( wxVERTICAL );
 
-	m_btn_actualizarprecio = new wxButton( this, wxID_ANY, wxT("Actualizar Precio"), wxDefaultPosition, wxDefaultSize, 0 );
-	bSizer34->Add( m_btn_actualizarprecio, 0, wxALL, 5 );
+	wxBoxSizer* bSizer341;
+	bSizer341 = new wxBoxSizer( wxHORIZONTAL );
+
+	m_staticText29 = new wxStaticText( this, wxID_ANY, wxT("Precio nuevo"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText29->Wrap( -1 );
+	bSizer341->Add( m_staticText29, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
+
+	m_precio_nuevo = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer341->Add( m_precio_nuevo, 0, wxALL|wxALIGN_CENTER_HORIZONTAL, 5 );
+
+
+	bSizer34->Add( bSizer341, 1, wxEXPAND, 5 );
+
+	m_actualizarPrecio = new wxButton( this, wxID_ANY, wxT("Actualizar Precio"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_actualizarPrecio->SetBackgroundColour( wxColour( 81, 234, 88 ) );
+
+	bSizer34->Add( m_actualizarPrecio, 0, wxALL|wxALIGN_CENTER_HORIZONTAL, 5 );
+
+
+	bSizer34->Add( 0, 1000, 1, wxEXPAND, 5 );
 
 	m_btn_eliminarproducto = new wxButton( this, wxID_ANY, wxT("Eliminar Producto"), wxDefaultPosition, wxDefaultSize, 0 );
-	bSizer34->Add( m_btn_eliminarproducto, 0, wxALL, 5 );
+	m_btn_eliminarproducto->SetLabelMarkup( wxT("Eliminar Producto") );
+	m_btn_eliminarproducto->SetForegroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_BACKGROUND ) );
+	m_btn_eliminarproducto->SetBackgroundColour( wxColour( 255, 119, 119 ) );
+
+	bSizer34->Add( m_btn_eliminarproducto, 0, wxALL|wxALIGN_CENTER_HORIZONTAL, 5 );
 
 
 	this->SetSizer( bSizer34 );
 	this->Layout();
-	bSizer34->Fit( this );
 
 	this->Centre( wxBOTH );
 
 	// Connect Events
-	m_btn_actualizarprecio->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( ActualizarPrecio_Eliminar::OnButtonClickActualizarPrecio ), NULL, this );
+	m_actualizarPrecio->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( ActualizarPrecio_Eliminar::OnButtonClickActualizarPrecio ), NULL, this );
 	m_btn_eliminarproducto->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( ActualizarPrecio_Eliminar::OnButtonClickEliminarProducto ), NULL, this );
 }
 
 ActualizarPrecio_Eliminar::~ActualizarPrecio_Eliminar()
 {
 	// Disconnect Events
-	m_btn_actualizarprecio->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( ActualizarPrecio_Eliminar::OnButtonClickActualizarPrecio ), NULL, this );
+	m_actualizarPrecio->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( ActualizarPrecio_Eliminar::OnButtonClickActualizarPrecio ), NULL, this );
 	m_btn_eliminarproducto->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( ActualizarPrecio_Eliminar::OnButtonClickEliminarProducto ), NULL, this );
-
-}
-
-ActualizarPrecio::ActualizarPrecio( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxDialog( parent, id, title, pos, size, style )
-{
-	this->SetSizeHints( wxDefaultSize, wxDefaultSize );
-
-	wxBoxSizer* bSizer35;
-	bSizer35 = new wxBoxSizer( wxVERTICAL );
-
-	wxBoxSizer* bSizer36;
-	bSizer36 = new wxBoxSizer( wxHORIZONTAL );
-
-	m_staticText30 = new wxStaticText( this, wxID_ANY, wxT("Nuevo Precio"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticText30->Wrap( -1 );
-	bSizer36->Add( m_staticText30, 0, wxALL, 5 );
-
-	m_txt_nuevoprecio = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-	bSizer36->Add( m_txt_nuevoprecio, 0, wxALL, 5 );
-
-
-	bSizer35->Add( bSizer36, 1, wxEXPAND, 5 );
-
-	m_btn_nuevoprecio = new wxButton( this, wxID_ANY, wxT("Actualizar Precio"), wxDefaultPosition, wxDefaultSize, 0 );
-	bSizer35->Add( m_btn_nuevoprecio, 0, wxALL, 5 );
-
-
-	this->SetSizer( bSizer35 );
-	this->Layout();
-	bSizer35->Fit( this );
-
-	this->Centre( wxBOTH );
-
-	// Connect Events
-	m_btn_nuevoprecio->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( ActualizarPrecio::OnButtonClickNuevoPrecio ), NULL, this );
-}
-
-ActualizarPrecio::~ActualizarPrecio()
-{
-	// Disconnect Events
-	m_btn_nuevoprecio->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( ActualizarPrecio::OnButtonClickNuevoPrecio ), NULL, this );
 
 }
 
@@ -547,6 +530,8 @@ BasePagar::~BasePagar()
 Ventana3::Ventana3( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxFrame( parent, id, title, pos, size, style )
 {
 	this->SetSizeHints( wxDefaultSize, wxDefaultSize );
+	this->SetForegroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_WINDOW ) );
+	this->SetBackgroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_INACTIVECAPTION ) );
 
 	wxBoxSizer* bSizer16;
 	bSizer16 = new wxBoxSizer( wxVERTICAL );
@@ -631,9 +616,13 @@ Ventana3::Ventana3( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	m_grilla->SetRowLabelAlignment( wxALIGN_CENTER, wxALIGN_CENTER );
 
 	// Label Appearance
+	m_grilla->SetLabelBackgroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_HIGHLIGHT ) );
+	m_grilla->SetLabelTextColour( wxSystemSettings::GetColour( wxSYS_COLOUR_HIGHLIGHTTEXT ) );
 
 	// Cell Defaults
 	m_grilla->SetDefaultCellAlignment( wxALIGN_LEFT, wxALIGN_TOP );
+	m_grilla->SetForegroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_HIGHLIGHT ) );
+
 	bSizer16->Add( m_grilla, 1, wxALL|wxEXPAND, 5 );
 
 	wxBoxSizer* bSizer29;
@@ -673,6 +662,7 @@ Ventana3::~Ventana3()
 Ventana4::Ventana4( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxFrame( parent, id, title, pos, size, style )
 {
 	this->SetSizeHints( wxDefaultSize, wxDefaultSize );
+	this->SetBackgroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_INACTIVEBORDER ) );
 
 	wxBoxSizer* bSizer9;
 	bSizer9 = new wxBoxSizer( wxVERTICAL );
@@ -759,9 +749,14 @@ Ventana4::Ventana4( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	m_grilla->SetRowLabelAlignment( wxALIGN_CENTER, wxALIGN_CENTER );
 
 	// Label Appearance
+	m_grilla->SetLabelBackgroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_HIGHLIGHT ) );
 
 	// Cell Defaults
+	m_grilla->SetDefaultCellBackgroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_WINDOW ) );
 	m_grilla->SetDefaultCellAlignment( wxALIGN_LEFT, wxALIGN_TOP );
+	m_grilla->SetForegroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_WINDOW ) );
+	m_grilla->SetBackgroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_WINDOW ) );
+
 	bSizer9->Add( m_grilla, 1, wxALL|wxEXPAND, 5 );
 
 
@@ -874,6 +869,7 @@ Ventana5::~Ventana5()
 Ventana6::Ventana6( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxFrame( parent, id, title, pos, size, style )
 {
 	this->SetSizeHints( wxDefaultSize, wxDefaultSize );
+	this->SetBackgroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_INACTIVEBORDER ) );
 
 	wxBoxSizer* bSizer11;
 	bSizer11 = new wxBoxSizer( wxVERTICAL );
@@ -978,12 +974,15 @@ Ventana6::~Ventana6()
 VetanaValidar::VetanaValidar( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxDialog( parent, id, title, pos, size, style )
 {
 	this->SetSizeHints( wxDefaultSize, wxDefaultSize );
+	this->SetBackgroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_INACTIVEBORDER ) );
 
 	wxStaticBoxSizer* sbSizer1;
 	sbSizer1 = new wxStaticBoxSizer( new wxStaticBox( this, wxID_ANY, wxT("Advertencia!") ), wxVERTICAL );
 
 	m_texto = new wxStaticText( sbSizer1->GetStaticBox(), wxID_ANY, wxT("Error de la ventana\n"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_texto->Wrap( -1 );
+	m_texto->SetBackgroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_INACTIVEBORDER ) );
+
 	sbSizer1->Add( m_texto, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxEXPAND, 5 );
 
 	wxBoxSizer* bSizer27;

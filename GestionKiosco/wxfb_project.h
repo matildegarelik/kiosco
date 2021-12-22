@@ -55,6 +55,7 @@ class Ventana1 : public wxFrame
 		virtual void AgregarStockBoton( wxCommandEvent& event ) { event.Skip(); }
 		virtual void HacerPedidoBoton( wxCommandEvent& event ) { event.Skip(); }
 		virtual void FiadosBoton( wxCommandEvent& event ) { event.Skip(); }
+		virtual void OneClickCellLeft( wxGridEvent& event ) { event.Skip(); }
 		virtual void DobleClickCellLeft( wxGridEvent& event ) { event.Skip(); }
 		virtual void AgregarProductoBoton( wxCommandEvent& event ) { event.Skip(); }
 
@@ -109,7 +110,9 @@ class ActualizarPrecio_Eliminar : public wxDialog
 	private:
 
 	protected:
-		wxButton* m_btn_actualizarprecio;
+		wxStaticText* m_staticText29;
+		wxTextCtrl* m_precio_nuevo;
+		wxButton* m_actualizarPrecio;
 		wxButton* m_btn_eliminarproducto;
 
 		// Virtual event handlers, override them in your derived class
@@ -119,33 +122,9 @@ class ActualizarPrecio_Eliminar : public wxDialog
 
 	public:
 
-		ActualizarPrecio_Eliminar( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxDEFAULT_DIALOG_STYLE );
+		ActualizarPrecio_Eliminar( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 201,142 ), long style = wxDEFAULT_DIALOG_STYLE );
 
 		~ActualizarPrecio_Eliminar();
-
-};
-
-///////////////////////////////////////////////////////////////////////////////
-/// Class ActualizarPrecio
-///////////////////////////////////////////////////////////////////////////////
-class ActualizarPrecio : public wxDialog
-{
-	private:
-
-	protected:
-		wxStaticText* m_staticText30;
-		wxTextCtrl* m_txt_nuevoprecio;
-		wxButton* m_btn_nuevoprecio;
-
-		// Virtual event handlers, override them in your derived class
-		virtual void OnButtonClickNuevoPrecio( wxCommandEvent& event ) { event.Skip(); }
-
-
-	public:
-
-		ActualizarPrecio( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxDEFAULT_DIALOG_STYLE );
-
-		~ActualizarPrecio();
 
 };
 

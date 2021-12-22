@@ -62,6 +62,7 @@ void Ventana1Hija::HacerPedidoBoton( wxCommandEvent& event )  {
 
 
 void Ventana1Hija::DobleClickCellLeft( wxGridEvent& event )  {
+	
 	ActualizarPrecio_Eliminar *win=new ActualizarPrecio_Eliminar(this/*, prods, event.getrow()*/);
 	win->ShowModal();
 	event.Skip();
@@ -78,6 +79,10 @@ void Ventana1Hija::FiadosBoton( wxCommandEvent& event )  {
 	Ventana5Hija *Ventana_Nueva = new Ventana5Hija(NULL,prods);
 	Close();
 	Ventana_Nueva->Show();
+	event.Skip();
+}
+
+void Ventana1Hija::OneClickCellLeft( wxGridEvent& event )  {
 	event.Skip();
 }
 

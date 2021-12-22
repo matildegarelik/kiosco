@@ -31,9 +31,11 @@ void Ventana3Hija::to_venta( wxCommandEvent& event )  {
 
 void Ventana3Hija::to_stock( wxCommandEvent& event )  {
 
+//	bool paso = Validar<Ventana4HIja> (event, _prods);
+//	if (paso){ Close();}
 	VentanaValidarHija Ventana_val(this);
 
-	if(_pedido.getTamanio() == 0){
+	if(_prods->DevolverTamanio() == 0){
 		Ventana4HIja *Ventana_Nueva = new Ventana4HIja(NULL, _prods);
 		Close();
 		Ventana_Nueva->Show();
@@ -46,6 +48,7 @@ void Ventana3Hija::to_stock( wxCommandEvent& event )  {
 			event.Skip();
 		}
 	}
+	
 	event.Skip();
 }
 

@@ -1,6 +1,8 @@
 //#include "WxFunciones.h"
 #include <wx/string.h>
 #include <string>
+#include "Productos.h"
+#include "VentanaValidarHija.h"
 using namespace std;
 
 
@@ -16,6 +18,21 @@ inline wxString std_to_wx(const std::string &std_str) {
 inline std::string wx_to_std(const wxString &wx_str) {
 	return static_cast<const char*>(wx_str.To8BitData());
 }
-
-
-
+//template<typename T>
+//bool Validar(wxCommandEvent& event ,Productos *prods){
+//	bool paso = false;
+//	VentanaValidarHija Ventana_val(T);
+//	
+//	if(prods->DevolverTamanio() == 0){
+//		T *Ventana_Nueva = new T(NULL, prods);
+//		Ventana_Nueva->Show();
+//		paso = true;
+//	}else{
+//		if(Ventana_val.ShowModal()==1){
+//			T *Ventana_Nueva = new T(NULL, prods);
+//			Ventana_Nueva->Show();
+//			paso = true;
+//		}
+//	}
+//	return paso;
+//}
