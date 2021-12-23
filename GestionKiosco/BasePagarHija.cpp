@@ -1,6 +1,7 @@
 #include "BasePagarHija.h"
 #include "WxFunciones.cpp"
 #include <wx/msgdlg.h>
+#include "Ventana2HIja.h"
 
 BasePagarHija::BasePagarHija(wxWindow *parent,Venta *venta, Productos *prods) : BasePagar(parent) {
 	_venta= venta;
@@ -21,7 +22,9 @@ void BasePagarHija::MarcarPagado( wxCommandEvent& event )  {
 		_venta->SetPago(true);
 		
 		_venta->Pagar(*_prods);
-		
+		GetParent()->Close();
+		Ventana2HIja *Ventana_Nueva = new Ventana2HIja(NULL, _prods);
+		Ventana_Nueva->Show();
 		EndModal(1);
 	}
 	

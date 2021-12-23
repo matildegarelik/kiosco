@@ -2,6 +2,7 @@
 #include "Venta.h"
 #include "WxFunciones.cpp"
 #include <wx/msgdlg.h>
+#include "Ventana2HIja.h"
 
 HijaFiar::HijaFiar(wxWindow *parent, Venta *venta, Productos *prods) : BaseFiar(parent) {
 	_venta= venta;
@@ -22,6 +23,9 @@ void HijaFiar::MarcarFIado( wxCommandEvent& event )  {
 		_venta->SetPago(false);
 		
 		_venta->Pagar(*_prods);
+		GetParent()->Close();
+		Ventana2HIja *Ventana_Nueva = new Ventana2HIja(NULL, _prods);
+		Ventana_Nueva->Show();
 		EndModal(1);
 	}
 	event.Skip();

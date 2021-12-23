@@ -199,7 +199,7 @@ AgregarProducto::AgregarProducto( wxWindow* parent, wxWindowID id, const wxStrin
 	bSizer33->Add( m_txt_precio, 0, wxBOTTOM, 5 );
 
 	m_btn_agregarproductos = new wxButton( this, wxID_ANY, wxT("Agregar Producto"), wxDefaultPosition, wxDefaultSize, 0 );
-	bSizer33->Add( m_btn_agregarproductos, 0, wxEXPAND|wxALIGN_RIGHT, 5 );
+	bSizer33->Add( m_btn_agregarproductos, 0, wxEXPAND, 5 );
 
 
 	bSizer30->Add( bSizer33, 1, wxEXPAND, 5 );
@@ -238,15 +238,15 @@ ActualizarPrecio_Eliminar::ActualizarPrecio_Eliminar( wxWindow* parent, wxWindow
 	bSizer341->Add( m_staticText29, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
 
 	m_precio_nuevo = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-	bSizer341->Add( m_precio_nuevo, 0, wxALL|wxALIGN_CENTER_HORIZONTAL, 5 );
+	bSizer341->Add( m_precio_nuevo, 0, wxALL, 5 );
 
 
-	bSizer34->Add( bSizer341, 1, wxEXPAND, 5 );
+	bSizer34->Add( bSizer341, 1, 0, 5 );
 
 	m_actualizarPrecio = new wxButton( this, wxID_ANY, wxT("Actualizar Precio"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_actualizarPrecio->SetBackgroundColour( wxColour( 81, 234, 88 ) );
 
-	bSizer34->Add( m_actualizarPrecio, 0, wxALL|wxALIGN_CENTER_HORIZONTAL, 5 );
+	bSizer34->Add( m_actualizarPrecio, 0, wxALIGN_CENTER_HORIZONTAL|wxALL, 5 );
 
 
 	bSizer34->Add( 0, 1000, 1, wxEXPAND, 5 );
@@ -256,7 +256,7 @@ ActualizarPrecio_Eliminar::ActualizarPrecio_Eliminar( wxWindow* parent, wxWindow
 	m_btn_eliminarproducto->SetForegroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_BACKGROUND ) );
 	m_btn_eliminarproducto->SetBackgroundColour( wxColour( 255, 119, 119 ) );
 
-	bSizer34->Add( m_btn_eliminarproducto, 0, wxALL|wxALIGN_CENTER_HORIZONTAL, 5 );
+	bSizer34->Add( m_btn_eliminarproducto, 0, wxALIGN_CENTER_HORIZONTAL|wxALL, 5 );
 
 
 	this->SetSizer( bSizer34 );
@@ -983,7 +983,7 @@ VetanaValidar::VetanaValidar( wxWindow* parent, wxWindowID id, const wxString& t
 	m_texto->Wrap( -1 );
 	m_texto->SetBackgroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_INACTIVEBORDER ) );
 
-	sbSizer1->Add( m_texto, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxEXPAND, 5 );
+	sbSizer1->Add( m_texto, 1, wxALL|wxEXPAND, 5 );
 
 	wxBoxSizer* bSizer27;
 	bSizer27 = new wxBoxSizer( wxHORIZONTAL );

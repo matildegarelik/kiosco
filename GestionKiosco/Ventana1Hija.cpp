@@ -21,8 +21,8 @@ void Ventana1Hija::to_ventas( wxCommandEvent& event )  {
 	event.Skip();
 }
 void Ventana1Hija::Actualizar(){
-	//Producto aux;                                      
-	m_grilla->DeleteRows(0,m_grilla->GetColSize(0));
+	//Producto aux;
+	if(m_grilla->GetNumberRows()>0)	m_grilla->DeleteRows(0,m_grilla->GetColSize(0));
 	for(int i=0; i<prods->DevolverTamanio(); ++i){
 		m_grilla->AppendRows(1);
 		//m_grilla->SetSelectionMode(wxGrid::wxGridSelectRows);
