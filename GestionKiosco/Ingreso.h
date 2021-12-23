@@ -10,9 +10,9 @@ public:
 	Ingreso(int cod_prod, const Productos &prods, int cant, Fecha f);
 	void GuardarCambios(Productos &prods);
 private:
-	Producto _producto;
-	int _cantidad;
-	Fecha _fecha;
+	Producto m_producto;
+	int m_cantidad;
+	Fecha m_fecha;
 	Repositorio<DetalleYFecha> repo_ingresos;
 };
 

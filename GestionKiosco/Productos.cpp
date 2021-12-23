@@ -9,31 +9,31 @@ using namespace std;
 
 
 	bool OrdenarPorNombre(Producto &x1, Producto &x2){
-		return strcmp(x1._nombre,x2._nombre)<0;
+		return strcmp(x1.nombre,x2.nombre)<0;
 	}
 	bool OrdenarPorCodigo(Producto &x1, Producto &x2){
-		return (x1._codigo<x2._codigo);
+		return (x1.codigo<x2.codigo);
 	}
 	bool OrdenarPorTipo(Producto &x1, Producto &x2){
-		return strcmp(x1._tipo,x2._tipo)<0;
+		return strcmp(x1.tipo,x2.tipo)<0;
 		}
 	bool OrdenarPorMarca(Producto &x1, Producto &x2){
-		return strcmp(x1._marca,x2._marca)<0;
+		return strcmp(x1.marca,x2.marca)<0;
 		}
 	bool OrdenarPorStock(Producto &x1, Producto &x2){
-		return (x1._stock<x2._stock);
+		return (x1.stock<x2.stock);
 	}
 	bool OrdenarPorPrecio(Producto &x1, Producto &x2){
-		return (x1._precio<x2._precio);
+		return (x1.precio<x2.precio);
 	}
 
 
 ostream &operator<<(ostream &o, Producto n){
-	o<<n._nombre<<"  "<<n._stock<<"  "<<n._precio<<endl;
+	o<<n.nombre<<"  "<<n.stock<<"  "<<n.precio<<endl;
 	return o;
 }
 bool operator==(Producto a, Producto b){
-	return a._codigo == b._codigo;
+	return a.codigo == b.codigo;
 }
 
 	
@@ -45,7 +45,7 @@ Productos::Productos() :
 Producto Productos::BuscarProducto(int codigo) const{
 	Producto aux;
 	for(int i=0; i<VectorProductos.size(); ++i){
-		if(VectorProductos[i]._codigo==codigo){
+		if(VectorProductos[i].codigo==codigo){
 			//VectorProductos[i]=aux;
 			aux = VectorProductos[i];
 			return aux;
@@ -54,17 +54,17 @@ Producto Productos::BuscarProducto(int codigo) const{
 	}
 	return aux;
 }
-char*Productos::VerNombre (int x){return VectorProductos[x]._nombre;}
-char*Productos::VerMarca (int x){return VectorProductos[x]._marca;}
-char*Productos::VerTipo (int x){return VectorProductos[x]._tipo;}
-int Productos::VerCodigo(int x){return VectorProductos[x]._codigo; }
-int Productos::VerStock(int x){return VectorProductos[x]._stock;}
-float Productos::VerPrecio(int x){return VectorProductos[x]._precio;}
+char*Productos::VerNombre (int x){return VectorProductos[x].nombre;}
+char*Productos::VerMarca (int x){return VectorProductos[x].marca;}
+char*Productos::VerTipo (int x){return VectorProductos[x].tipo;}
+int Productos::VerCodigo(int x){return VectorProductos[x].codigo; }
+int Productos::VerStock(int x){return VectorProductos[x].stock;}
+float Productos::VerPrecio(int x){return VectorProductos[x].precio;}
 int Productos::BuscarIndice(int codigo){
 	for(int i=0; i<VectorProductos.size(); ++i){
 		int aux;
 		for(int i=0; i<VectorProductos.size(); ++i){
-			if(VectorProductos[i]._codigo==codigo) aux=i;
+			if(VectorProductos[i].codigo==codigo) aux=i;
 		}
 		return aux;
 	}
@@ -94,8 +94,8 @@ void Productos::ActualizarStock(string NombreArchivo, int codigo, int cantidad){
 	fstream archi(NombreArchivo, ios::binary|ios::in|ios::out);
 	int aux;
 	for(size_t i=0; i<VectorProductos.size(); ++i){
-		if(VectorProductos[i]._codigo==codigo){
-			VectorProductos[i]._stock-=cantidad;
+		if(VectorProductos[i].codigo==codigo){
+			VectorProductos[i].stock-=cantidad;
 			aux=i;
 			break;
 		}
@@ -127,7 +127,7 @@ vector<Producto>Productos::Filtrar(string tipo){
 	vector<Producto> aux;
 	cout<<VectorProductos.size()<<endl;
 	for(int i=0; i<VectorProductos.size(); ++i){
-		string S=VectorProductos[i]._tipo;
+		string S=VectorProductos[i].tipo;
 		if(S==tipo){
 			aux.push_back(VectorProductos[i]);
 		}
@@ -138,8 +138,8 @@ void Productos::ActualizarPrecio( int codigo, float precio){ //ué el parametro p
 	int pos;
 	Producto p;
 	for(int i=0; i<VectorProductos.size();++i){
-		if(VectorProductos[i]._codigo==codigo){
-			VectorProductos[i]._precio=precio;
+		if(VectorProductos[i].codigo==codigo){
+			VectorProductos[i].precio=precio;
 			p = VectorProductos[i];
 			pos = i;
 		}
@@ -152,13 +152,13 @@ void Productos::GuardarCambios(string NombreArchivo, int indice){
 }
 
 string Productos :: obtenerIdentificador(Producto auxiliar){
-	return to_string(auxiliar._codigo);
+	return to_string(auxiliar.codigo);
 }
 
 bool Productos :: existe(int codigo){
 	bool retorno = false;
 	for(int i=0;i<VectorProductos.size();i++) { 
-		if(VectorProductos[i]._codigo == codigo){
+		if(VectorProductos[i].codigo == codigo){
 			retorno = true;
 		}
 	}

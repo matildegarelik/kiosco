@@ -34,6 +34,7 @@ public:
 	vector<DetalleYFecha> ventas_por_producto(int codigo);
 	vector<Compra> ventas_por_cliente(string nombre);
 	vector<DetalleYFecha> armar_factura(int codigo_factura);
+	Compra buscar_compra(int codigo_factura);
 private:
 	Repositorio<Compra> repo_ventas;
 	Repositorio<Compra> repo_fiados;

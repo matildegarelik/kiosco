@@ -8,7 +8,7 @@
 class Ventana5Hija : public Ventana5 {
 	
 private:
-	Productos *_prods;
+	Productos *m_prods;
 	Venta v;
 	HistoricoVentas hist;
 protected:

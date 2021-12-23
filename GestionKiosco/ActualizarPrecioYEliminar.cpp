@@ -1,10 +1,10 @@
 #include "ActualizarPrecioYEliminar.h"
-#include "WxFunciones.cpp"
+#include "WxFunciones.h"
 ActualizarPrecioYEliminar::ActualizarPrecioYEliminar(wxWindow *parent, Productos *prods, int codigo) : ActualizarPrecio_Eliminar(parent) {
 	this->prods = prods;
 	m_codigo = codigo;
 	Producto p = this->prods->BuscarProducto(m_codigo);
-	m_precio_nuevo->SetValue(to_string(p._precio));
+	m_precio_nuevo->SetValue(to_string(p.precio));
 }
 
 void ActualizarPrecioYEliminar::OnButtonClickActualizarPrecio( wxCommandEvent& event )  {

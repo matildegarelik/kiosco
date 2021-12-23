@@ -1,7 +1,7 @@
 #include "Ventana1Hija.h"
 #include "Ventana2HIja.h"
 #include "Ventana6Hija.h"
-#include "WxFunciones.cpp"
+#include "WxFunciones.h"
 #include "AgregarNuevoProducto.h"
 #include "Ventana4HIja.h"
 #include "Ventana5Hija.h"

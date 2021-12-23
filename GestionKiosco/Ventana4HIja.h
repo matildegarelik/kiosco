@@ -9,7 +9,7 @@
 class Ventana4HIja : public Ventana4 {
 	
 private:
-	Productos *_prods;
+	Productos *m_prods;
 	Repositorio<DetalleYFecha> repo_ingresos;
 protected:
 	void Ingresar( wxCommandEvent& event )  override;

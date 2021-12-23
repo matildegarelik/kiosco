@@ -8,8 +8,8 @@
 class HijaFiar : public BaseFiar {
 	
 private:
-	Venta *_venta;
-	Productos *_prods;
+	Venta *m_venta;
+	Productos *m_prods;
 	HistoricoVentas hist;
 protected:
 	void MarcarFIado( wxCommandEvent& event )  override;

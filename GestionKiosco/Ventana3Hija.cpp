@@ -69,8 +69,8 @@ void Ventana3Hija::AgregarProductoLista( wxCommandEvent& event )  {
 		//m_grilla->SetSelectionMode(wxGrid::wxGridSelectRows);
 		m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,0,m_codigo->GetValue());
 		m_codigo->SetValue("");
-		m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,1,c_to_wx(agregado._nombre));
-		m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,2,c_to_wx(agregado._marca));
+		m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,1,c_to_wx(agregado.nombre));
+		m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,2,c_to_wx(agregado.marca));
 		m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,3,m_cantidad->GetValue());
 		m_cantidad->SetValue("");
 	}else{

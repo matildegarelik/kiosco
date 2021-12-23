@@ -20,7 +20,7 @@ void Ventana2HIja::OnClickAgregar( wxCommandEvent& event )  {
 				wxMessageBox("Ingresar cantidad","Aviso");
 			}else{
 				Producto p = prods->BuscarProducto(stoi( wx_to_std(m_codigo->GetValue())));
-				if(p._stock<stoi( wx_to_std(m_cantidad->GetValue()))){
+				if(p.stock<stoi( wx_to_std(m_cantidad->GetValue()))){
 					wxMessageBox("No hay suficiente stock","Aviso");
 				}else{
 					_venta.AgregarDetalle(stoi( wx_to_std(m_codigo->GetValue())),stoi(wx_to_std(m_cantidad->GetValue())), *prods);
@@ -31,12 +31,13 @@ void Ventana2HIja::OnClickAgregar( wxCommandEvent& event )  {
 					//m_grilla->SetSelectionMode(wxGrid::wxGridSelectRows);
 					m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,0,m_codigo->GetValue());
 					m_codigo->SetValue("");
-					m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,1,c_to_wx(agregado._nombre));
-					m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,2,c_to_wx(agregado._marca));
+					m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,1,c_to_wx(agregado.nombre));
+					m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,2,c_to_wx(agregado.marca));
 					m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,3,m_cantidad->GetValue());
 					m_cantidad->SetValue("");
-					m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,4,std_to_wx(to_string(agregado._precio)));
-					m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,5,std_to_wx("-"));
+					m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,4,std_to_wx(to_string(agregado.precio)));
+					//m_grilla->SetCellAlignment(wx_ALIGN_CENTER,m_grilla->GetNumberRows()-1,5);
+					m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,5,std_to_wx("X"));
 					
 					m_total->SetValue(to_string(_venta.CalcularTotal()));
 				}

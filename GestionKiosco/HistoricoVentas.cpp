@@ -88,10 +88,11 @@ vector<Compra> HistoricoVentas::ultimas_ventas(){
 	vector<Compra> fiados = repo_fiados.buscarTodos();
 	ventas.insert(ventas.end(),fiados.begin(),fiados.end());
 	sort(ventas.begin(),ventas.end(),cmp_fecha);
+	reverse(ventas.begin(),ventas.end());
 	
-	if(ventas.size()>10){
+	if(ventas.size()>25){
 		vector<Compra> ult_ventas;
-		for(size_t i =0; i<10;++i) ult_ventas.push_back(ventas[i]);
+		for(size_t i =0; i<25;++i) ult_ventas.push_back(ventas[i]);
 		return ult_ventas;
 	}else{
 		return ventas;
@@ -101,7 +102,7 @@ vector<DetalleYFecha> HistoricoVentas::ventas_por_producto(int codigo){
 	vector<DetalleYFecha> todos = repo_detalles.buscarTodos();
 	vector<DetalleYFecha> det_prod;
 	for(DetalleYFecha &d: todos){
-		if(d.d.p._codigo==codigo) det_prod.push_back(d);
+		if(d.d.p.codigo==codigo) det_prod.push_back(d);
 	}
 	return det_prod;
 }
@@ -142,4 +143,14 @@ vector<DetalleYFecha> HistoricoVentas::armar_factura(int codigo_factura){
 		if(d.cod_factura==codigo_factura) det_fac.push_back(d);
 	}
 	return det_fac;
+}
+Compra HistoricoVentas::buscar_compra(int codigo_factura){
+	vector<Compra> ventas = repo_ventas.buscarTodos();
+	for(Compra &c: ventas) 
+		if(c.cod_factura== codigo_factura) return c;
+	vector<Compra> fiados = repo_fiados.buscarTodos();
+	for(Compra &c: fiados) 
+		if(c.cod_factura== codigo_factura) return c;
+	Compra error={"ERROR\0",Fecha{0,0,0},0,0};
+	return error;
 }

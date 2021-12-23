@@ -5,9 +5,9 @@ using namespace std;
 
 Ingreso::Ingreso(int cod_prod,const Productos &prods, int cant, Fecha f): repo_ingresos("ingresos.dat") {
 	Producto p = prods.BuscarProducto(cod_prod);
-	_producto = p;
-	_cantidad=cant;
-	_fecha=f;
+	m_producto = p;
+	m_cantidad=cant;
+	m_fecha=f;
 }
 
 void Ingreso::GuardarCambios(Productos &prods){
@@ -18,13 +18,15 @@ void Ingreso::GuardarCambios(Productos &prods){
 	fout<<" (Cod: "<<_producto._codigo<<")";
 	fout<<" - Cantidad: "<<_cantidad;
 	fout<<"- Fecha: "<<_fecha.dia<<"/"<<_fecha.mes<<"/"<<_fecha.anio<<endl;*/
-	Detalle d = {_producto,_cantidad};
-	DetalleYFecha df = {d,_fecha}; 
+	Detalle d = {m_producto,m_cantidad};
+	DetalleYFecha df = {d,m_fecha}; 
 	repo_ingresos.guardarNuevo(df);
 	
 	//Actualizar vector productos y binario con stock
-	prods.ActualizarStock("productos.dat",_producto._codigo,-_cantidad);// negativo para q la sume
-	prods.GuardarCambios("productos.dat",prods.BuscarIndice(_producto._codigo));
+	prods.ActualizarStock("productos.dat",m_producto.codigo,-m_cantidad);// negativo para q la sume
+	prods.GuardarCambios("productos.dat",prods.BuscarIndice(m_producto.codigo));
 	
 }
+
+
 

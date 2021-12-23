@@ -64,7 +64,7 @@ void Pedido :: armarArchivoTexto(){
 	
 	arch<<getFechaActualString()<<endl <<texto1<<endl;
 	for(int i=0;i<lista_pedido.size();i++) { 
-		arch<<lista_pedido[i]._nombre<<"  "<<cantidades[i]<<endl;
+		arch<<lista_pedido[i].nombre<<"  "<<cantidades[i]<<endl;
 	}
 	arch<<texto2;
 	
@@ -75,7 +75,7 @@ void Pedido :: eliminarProducto(int cod, Productos &prod){
 	
 	if(prod.existe(cod)){
 		for(int i=0;i<lista_pedido.size();i++) { 
-			if(lista_pedido[i]._codigo == cod){
+			if(lista_pedido[i].codigo == cod){
 				lista_pedido.erase(lista_pedido.begin()+i);
 			}
 		}

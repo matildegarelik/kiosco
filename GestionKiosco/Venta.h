@@ -26,9 +26,11 @@ class Venta {
 public:
 	Venta();
 	int VerCantidad(int indice);
+	Fecha getFechaActual();
 	
 	void SetCliente(string cliente);
 	void SetFecha(int dia, int mes, int anio);
+	void SetFecha(Fecha f);
 	void SetPago(bool pago);
 	
 	char* GetCliente();
@@ -42,10 +44,10 @@ public:
 	Venta Pagar(Productos &prods); // tambien actualiza stock en vector de productos y archivo de detalles
 	
 private:
-	vector<Detalle> _detalles;
-	char _cliente[50];
-	bool _pagado;
-	Fecha _fecha;
+	vector<Detalle> m_detalles;
+	char m_cliente[50];
+	bool m_pagado;
+	Fecha m_fecha;
 };
 
 #endif

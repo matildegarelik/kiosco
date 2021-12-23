@@ -1,67 +1,83 @@
 #include "Venta.h"
 #include <vector>
 #include <cstring>
+#include <ctime>
 using namespace std;
 
 Venta::Venta(){
 }
 
 int Venta::VerCantidad(int indice){
-	return _detalles[indice].cantidad;
+	return m_detalles[indice].cantidad;
 }
 
 void Venta::SetCliente(string cliente){
-	strcpy(_cliente, cliente.c_str());
+	strcpy(m_cliente, cliente.c_str());
 }
 void Venta::SetFecha(int dia, int mes, int anio){
-	_fecha.dia=dia;
-	_fecha.mes=mes;
-	_fecha.anio=anio;
+	m_fecha.dia=dia;
+	m_fecha.mes=mes;
+	m_fecha.anio=anio;
 }
+
+void Venta::SetFecha(Fecha f){
+	m_fecha=f;
+}
+
 void Venta::SetPago(bool pago){
-	_pagado=pago;
+	m_pagado=pago;
 }
 
 char* Venta::GetCliente(){
-	return _cliente;
+	return m_cliente;
 }
 Fecha Venta::GetFecha() const{
-	return _fecha;
+	return m_fecha;
 }
 bool Venta::GetPago() const{
-	return _pagado;
+	return m_pagado;
 }
 vector<Detalle> Venta::GetDetalles() const{
-	return _detalles;
+	return m_detalles;
 }
 
 void Venta::AgregarDetalle(int codigo, int cantidad, const Productos &prods){
 	Producto p = prods.BuscarProducto(codigo);
 	Detalle d = {p,cantidad};
-	_detalles.push_back(d);
+	m_detalles.push_back(d);
 }
 void Venta::EliminarDetalle(int indice){
-	_detalles.erase(_detalles.begin()+indice);
+	m_detalles.erase(m_detalles.begin()+indice);
 }
 float Venta::CalcularTotal(){
 	float total=0;
-	for(Detalle &d: _detalles) total+=d.cantidad*d.p._precio;
+	for(Detalle &d: m_detalles) total+=d.cantidad*d.p.precio;
 	return total;
 }
 
 
 Venta Venta::Pagar(Productos &prods){
 	// actualiza stock en vector de productos
-	for(Detalle &d: _detalles){
-		prods.ActualizarStock("productos.dat",d.p._codigo,d.cantidad);
-		prods.GuardarCambios("productos.dat",prods.BuscarIndice(d.p._codigo));
+	for(Detalle &d: m_detalles){
+		prods.ActualizarStock("productos.dat",d.p.codigo,d.cantidad);
+		prods.GuardarCambios("productos.dat",prods.BuscarIndice(d.p.codigo));
 	}
 	
 	// Guardar en archivo_ventas si se pago, sino en fiados
 	return *this;
 }
 
-
+Fecha Venta::getFechaActual(){
+	// current date/time based on current system
+	time_t now = time(0);
+	tm *ltm = localtime(&now);
+	int year = 1900 + ltm->tm_year;
+	int month = 1 + ltm->tm_mon;
+	int day = ltm->tm_mday;
+	
+	Fecha fecha_actual = {day,month,year};
+	return fecha_actual;
+};
 
 
 bool operator==(Fecha f1, Fecha f2) {

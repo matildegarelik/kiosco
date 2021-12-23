@@ -8,8 +8,8 @@
 class BasePagarHija : public BasePagar {
 	
 private:
-	Venta *_venta;
-	Productos *_prods;
+	Venta *m_venta;
+	Productos *m_prods;
 	HistoricoVentas hist;
 protected:
 	void MarcarPagado( wxCommandEvent& event )  override;

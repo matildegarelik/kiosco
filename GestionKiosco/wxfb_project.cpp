@@ -77,12 +77,12 @@ Ventana1::Ventana1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	m_grilla->SetMargins( 0, 0 );
 
 	// Columns
-	m_grilla->SetColSize( 0, 79 );
-	m_grilla->SetColSize( 1, 80 );
-	m_grilla->SetColSize( 2, 80 );
-	m_grilla->SetColSize( 3, 80 );
+	m_grilla->SetColSize( 0, 107 );
+	m_grilla->SetColSize( 1, 231 );
+	m_grilla->SetColSize( 2, 142 );
+	m_grilla->SetColSize( 3, 139 );
 	m_grilla->SetColSize( 4, 80 );
-	m_grilla->SetColSize( 5, 80 );
+	m_grilla->SetColSize( 5, 82 );
 	m_grilla->EnableDragColMove( false );
 	m_grilla->EnableDragColSize( true );
 	m_grilla->SetColLabelValue( 0, wxT("CÓDIGO") );
@@ -342,9 +342,9 @@ Ventana2::Ventana2( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	m_grilla->SetMargins( 0, 0 );
 
 	// Columns
-	m_grilla->SetColSize( 0, 80 );
-	m_grilla->SetColSize( 1, 80 );
-	m_grilla->SetColSize( 2, 80 );
+	m_grilla->SetColSize( 0, 146 );
+	m_grilla->SetColSize( 1, 201 );
+	m_grilla->SetColSize( 2, 173 );
 	m_grilla->SetColSize( 3, 80 );
 	m_grilla->SetColSize( 4, 93 );
 	m_grilla->SetColSize( 5, 88 );
@@ -730,11 +730,11 @@ Ventana4::Ventana4( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	m_grilla->SetMargins( 0, 0 );
 
 	// Columns
-	m_grilla->SetColSize( 0, 147 );
+	m_grilla->SetColSize( 0, 131 );
 	m_grilla->SetColSize( 1, 205 );
 	m_grilla->SetColSize( 2, 182 );
 	m_grilla->SetColSize( 3, 170 );
-	m_grilla->SetColSize( 4, 76 );
+	m_grilla->SetColSize( 4, 93 );
 	m_grilla->EnableDragColMove( false );
 	m_grilla->EnableDragColSize( true );
 	m_grilla->SetColLabelValue( 0, wxT("Fecha") );
@@ -868,6 +868,52 @@ Ventana5::~Ventana5()
 
 }
 
+BaseValidarFiar::BaseValidarFiar( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxDialog( parent, id, title, pos, size, style )
+{
+	this->SetSizeHints( wxDefaultSize, wxDefaultSize );
+
+	wxBoxSizer* bSizer33;
+	bSizer33 = new wxBoxSizer( wxVERTICAL );
+
+	m_staticText29 = new wxStaticText( this, wxID_ANY, wxT("¿Marcar compra fiada como paga?"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText29->Wrap( -1 );
+	bSizer33->Add( m_staticText29, 0, wxALL, 5 );
+
+	wxBoxSizer* bSizer34;
+	bSizer34 = new wxBoxSizer( wxHORIZONTAL );
+
+	m_btn_aceptar = new wxButton( this, wxID_ANY, wxT("Aceptar"), wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer34->Add( m_btn_aceptar, 0, wxALL, 5 );
+
+
+	bSizer34->Add( 0, 0, 1, wxEXPAND, 5 );
+
+	m_btn_cancelar = new wxButton( this, wxID_ANY, wxT("Cancelar"), wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer34->Add( m_btn_cancelar, 0, wxALL, 5 );
+
+
+	bSizer33->Add( bSizer34, 1, wxEXPAND, 5 );
+
+
+	this->SetSizer( bSizer33 );
+	this->Layout();
+	bSizer33->Fit( this );
+
+	this->Centre( wxBOTH );
+
+	// Connect Events
+	m_btn_aceptar->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BaseValidarFiar::Pagar ), NULL, this );
+	m_btn_cancelar->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BaseValidarFiar::Cerrar ), NULL, this );
+}
+
+BaseValidarFiar::~BaseValidarFiar()
+{
+	// Disconnect Events
+	m_btn_aceptar->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BaseValidarFiar::Pagar ), NULL, this );
+	m_btn_cancelar->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BaseValidarFiar::Cerrar ), NULL, this );
+
+}
+
 Ventana6::Ventana6( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxFrame( parent, id, title, pos, size, style )
 {
 	this->SetSizeHints( wxDefaultSize, wxDefaultSize );
@@ -908,6 +954,7 @@ Ventana6::Ventana6( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	m_dropdown->Append( wxT("Ultimas ventas") );
 	m_dropdown->Append( wxT("Ventas por producto") );
 	m_dropdown->Append( wxT("Ventas por cliente") );
+	m_dropdown->Append( wxT("Detalle factura") );
 	m_dropdown->SetSelection( 0 );
 	bSizer12->Add( m_dropdown, 0, wxALL, 5 );
 
@@ -927,13 +974,17 @@ Ventana6::Ventana6( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	m_grilla = new wxGrid( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0 );
 
 	// Grid
-	m_grilla->CreateGrid( 0, 3 );
+	m_grilla->CreateGrid( 0, 4 );
 	m_grilla->EnableEditing( true );
 	m_grilla->EnableGridLines( true );
 	m_grilla->EnableDragGridSize( false );
 	m_grilla->SetMargins( 0, 0 );
 
 	// Columns
+	m_grilla->SetColSize( 0, 193 );
+	m_grilla->SetColSize( 1, 191 );
+	m_grilla->SetColSize( 2, 199 );
+	m_grilla->SetColSize( 3, 198 );
 	m_grilla->EnableDragColMove( false );
 	m_grilla->EnableDragColSize( true );
 	m_grilla->SetColLabelSize( 0 );

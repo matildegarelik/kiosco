@@ -7,9 +7,9 @@
 using namespace std;
 
 struct Producto{
-	char _nombre[30], _marca[50], _tipo[30];
-	int _codigo, _stock;
-	float _precio;
+	char nombre[30], marca[50], tipo[30];
+	int codigo, stock;
+	float precio;
 };
 
 bool OrdenarPorCodigo(Producto &x1, Producto &x2);
