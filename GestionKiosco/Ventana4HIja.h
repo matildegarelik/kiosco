@@ -4,6 +4,7 @@
 #include "Productos.h"
 #include "Repositorio.h"
 #include "Venta.h"
+#include "HistoricoVentas.h"
 
 class Ventana4HIja : public Ventana4 {
 	

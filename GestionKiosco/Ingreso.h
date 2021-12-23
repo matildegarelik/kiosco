@@ -2,6 +2,7 @@
 #define INGRESO_H
 #include "Venta.h"
 #include <iostream>
+#include "HistoricoVentas.h"
 using namespace std;
 
 class Ingreso {

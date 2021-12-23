@@ -259,6 +259,7 @@ public:
 		m_registros[pos] = entidad;
 	}
 	
+	
 };
 
 

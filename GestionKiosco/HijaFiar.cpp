@@ -23,6 +23,7 @@ void HijaFiar::MarcarFIado( wxCommandEvent& event )  {
 		_venta->SetPago(false);
 		
 		_venta->Pagar(*_prods);
+		hist.Agregar(*_venta);
 		GetParent()->Close();
 		Ventana2HIja *Ventana_Nueva = new Ventana2HIja(NULL, _prods);
 		Ventana_Nueva->Show();

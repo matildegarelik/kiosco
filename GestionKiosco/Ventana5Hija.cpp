@@ -6,7 +6,7 @@
 
 Ventana5Hija::Ventana5Hija(wxWindow *parent, Productos *prods) : Ventana5(parent) {
 	_prods=prods;
-	vector<Compra> fiados = v.CargarFiados();
+	vector<Compra> fiados = hist.CargarFiados();
 	for(Compra &c: fiados){
 		m_tabla_fiados->AppendRows(1);
 		m_tabla_fiados->SetCellValue(m_tabla_fiados->GetNumberRows()-1,0,std_to_wx(c.cliente));
@@ -42,7 +42,7 @@ void Ventana5Hija::m_tabla_fiadosOnGridCellLeftClick( wxGridEvent& event )  {
 		//c.f={19,12,2021};
 		//c.total=stof(wx_to_std(m_tabla_fiados->GetCellValue(event.GetRow(),2)));
 		//v.MarcarPagado(c);
-		v.MarcarPagado(event.GetRow());
+		hist.MarcarPagado(event.GetRow());
 		m_tabla_fiados->DeleteRows(event.GetRow());
 	}
 	event.Skip();

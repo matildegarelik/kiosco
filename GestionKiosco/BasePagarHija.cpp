@@ -22,6 +22,7 @@ void BasePagarHija::MarcarPagado( wxCommandEvent& event )  {
 		_venta->SetPago(true);
 		
 		_venta->Pagar(*_prods);
+		hist.Agregar(*_venta);
 		GetParent()->Close();
 		Ventana2HIja *Ventana_Nueva = new Ventana2HIja(NULL, _prods);
 		Ventana_Nueva->Show();

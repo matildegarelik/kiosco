@@ -19,7 +19,7 @@ Ventana6Hija::Ventana6Hija(wxWindow *parent, Productos *prods) : Ventana6(parent
 	m_grilla->SetCellValue(0,1,wx_to_std("Nombre"));
 	m_grilla->SetCellValue(0,2,wx_to_std("Cantidad de ventas"));
 	//m_grilla->SetRowAttr(0, 
-	vector<Detalle> dets=_venta.prods_mas_vendidos();
+	vector<Detalle> dets=hist.prods_mas_vendidos();
 	for(Detalle &d: dets){
 		m_grilla->AppendRows(1);
 		m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,0,std_to_wx(to_string(d.p._codigo)));
@@ -45,7 +45,7 @@ void Ventana6Hija::ConsultarHistorial( wxCommandEvent& event )  {
 		m_grilla->SetCellValue(0,0,wx_to_std("Codigo"));
 		m_grilla->SetCellValue(0,1,wx_to_std("Nombre"));
 		m_grilla->SetCellValue(0,2,wx_to_std("Cantidad de ventas"));
-		vector<Detalle> dets=_venta.prods_mas_vendidos();
+		vector<Detalle> dets=hist.prods_mas_vendidos();
 		for(Detalle &d: dets){
 			m_grilla->AppendRows(1);
 			m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,0,std_to_wx(to_string(d.p._codigo)));
@@ -65,7 +65,7 @@ void Ventana6Hija::ConsultarHistorial( wxCommandEvent& event )  {
 		m_grilla->SetCellBackgroundColour(0,1,*wxLIGHT_GREY);
 		m_grilla->SetCellBackgroundColour(0,2,*wxLIGHT_GREY);
 		//Compra v={"matilde\0",Fecha{21,12,2021},100};
-		vector<Compra> ult_ventas =_venta.ultimas_ventas();
+		vector<Compra> ult_ventas =hist.ultimas_ventas();
 		//ult_ventas.push_back(v);
 		for(Compra &c: ult_ventas){
 			m_grilla->AppendRows(1);
@@ -91,7 +91,7 @@ void Ventana6Hija::ConsultarHistorial( wxCommandEvent& event )  {
 			wxMessageBox("Por favor ingrese un codigo de producto para buscar","Aviso");
 		}else{
 			if(_prods->existe(stoi(wx_to_std(m_param->GetValue())))){
-				vector<DetalleYFecha> dets = _venta.ventas_por_producto(stoi(wx_to_std(m_param->GetValue())));
+				vector<DetalleYFecha> dets = hist.ventas_por_producto(stoi(wx_to_std(m_param->GetValue())));
 				for(DetalleYFecha &d: dets){
 					m_grilla->AppendRows(1);
 					string fecha = to_string(d.f.dia)+'/'+to_string(d.f.mes)+'/'+to_string(d.f.anio);
@@ -122,7 +122,7 @@ void Ventana6Hija::ConsultarHistorial( wxCommandEvent& event )  {
 		if(m_param->IsEmpty()){
 			wxMessageBox("Por favor ingrese un cliente","Aviso");
 		}else{
-			vector<Compra> dets = _venta.ventas_por_cliente(wx_to_std(m_param->GetValue()));
+			vector<Compra> dets = hist.ventas_por_cliente(wx_to_std(m_param->GetValue()));
 			for(Compra &c: dets){
 				m_grilla->AppendRows(1);
 				m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,0,c_to_wx(c.cliente));
