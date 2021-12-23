@@ -2,7 +2,7 @@
 #include "Ventana4HIja.h"
 #include "wxfb_project.h"
 #include "Ventana5Hija.h"
-#include "WxFunciones.cpp"
+#include "WxFunciones.h"
 
 Ventana5Hija::Ventana5Hija(wxWindow *parent, Productos *prods) : Ventana5(parent) {
 	_prods=prods;

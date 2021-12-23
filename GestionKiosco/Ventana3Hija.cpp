@@ -1,7 +1,7 @@
 #include "Ventana3Hija.h"
 #include "Ventana2HIja.h"
 #include "Ventana4HIja.h"
-#include "WxFunciones.cpp"
+#include "WxFunciones.h"
 #include <wx/msgdlg.h>
 #include "VentanaValidarHija.h"
 
@@ -33,6 +33,7 @@ void Ventana3Hija::to_stock( wxCommandEvent& event )  {
 
 //	bool paso = Validar<Ventana4HIja> (event, _prods);
 //	if (paso){ Close();}
+	
 	VentanaValidarHija Ventana_val(this);
 
 	if(_prods->DevolverTamanio() == 0){
