@@ -71,7 +71,7 @@ Ventana1::Ventana1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 
 	// Grid
 	m_grilla->CreateGrid( 0, 6 );
-	m_grilla->EnableEditing( false );
+	m_grilla->EnableEditing( true );
 	m_grilla->EnableGridLines( true );
 	m_grilla->EnableDragGridSize( false );
 	m_grilla->SetMargins( 0, 0 );
@@ -96,6 +96,7 @@ Ventana1::Ventana1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	m_grilla->SetColLabelAlignment( wxALIGN_CENTER, wxALIGN_CENTER );
 
 	// Rows
+	m_grilla->AutoSizeRows();
 	m_grilla->EnableDragRowSize( true );
 	m_grilla->SetRowLabelSize( 0 );
 	m_grilla->SetRowLabelAlignment( wxALIGN_CENTER, wxALIGN_CENTER );
@@ -335,7 +336,7 @@ Ventana2::Ventana2( wxWindow* parent, wxWindowID id, const wxString& title, cons
 
 	// Grid
 	m_grilla->CreateGrid( 0, 6 );
-	m_grilla->EnableEditing( false );
+	m_grilla->EnableEditing( true );
 	m_grilla->EnableGridLines( true );
 	m_grilla->EnableDragGridSize( false );
 	m_grilla->SetMargins( 0, 0 );
@@ -358,6 +359,7 @@ Ventana2::Ventana2( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	m_grilla->SetColLabelAlignment( wxALIGN_CENTER, wxALIGN_CENTER );
 
 	// Rows
+	m_grilla->AutoSizeRows();
 	m_grilla->EnableDragRowSize( true );
 	m_grilla->SetRowLabelSize( 0 );
 	m_grilla->SetRowLabelAlignment( wxALIGN_CENTER, wxALIGN_CENTER );
@@ -591,7 +593,7 @@ Ventana3::Ventana3( wxWindow* parent, wxWindowID id, const wxString& title, cons
 
 	// Grid
 	m_grilla->CreateGrid( 0, 4 );
-	m_grilla->EnableEditing( false );
+	m_grilla->EnableEditing( true );
 	m_grilla->EnableGridLines( true );
 	m_grilla->EnableDragGridSize( false );
 	m_grilla->SetMargins( 0, 0 );

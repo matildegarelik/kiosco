@@ -679,7 +679,7 @@
                         <property name="aui_position"></property>
                         <property name="aui_row"></property>
                         <property name="autosize_cols">0</property>
-                        <property name="autosize_rows">0</property>
+                        <property name="autosize_rows">1</property>
                         <property name="best_size"></property>
                         <property name="bg"></property>
                         <property name="caption"></property>
@@ -707,7 +707,7 @@
                         <property name="drag_col_size">1</property>
                         <property name="drag_grid_size">0</property>
                         <property name="drag_row_size">1</property>
-                        <property name="editing">0</property>
+                        <property name="editing">1</property>
                         <property name="enabled">1</property>
                         <property name="fg"></property>
                         <property name="floatable">1</property>
@@ -2660,7 +2660,7 @@
                         <property name="aui_position"></property>
                         <property name="aui_row"></property>
                         <property name="autosize_cols">0</property>
-                        <property name="autosize_rows">0</property>
+                        <property name="autosize_rows">1</property>
                         <property name="best_size"></property>
                         <property name="bg"></property>
                         <property name="caption"></property>
@@ -2688,7 +2688,7 @@
                         <property name="drag_col_size">1</property>
                         <property name="drag_grid_size">0</property>
                         <property name="drag_row_size">1</property>
-                        <property name="editing">0</property>
+                        <property name="editing">1</property>
                         <property name="enabled">1</property>
                         <property name="fg"></property>
                         <property name="floatable">1</property>
@@ -4503,7 +4503,7 @@
                         <property name="drag_col_size">1</property>
                         <property name="drag_grid_size">0</property>
                         <property name="drag_row_size">1</property>
-                        <property name="editing">0</property>
+                        <property name="editing">1</property>
                         <property name="enabled">1</property>
                         <property name="fg">wxSYS_COLOUR_HIGHLIGHT</property>
                         <property name="floatable">1</property>

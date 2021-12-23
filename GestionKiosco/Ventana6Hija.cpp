@@ -2,7 +2,7 @@
 #include "Ventana1Hija.h"
 #include "Ventana5Hija.h"
 #include <wx/msgdlg.h>
-#include "WxFunciones.cpp"
+#include "WxFunciones.h"
 #include <wx/grid.h>
 
 

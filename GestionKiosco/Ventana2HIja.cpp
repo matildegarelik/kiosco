@@ -3,7 +3,7 @@
 #include "Ventana1Hija.h"
 #include "Ventana3Hija.h"
 #include "BasePagarHija.h"
-#include "WxFunciones.cpp"
+#include "WxFunciones.h"
 #include <wx/msgdlg.h>
 
 

@@ -1,6 +1,6 @@
 #include "VentanaValidarHija.h"
 #include <string>
-#include "WxFunciones.cpp"
+#include "WxFunciones.h"
 
 using namespace std;
 

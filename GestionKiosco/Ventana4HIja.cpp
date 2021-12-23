@@ -3,7 +3,7 @@
 #include "Ventana4HIja.h"
 #include "Venta.h"
 #include "Ingreso.h"
-#include "WxFunciones.cpp"
+#include "WxFunciones.h"
 #include <wx/msgdlg.h>
 
 string to_string(Fecha f){
