@@ -96,6 +96,7 @@ void Ventana1Hija::ComboBoxOrdenarPor( wxCommandEvent& event )  {
 	tie(A, B)=prods->iteradores();
 	int t=m_grilla->GetNumberRows();
 	if(m_ordenarpor>=0){
+		m_grilla->DeleteRows(0,m_grilla->GetColSize(0));
 		if(m_ordenarpor->GetSelection()==0) sort(A,B,OrdenarPorNombre);
 		if(m_ordenarpor->GetSelection()==1) sort(A,B,OrdenarPorCodigo);
 		if(m_ordenarpor->GetSelection()==2) sort(A,B,OrdenarPorTipo);
@@ -105,5 +106,51 @@ void Ventana1Hija::ComboBoxOrdenarPor( wxCommandEvent& event )  {
 	}
 	Actualizar();
 	
+}
+
+void Ventana1Hija::OnEnterBuscarPor( wxCommandEvent& event )  {
+	int pos=m_choiceBuscarPor->GetSelection();
+	cout<<pos;
+	Producto aux;
+	vector<Producto>vaux;
+	if(!(m_buscar->IsEmpty())){
+	if(pos==0){
+		m_grilla->DeleteRows(0,m_grilla->GetColSize(0));
+		aux=prods->FiltrarPorCodigo(stoi(wx_to_std(m_buscar->GetValue())));
+		m_grilla->AppendRows(1);
+		m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,0,to_string(aux.codigo));
+		m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,1,c_to_wx(aux.nombre));
+		m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,2,c_to_wx(aux.marca));
+		m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,3,c_to_wx(aux.tipo));
+		m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,4,to_string(aux.stock));
+		m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,5,std_to_wx(to_string(aux.precio)));
+	}
+	else if(pos==1){
+		if(m_grilla->GetNumberRows()>0)	m_grilla->DeleteRows(0,m_grilla->GetColSize(0));
+		aux=prods->FiltrarPorNombre(wx_to_std(m_buscar->GetValue()));
+			m_grilla->AppendRows(1);
+			m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,0,to_string(aux.codigo));
+			m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,1,c_to_wx(aux.nombre));
+			m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,2,c_to_wx(aux.marca));
+			m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,3,c_to_wx(aux.tipo));
+			m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,4,to_string(aux.stock));
+			m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,5,std_to_wx(to_string(aux.precio)));
+	}	
+	else if(pos==2){
+		if(m_grilla->GetNumberRows()>0)	m_grilla->DeleteRows(0,m_grilla->GetColSize(0));
+		vaux=prods->FiltrarPorTipo(wx_to_std(m_buscar->GetValue()));
+		for(int i=0; i<vaux.size(); ++i){
+			m_grilla->AppendRows(1);
+			m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,0,to_string(vaux[i].codigo));
+			m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,1,c_to_wx(vaux[i].nombre));
+			m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,2,c_to_wx(vaux[i].marca));
+			m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,3,c_to_wx(vaux[i].tipo));
+			m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,4,to_string(vaux[i].stock));
+			m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,5,std_to_wx(to_string(vaux[i].precio)));
+		}
+	}
+	}
+	else Actualizar();
+	event.Skip();
 }
 

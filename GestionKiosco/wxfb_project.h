@@ -21,11 +21,11 @@
 #include <wx/stattext.h>
 #include <wx/sizer.h>
 #include <wx/combobox.h>
+#include <wx/choice.h>
 #include <wx/textctrl.h>
 #include <wx/grid.h>
 #include <wx/frame.h>
 #include <wx/dialog.h>
-#include <wx/choice.h>
 #include <wx/statbox.h>
 
 ///////////////////////////////////////////////////////////////////////////
@@ -46,6 +46,7 @@ class Ventana1 : public wxFrame
 		wxButton* m_btn_hacerpedido;
 		wxButton* m_btn_fiados;
 		wxComboBox* m_ordenarpor;
+		wxChoice* m_choiceBuscarPor;
 		wxTextCtrl* m_buscar;
 		wxGrid* m_grilla;
 		wxButton* m_btn_agregarproducto;
@@ -57,6 +58,7 @@ class Ventana1 : public wxFrame
 		virtual void HacerPedidoBoton( wxCommandEvent& event ) { event.Skip(); }
 		virtual void FiadosBoton( wxCommandEvent& event ) { event.Skip(); }
 		virtual void ComboBoxOrdenarPor( wxCommandEvent& event ) { event.Skip(); }
+		virtual void OnEnterBuscarPor( wxCommandEvent& event ) { event.Skip(); }
 		virtual void DobleClickCellLeft( wxGridEvent& event ) { event.Skip(); }
 		virtual void AgregarProductoBoton( wxCommandEvent& event ) { event.Skip(); }
 

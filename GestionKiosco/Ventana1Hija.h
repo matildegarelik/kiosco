@@ -8,6 +8,8 @@ class Ventana1Hija : public Ventana1 {
 private:
 	Productos *prods;
 protected:
+	//void OnComboBuscarPor( wxCommandEvent& event )  override;
+	void OnEnterBuscarPor( wxCommandEvent& event )  override;
 	void ComboBoxOrdenarPor( wxCommandEvent& event )  override;
 	void FiadosBoton( wxCommandEvent& event )  override;
 	void AgregarProductoBoton( wxCommandEvent& event )  override;

@@ -46,7 +46,10 @@ public:
 	int DevolverTamanio();
 	void AgregarProducto(Producto aux);
 	void EliminarProducto( int codigo);
-	vector<Producto> Filtrar(string tipo); //Busca por tipo o Producto 
+	vector<Producto> Filtrar(string tipo); //Busca por tipo o Producto
+	Producto FiltrarPorCodigo(int codigo);
+	Producto FiltrarPorNombre(string nombre);
+	vector<Producto>FiltrarPorTipo(string tipo);
 	void ActualizarPrecio(int codigo, float precio);
 	void GuardarCambios(string NombreArchivo, int indice);
 	

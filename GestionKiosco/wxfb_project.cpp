@@ -61,7 +61,13 @@ Ventana1::Ventana1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	m_ordenarpor->Append( wxT("PRECIO") );
 	bSizer26->Add( m_ordenarpor, 0, wxALL, 5 );
 
-	m_buscar = new wxTextCtrl( this, wxID_ANY, wxT("Buscar:"), wxDefaultPosition, wxDefaultSize, 0 );
+	wxString m_choiceBuscarPorChoices[] = { wxT("CODIGO"), wxT("PRODUCTO"), wxT("TIPO") };
+	int m_choiceBuscarPorNChoices = sizeof( m_choiceBuscarPorChoices ) / sizeof( wxString );
+	m_choiceBuscarPor = new wxChoice( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, m_choiceBuscarPorNChoices, m_choiceBuscarPorChoices, 0 );
+	m_choiceBuscarPor->SetSelection( 0 );
+	bSizer26->Add( m_choiceBuscarPor, 0, wxALL, 5 );
+
+	m_buscar = new wxTextCtrl( this, wxID_ANY, wxT("Buscar:"), wxDefaultPosition, wxDefaultSize, wxTE_PROCESS_ENTER );
 	bSizer26->Add( m_buscar, 0, wxALL, 5 );
 
 
@@ -123,6 +129,7 @@ Ventana1::Ventana1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	m_btn_hacerpedido->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Ventana1::HacerPedidoBoton ), NULL, this );
 	m_btn_fiados->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Ventana1::FiadosBoton ), NULL, this );
 	m_ordenarpor->Connect( wxEVT_COMMAND_COMBOBOX_SELECTED, wxCommandEventHandler( Ventana1::ComboBoxOrdenarPor ), NULL, this );
+	m_buscar->Connect( wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler( Ventana1::OnEnterBuscarPor ), NULL, this );
 	m_grilla->Connect( wxEVT_GRID_CELL_LEFT_DCLICK, wxGridEventHandler( Ventana1::DobleClickCellLeft ), NULL, this );
 	m_btn_agregarproducto->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Ventana1::AgregarProductoBoton ), NULL, this );
 }
@@ -136,6 +143,7 @@ Ventana1::~Ventana1()
 	m_btn_hacerpedido->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Ventana1::HacerPedidoBoton ), NULL, this );
 	m_btn_fiados->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Ventana1::FiadosBoton ), NULL, this );
 	m_ordenarpor->Disconnect( wxEVT_COMMAND_COMBOBOX_SELECTED, wxCommandEventHandler( Ventana1::ComboBoxOrdenarPor ), NULL, this );
+	m_buscar->Disconnect( wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler( Ventana1::OnEnterBuscarPor ), NULL, this );
 	m_grilla->Disconnect( wxEVT_GRID_CELL_LEFT_DCLICK, wxGridEventHandler( Ventana1::DobleClickCellLeft ), NULL, this );
 	m_btn_agregarproducto->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Ventana1::AgregarProductoBoton ), NULL, this );
 

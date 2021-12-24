@@ -121,19 +121,42 @@ tuple<vector<Producto>::iterator,vector<Producto>::iterator> Productos::iterador
 		return make_tuple(A, B);
 	}
 
-vector<Producto>Productos::Filtrar(string tipo){ 
+Producto Productos::FiltrarPorCodigo(int codigo){ 
 	//Se modificó la función para que le llegue una string determinando el tipo a Filtrar		int D;
-	
-	vector<Producto> aux;
-	cout<<VectorProductos.size()<<endl;
+	Producto aux;
 	for(int i=0; i<VectorProductos.size(); ++i){
-		string S=VectorProductos[i].tipo;
-		if(S==tipo){
+		int A=VectorProductos[i].codigo;
+		if(A==codigo){
+			aux=VectorProductos[i];
+			break;
+		}
+	}
+	return aux;
+}
+Producto Productos::FiltrarPorNombre(string nombre){ 
+	//Se modificó la función para que le llegue una string determinando el tipo a Filtrar		int D;	
+	Producto aux;
+	for(int i=0; i<VectorProductos.size(); ++i){
+		string A=VectorProductos[i].nombre;
+		if(A==nombre){
+			aux=VectorProductos[i];
+			break;
+		}
+	}
+	return aux;
+}
+vector<Producto>Productos::FiltrarPorTipo(string tipo){ 
+	//Se modificó la función para que le llegue una string determinando el tipo a Filtrar		int D;	
+	vector<Producto> aux;
+	for(int i=0; i<VectorProductos.size(); ++i){
+		string A=VectorProductos[i].tipo;
+		if(A==tipo){
 			aux.push_back(VectorProductos[i]);
 		}
 	}
 	return aux;
 }
+
 void Productos::ActualizarPrecio( int codigo, float precio){ //ué el parametro precio porque no estaba
 	int pos;
 	Producto p;
