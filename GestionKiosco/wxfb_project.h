@@ -25,6 +25,7 @@
 #include <wx/grid.h>
 #include <wx/frame.h>
 #include <wx/dialog.h>
+#include <wx/choice.h>
 #include <wx/statbox.h>
 
 ///////////////////////////////////////////////////////////////////////////
@@ -230,6 +231,9 @@ class Ventana3 : public wxFrame
 		wxButton* m_btn_to_venta;
 		wxStaticText* m_staticText15;
 		wxButton* m_btn_to_stock;
+		wxStaticText* m_staticText31;
+		wxStaticText* m_texto1;
+		wxChoice* m_lista_productos;
 		wxStaticText* m_staticText8;
 		wxTextCtrl* m_codigo;
 		wxStaticText* m_staticText9;

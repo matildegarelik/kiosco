@@ -4,7 +4,9 @@
 #include "Ventana3Hija.h"
 #include "BasePagarHija.h"
 #include "WxFunciones.h"
+#include "VentanaValidarHija.h"
 #include <wx/msgdlg.h>
+
 
 
 Ventana2HIja::Ventana2HIja(wxWindow *parent, Productos *prods) : Ventana2(parent) {
@@ -61,17 +63,41 @@ Ventana2HIja::~Ventana2HIja() {
 }
 
 void Ventana2HIja::to_productos( wxCommandEvent& event )  {
-	Ventana1Hija *Ventana_Nueva = new Ventana1Hija(NULL, prods);
-	Close();
-	Ventana_Nueva->Show();
-	event.Skip();
+//	Ventana1Hija *Ventana_Nueva = new Ventana1Hija(NULL, prods);
+	
+	VentanaValidarHija Ventana_val(this);
+	if(_venta.getTamanio() == 0){
+		Ventana1Hija *Ventana_Nueva = new Ventana1Hija(NULL, prods);
+		Close();
+		Ventana_Nueva->Show();
+		event.Skip();
+	}else{
+		if(Ventana_val.ShowModal()==1){
+			Ventana1Hija *Ventana_Nueva = new Ventana1Hija(NULL, prods);
+			Close();
+			Ventana_Nueva->Show();
+			event.Skip();
+		}
+	}
 }
 
 void Ventana2HIja::to_pedidos( wxCommandEvent& event )  {
-	Ventana3Hija *Ventana_Nueva = new Ventana3Hija(NULL, prods);
-	Close();
-	Ventana_Nueva->Show();
-	event.Skip();
+	/*Ventana3Hija *Ventana_Nueva = new Ventana3Hija(NULL, prods);*/
+	
+	VentanaValidarHija Ventana_val(this);
+	if(_venta.getTamanio() == 0){
+		Ventana3Hija *Ventana_Nueva = new Ventana3Hija(NULL, prods);
+		Close();
+		Ventana_Nueva->Show();
+		event.Skip();
+	}else{
+		if(Ventana_val.ShowModal()==1){
+			Ventana3Hija *Ventana_Nueva = new Ventana3Hija(NULL, prods);
+			Close();
+			Ventana_Nueva->Show();
+			event.Skip();
+		}
+	}
 }
 
 void Ventana2HIja::VerPagar( wxCommandEvent& event )  {

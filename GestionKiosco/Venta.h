@@ -42,7 +42,7 @@ public:
 	void EliminarDetalle(int indice);
 	float CalcularTotal();
 	Venta Pagar(Productos &prods); // tambien actualiza stock en vector de productos y archivo de detalles
-	
+	int getTamanio();
 private:
 	vector<Detalle> m_detalles;
 	char m_cliente[50];

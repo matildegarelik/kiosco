@@ -95,3 +95,6 @@ ostream &operator<<(ostream &o, Fecha &f) {
 bool operator<(Fecha f1, Fecha f2){
 	return f1.anio*10000+f1.mes*100+f1.dia<f2.anio*10000+f2.mes*100+f2.dia;
 }
+int Venta :: getTamanio(){
+	return m_detalles.size();
+}

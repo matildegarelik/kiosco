@@ -549,7 +549,7 @@ Ventana3::Ventana3( wxWindow* parent, wxWindowID id, const wxString& title, cons
 
 	m_staticText15 = new wxStaticText( this, wxID_ANY, wxT("Hacer Pedido"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText15->Wrap( -1 );
-	m_staticText15->SetFont( wxFont( 18, wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false, wxT("Arial") ) );
+	m_staticText15->SetFont( wxFont( 24, wxFONTFAMILY_ROMAN, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, wxT("Baskerville Old Face") ) );
 
 	bSizer17->Add( m_staticText15, 0, wxALL, 5 );
 
@@ -562,8 +562,23 @@ Ventana3::Ventana3( wxWindow* parent, wxWindowID id, const wxString& title, cons
 
 	bSizer16->Add( bSizer17, 0, wxEXPAND, 5 );
 
+	m_staticText31 = new wxStaticText( this, wxID_ANY, wxT("Seleccione el producto y su cantidad o busque a traves de su codigo"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText31->Wrap( -1 );
+	m_staticText31->SetFont( wxFont( 12, wxFONTFAMILY_ROMAN, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false, wxT("Times New Roman") ) );
+
+	bSizer16->Add( m_staticText31, 0, wxALL, 5 );
+
 	wxBoxSizer* bSizer10;
 	bSizer10 = new wxBoxSizer( wxHORIZONTAL );
+
+	m_texto1 = new wxStaticText( this, wxID_ANY, wxT("Producto:"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_texto1->Wrap( -1 );
+	bSizer10->Add( m_texto1, 0, wxALL, 5 );
+
+	wxArrayString m_lista_productosChoices;
+	m_lista_productos = new wxChoice( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, m_lista_productosChoices, 0 );
+	m_lista_productos->SetSelection( 0 );
+	bSizer10->Add( m_lista_productos, 0, wxALL, 5 );
 
 	m_staticText8 = new wxStaticText( this, wxID_ANY, wxT("Codigo: "), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText8->Wrap( -1 );

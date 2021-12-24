@@ -18,12 +18,12 @@ inline wxString std_to_wx(const std::string &std_str) {
 inline std::string wx_to_std(const wxString &wx_str) {
 	return static_cast<const char*>(wx_str.To8BitData());
 }
-template<typename T>
-bool Validar(wxWindow *parent, wxCommandEvent& event ,Productos *prods){
+template<typename T, typename T2>
+bool Validar(wxWindow *parent, wxCommandEvent& event ,Productos *prods, T2 entidad){
 	bool paso = false;
 	VentanaValidarHija Ventana_val(parent);
 	
-	if(prods->DevolverTamanio() == 0){
+	if(entidad.getTamanio() == 0){
 		T *Ventana_Nueva = new T(NULL, prods);
 		Ventana_Nueva->Show();
 		paso = true;
