@@ -32,14 +32,14 @@
         <object class="Frame" expanded="0">
             <property name="aui_managed">0</property>
             <property name="aui_manager_style">wxAUI_MGR_DEFAULT</property>
-            <property name="bg"></property>
+            <property name="bg">140,203,255</property>
             <property name="center">wxBOTH</property>
             <property name="context_help"></property>
             <property name="context_menu">1</property>
             <property name="enabled">1</property>
             <property name="event_handler">impl_virtual</property>
             <property name="extra_style"></property>
-            <property name="fg"></property>
+            <property name="fg">wxSYS_COLOUR_WINDOW</property>
             <property name="font"></property>
             <property name="hidden">0</property>
             <property name="id">wxID_ANY</property>
@@ -777,7 +777,7 @@
                         <property name="fg"></property>
                         <property name="floatable">1</property>
                         <property name="font"></property>
-                        <property name="grid_line_color"></property>
+                        <property name="grid_line_color">0,0,0</property>
                         <property name="grid_lines">1</property>
                         <property name="gripper">0</property>
                         <property name="hidden">0</property>
