@@ -249,7 +249,7 @@ public:
 		
 	void actualizarParametro(T entidad, int pos){
 		
-		fstream f(nombre_archivo,ios::binary|ios::in|ios::ate);
+		fstream f(nombre_archivo,ios::binary|ios::in|ios::ate|ios::out);
 		
 		int cant_datos = f.tellg()/sizeof(T);
 		f.seekg(0);

@@ -113,19 +113,23 @@ class ActualizarPrecio_Eliminar : public wxDialog
 	private:
 
 	protected:
+		wxStaticText* m_staticText32;
+		wxTextCtrl* m_stock_nuevo;
+		wxButton* m_btn_stock;
 		wxStaticText* m_staticText29;
 		wxTextCtrl* m_precio_nuevo;
 		wxButton* m_actualizarPrecio;
 		wxButton* m_btn_eliminarproducto;
 
 		// Virtual event handlers, override them in your derived class
+		virtual void ActualizarStock( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnButtonClickActualizarPrecio( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnButtonClickEliminarProducto( wxCommandEvent& event ) { event.Skip(); }
 
 
 	public:
 
-		ActualizarPrecio_Eliminar( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 201,142 ), long style = wxDEFAULT_DIALOG_STYLE );
+		ActualizarPrecio_Eliminar( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 331,142 ), long style = wxDEFAULT_DIALOG_STYLE );
 
 		~ActualizarPrecio_Eliminar();
 

@@ -9,6 +9,7 @@ private:
 	Productos *prods;
 	int m_codigo;
 protected:
+	void ActualizarStock( wxCommandEvent& event )  override;
 	void OnButtonClickActualizarPrecio( wxCommandEvent& event )  override;
 	void OnButtonClickEliminarProducto( wxCommandEvent& event )  override;
 	

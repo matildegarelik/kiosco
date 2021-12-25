@@ -32,15 +32,15 @@ public:
 	int VerStock(int x);
 	float VerPrecio(int x);	
 	
-	void CambiarStock(int A);
+	void CambiarStock(int codigo, int nuevo);
 	void ActualizarPrecio(int A);
 	
 	Producto BuscarProducto(int codigo) const;
 	int BuscarIndice(int codigo);
 	
-	void GuardarCambios(string NombreArchivo);
-	void Lectura(string NombreArchivo);
-	void ActualizarStock(string NombreArchivo, int codigo, int cantidad);
+	void GuardarCambios(/*string NombreArchivo*/);
+	//void Lectura(string NombreArchivo);
+	void ActualizarStock(/*string NombreArchivo,*/ int codigo, int cantidad);
 	
 	tuple<vector<Producto>::iterator,vector<Producto>::iterator> iteradores();
 	int DevolverTamanio();
@@ -51,7 +51,7 @@ public:
 	Producto FiltrarPorNombre(string nombre);
 	vector<Producto>FiltrarPorTipo(string tipo);
 	void ActualizarPrecio(int codigo, float precio);
-	void GuardarCambios(string NombreArchivo, int indice);
+	void GuardarCambios(/*string NombreArchivo,*/ int indice);
 	
 	string obtenerIdentificador(Producto entidad);
 	bool existe(int codigo);
