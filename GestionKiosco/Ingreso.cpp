@@ -23,8 +23,8 @@ void Ingreso::GuardarCambios(Productos &prods){
 	repo_ingresos.guardarNuevo(df);
 	
 	//Actualizar vector productos y binario con stock
-	prods.ActualizarStock("productos.dat",m_producto.codigo,-m_cantidad);// negativo para q la sume
-	prods.GuardarCambios("productos.dat",prods.BuscarIndice(m_producto.codigo));
+	prods.ActualizarStock(m_producto.codigo,-m_cantidad);// negativo para q la sume
+	prods.GuardarCambios(prods.BuscarIndice(m_producto.codigo));
 	
 }
 

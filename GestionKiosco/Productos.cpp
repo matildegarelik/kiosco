@@ -8,24 +8,24 @@
 using namespace std;
 
 
-	bool OrdenarPorNombre(Producto &x1, Producto &x2){
-		return strcmp(x1.nombre,x2.nombre)<0;
+bool OrdenarPorNombre(Producto &x1, Producto &x2){
+	return strcmp(x1.nombre,x2.nombre)<0;
+}
+bool OrdenarPorCodigo(Producto &x1, Producto &x2){
+	return (x1.codigo<x2.codigo);
+}
+bool OrdenarPorTipo(Producto &x1, Producto &x2){
+	return strcmp(x1.tipo,x2.tipo)<0;
 	}
-	bool OrdenarPorCodigo(Producto &x1, Producto &x2){
-		return (x1.codigo<x2.codigo);
+bool OrdenarPorMarca(Producto &x1, Producto &x2){
+	return strcmp(x1.marca,x2.marca)<0;
 	}
-	bool OrdenarPorTipo(Producto &x1, Producto &x2){
-		return strcmp(x1.tipo,x2.tipo)<0;
-		}
-	bool OrdenarPorMarca(Producto &x1, Producto &x2){
-		return strcmp(x1.marca,x2.marca)<0;
-		}
-	bool OrdenarPorStock(Producto &x1, Producto &x2){
-		return (x1.stock<x2.stock);
-	}
-	bool OrdenarPorPrecio(Producto &x1, Producto &x2){
-		return (x1.precio<x2.precio);
-	}
+bool OrdenarPorStock(Producto &x1, Producto &x2){
+	return (x1.stock<x2.stock);
+}
+bool OrdenarPorPrecio(Producto &x1, Producto &x2){
+	return (x1.precio<x2.precio);
+}
 
 
 ostream &operator<<(ostream &o, Producto n){
@@ -46,11 +46,9 @@ Producto Productos::BuscarProducto(int codigo) const{
 	Producto aux;
 	for(int i=0; i<VectorProductos.size(); ++i){
 		if(VectorProductos[i].codigo==codigo){
-			//VectorProductos[i]=aux;
 			aux = VectorProductos[i];
 			return aux;
 		}
-//		cout<<VectorProductos.size()<<endl;
 	}
 	return aux;
 }
@@ -69,29 +67,16 @@ int Productos::BuscarIndice(int codigo){
 		return aux;
 	}
 }
-void Productos::GuardarCambios(string NombreArchivo){
-	fstream archi(NombreArchivo, ios::binary|ios::out|ios::trunc);
+
+void Productos::GuardarCambios(){
 	for(int i=0; i<VectorProductos.size(); ++i){
-		archi.write(reinterpret_cast<char*>(&VectorProductos[i]),sizeof(Producto));
+		repo_productos.actualizarParametro(VectorProductos[i],i);
 	}
-	archi.close();
 }
-void Productos::Lectura(string NombreArchivo){
-	fstream archi(NombreArchivo, ios::binary|ios::in|ios::app); //Lectura del binario y se lo pasa a vector
-	Producto aux;
-	VectorProductos.clear();//Revisar 
-	int n=archi.tellg();
-	int cant=n/sizeof(Producto);
-	VectorProductos.resize(cant);
-	archi.seekg(0);
-	archi.seekp(0);
-	for(int i=0; i<VectorProductos.size(); ++i){
-		archi.read(reinterpret_cast<char*>(&VectorProductos[i]),sizeof(Producto));
-	}
-	archi.close();
-}
-void Productos::ActualizarStock(string NombreArchivo, int codigo, int cantidad){
-	fstream archi(NombreArchivo, ios::binary|ios::in|ios::out);
+
+
+
+void Productos::ActualizarStock(int codigo, int cantidad){
 	int aux;
 	for(size_t i=0; i<VectorProductos.size(); ++i){
 		if(VectorProductos[i].codigo==codigo){
@@ -100,8 +85,8 @@ void Productos::ActualizarStock(string NombreArchivo, int codigo, int cantidad){
 			break;
 		}
 	}
-	archi.seekg(aux*sizeof(Producto));
-	archi.write(reinterpret_cast<char*>(&VectorProductos[aux]),sizeof(Producto)); //Escribe el vector actualizado
+	repo_productos.actualizarParametro(VectorProductos[aux],aux);
+	
 }
 
 void Productos::AgregarProducto(Producto aux){
@@ -145,8 +130,7 @@ Producto Productos::FiltrarPorNombre(string nombre){
 	}
 	return aux;
 }
-vector<Producto>Productos::FiltrarPorTipo(string tipo){ 
-	//Se modificó la función para que le llegue una string determinando el tipo a Filtrar		int D;	
+vector<Producto>Productos::FiltrarPorTipo(string tipo){
 	vector<Producto> aux;
 	for(int i=0; i<VectorProductos.size(); ++i){
 		string A=VectorProductos[i].tipo;
@@ -157,7 +141,7 @@ vector<Producto>Productos::FiltrarPorTipo(string tipo){
 	return aux;
 }
 
-void Productos::ActualizarPrecio( int codigo, float precio){ //ué el parametro precio porque no estaba
+void Productos::ActualizarPrecio( int codigo, float precio){ 
 	int pos;
 	Producto p;
 	for(int i=0; i<VectorProductos.size();++i){
@@ -166,12 +150,11 @@ void Productos::ActualizarPrecio( int codigo, float precio){ //ué el parametro p
 			p = VectorProductos[i];
 			pos = i;
 		}
-	}repo_productos.actualizarParametro(p,pos);
+	}
+	repo_productos.actualizarParametro(p,pos);
 }
-void Productos::GuardarCambios(string NombreArchivo, int indice){
-	fstream archi(NombreArchivo, ios::binary|ios::in);
-	archi.seekg(indice*sizeof(Producto));
-	archi.write(reinterpret_cast<char*>(&VectorProductos[indice]),sizeof(Producto));
+void Productos::GuardarCambios(int indice){
+	repo_productos.actualizarParametro(VectorProductos[indice],indice);
 }
 
 string Productos :: obtenerIdentificador(Producto auxiliar){
@@ -183,6 +166,7 @@ bool Productos :: existe(int codigo){
 	for(int i=0;i<VectorProductos.size();i++) { 
 		if(VectorProductos[i].codigo == codigo){
 			retorno = true;
+			break;
 		}
 	}
 	return retorno;
@@ -190,4 +174,52 @@ bool Productos :: existe(int codigo){
 int Productos::DevolverTamanio(){
 	return VectorProductos.size();
 }
+void Productos::CambiarStock(int codigo, int nuevo){
+	int i = BuscarIndice(codigo);
+	VectorProductos[i].stock = nuevo;
+	repo_productos.actualizarParametro(VectorProductos[i],i);
+}
+
+/// VIEJO
+/*void Productos::GuardarCambios(string NombreArchivo){
+	fstream archi(NombreArchivo, ios::binary|ios::out|ios::trunc);
+	for(int i=0; i<VectorProductos.size(); ++i){
+		archi.write(reinterpret_cast<char*>(&VectorProductos[i]),sizeof(Producto));
+	}
+	archi.close();
+}
+void Productos::Lectura(string NombreArchivo){
+	fstream archi(NombreArchivo, ios::binary|ios::in|ios::app); //Lectura del binario y se lo pasa a vector
+	Producto aux;
+	VectorProductos.clear();//Revisar 
+	int n=archi.tellg();
+	int cant=n/sizeof(Producto);
+	VectorProductos.resize(cant);
+	archi.seekg(0);
+	archi.seekp(0);
+	for(int i=0; i<VectorProductos.size(); ++i){
+		archi.read(reinterpret_cast<char*>(&VectorProductos[i]),sizeof(Producto));
+	}
+	archi.close();
+}
+
+void Productos::ActualizarStock(string NombreArchivo, int codigo, int cantidad){
+	fstream archi(NombreArchivo, ios::binary|ios::in|ios::out);
+	int aux;
+	for(size_t i=0; i<VectorProductos.size(); ++i){
+		if(VectorProductos[i].codigo==codigo){
+			VectorProductos[i].stock-=cantidad;
+			aux=i;
+			break;
+		}
+	}
+	archi.seekg(aux*sizeof(Producto));
+	archi.write(reinterpret_cast<char*>(&VectorProductos[aux]),sizeof(Producto)); //Escribe el vector actualizado
+}
 	
+void Productos::GuardarCambios(string NombreArchivo, int indice){
+	fstream archi(NombreArchivo, ios::binary|ios::in);
+	archi.seekg(indice*sizeof(Producto));
+	archi.write(reinterpret_cast<char*>(&VectorProductos[indice]),sizeof(Producto));
+}
+*/

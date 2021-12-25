@@ -242,6 +242,31 @@ ActualizarPrecio_Eliminar::ActualizarPrecio_Eliminar( wxWindow* parent, wxWindow
 	wxBoxSizer* bSizer34;
 	bSizer34 = new wxBoxSizer( wxVERTICAL );
 
+	wxBoxSizer* bSizer35;
+	bSizer35 = new wxBoxSizer( wxHORIZONTAL );
+
+	m_staticText32 = new wxStaticText( this, wxID_ANY, wxT("Stock actual"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText32->Wrap( -1 );
+	bSizer35->Add( m_staticText32, 0, wxALL, 5 );
+
+
+	bSizer35->Add( 0, 0, 1, wxEXPAND, 5 );
+
+	m_stock_nuevo = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer35->Add( m_stock_nuevo, 0, wxALL, 5 );
+
+
+	bSizer35->Add( 0, 0, 1, wxEXPAND, 5 );
+
+	m_btn_stock = new wxButton( this, wxID_ANY, wxT("Actualizar stock"), wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer35->Add( m_btn_stock, 0, wxALL, 5 );
+
+
+	bSizer34->Add( bSizer35, 1, wxEXPAND, 5 );
+
+
+	bSizer34->Add( 0, 0, 1, wxEXPAND, 5 );
+
 	wxBoxSizer* bSizer341;
 	bSizer341 = new wxBoxSizer( wxHORIZONTAL );
 
@@ -249,19 +274,25 @@ ActualizarPrecio_Eliminar::ActualizarPrecio_Eliminar( wxWindow* parent, wxWindow
 	m_staticText29->Wrap( -1 );
 	bSizer341->Add( m_staticText29, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
 
+
+	bSizer341->Add( 0, 0, 1, wxEXPAND, 5 );
+
 	m_precio_nuevo = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
 	bSizer341->Add( m_precio_nuevo, 0, wxALL, 5 );
 
 
-	bSizer34->Add( bSizer341, 1, 0, 5 );
+	bSizer341->Add( 0, 0, 1, wxEXPAND, 5 );
 
 	m_actualizarPrecio = new wxButton( this, wxID_ANY, wxT("Actualizar Precio"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_actualizarPrecio->SetBackgroundColour( wxColour( 81, 234, 88 ) );
 
-	bSizer34->Add( m_actualizarPrecio, 0, wxALIGN_CENTER_HORIZONTAL|wxALL, 5 );
+	bSizer341->Add( m_actualizarPrecio, 0, wxALL, 5 );
 
 
-	bSizer34->Add( 0, 1000, 1, wxEXPAND, 5 );
+	bSizer34->Add( bSizer341, 0, wxEXPAND, 5 );
+
+
+	bSizer34->Add( 0, 0, 1, wxEXPAND, 5 );
 
 	m_btn_eliminarproducto = new wxButton( this, wxID_ANY, wxT("Eliminar Producto"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_btn_eliminarproducto->SetLabelMarkup( wxT("Eliminar Producto") );
@@ -277,6 +308,7 @@ ActualizarPrecio_Eliminar::ActualizarPrecio_Eliminar( wxWindow* parent, wxWindow
 	this->Centre( wxBOTH );
 
 	// Connect Events
+	m_btn_stock->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( ActualizarPrecio_Eliminar::ActualizarStock ), NULL, this );
 	m_actualizarPrecio->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( ActualizarPrecio_Eliminar::OnButtonClickActualizarPrecio ), NULL, this );
 	m_btn_eliminarproducto->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( ActualizarPrecio_Eliminar::OnButtonClickEliminarProducto ), NULL, this );
 }
@@ -284,6 +316,7 @@ ActualizarPrecio_Eliminar::ActualizarPrecio_Eliminar( wxWindow* parent, wxWindow
 ActualizarPrecio_Eliminar::~ActualizarPrecio_Eliminar()
 {
 	// Disconnect Events
+	m_btn_stock->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( ActualizarPrecio_Eliminar::ActualizarStock ), NULL, this );
 	m_actualizarPrecio->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( ActualizarPrecio_Eliminar::OnButtonClickActualizarPrecio ), NULL, this );
 	m_btn_eliminarproducto->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( ActualizarPrecio_Eliminar::OnButtonClickEliminarProducto ), NULL, this );
 

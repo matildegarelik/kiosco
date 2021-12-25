@@ -59,8 +59,8 @@ float Venta::CalcularTotal(){
 Venta Venta::Pagar(Productos &prods){
 	// actualiza stock en vector de productos
 	for(Detalle &d: m_detalles){
-		prods.ActualizarStock("productos.dat",d.p.codigo,d.cantidad);
-		prods.GuardarCambios("productos.dat",prods.BuscarIndice(d.p.codigo));
+		prods.ActualizarStock(d.p.codigo,d.cantidad);
+		prods.GuardarCambios(prods.BuscarIndice(d.p.codigo));
 	}
 	
 	// Guardar en archivo_ventas si se pago, sino en fiados
