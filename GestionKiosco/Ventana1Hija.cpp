@@ -9,6 +9,7 @@
 #include "Productos.h"
 #include "wxfb_project.h"
 #include "ActualizarPrecioYEliminar.h"
+#include <wx/msgdlg.h>
 Ventana1Hija::Ventana1Hija(wxWindow *parent, Productos *prods) : Ventana1(parent) {
 	this->prods=prods;
 	this->Actualizar();
@@ -108,45 +109,62 @@ void Ventana1Hija::ComboBoxOrdenarPor( wxCommandEvent& event )  {
 	
 }
 
+void Ventana1Hija::Ver(Producto aux){
+	m_grilla->AppendRows(1);
+	m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,0,to_string(aux.codigo));
+	m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,1,c_to_wx(aux.nombre));
+	m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,2,c_to_wx(aux.marca));
+	m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,3,c_to_wx(aux.tipo));
+	m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,4,to_string(aux.stock));
+	m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,5,std_to_wx(to_string(aux.precio)));
+}
+
 void Ventana1Hija::OnEnterBuscarPor( wxCommandEvent& event )  {
 	int pos=m_choiceBuscarPor->GetSelection();
-	cout<<pos;
 	Producto aux;
 	vector<Producto>vaux;
 	if(!(m_buscar->IsEmpty())){
 	if(pos==0){
 		m_grilla->DeleteRows(0,m_grilla->GetColSize(0));
 		aux=prods->FiltrarPorCodigo(stoi(wx_to_std(m_buscar->GetValue())));
-		m_grilla->AppendRows(1);
-		m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,0,to_string(aux.codigo));
-		m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,1,c_to_wx(aux.nombre));
-		m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,2,c_to_wx(aux.marca));
-		m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,3,c_to_wx(aux.tipo));
-		m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,4,to_string(aux.stock));
-		m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,5,std_to_wx(to_string(aux.precio)));
+		bool A=prods->existe(aux.codigo);
+		if(A==1){
+		Ver(aux);
+		}
+	else{
+		wxMessageBox("Producto Inexistente","Error");
+		Actualizar();
+	}
 	}
 	else if(pos==1){
 		if(m_grilla->GetNumberRows()>0)	m_grilla->DeleteRows(0,m_grilla->GetColSize(0));
+		bool A=0;
 		aux=prods->FiltrarPorNombre(wx_to_std(m_buscar->GetValue()));
-			m_grilla->AppendRows(1);
-			m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,0,to_string(aux.codigo));
-			m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,1,c_to_wx(aux.nombre));
-			m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,2,c_to_wx(aux.marca));
-			m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,3,c_to_wx(aux.tipo));
-			m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,4,to_string(aux.stock));
-			m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,5,std_to_wx(to_string(aux.precio)));
-	}	
+		string S=aux.nombre;
+		A=prods->VerificarNombre(S);
+		if(A==1){	
+			Ver(aux);
+		} 
+		else{
+			wxMessageBox("Producto Inexistente","Error");
+			Actualizar();
+		}
+	}
 	else if(pos==2){
 		if(m_grilla->GetNumberRows()>0)	m_grilla->DeleteRows(0,m_grilla->GetColSize(0));
+		bool A=0;
 		vaux=prods->FiltrarPorTipo(wx_to_std(m_buscar->GetValue()));
+		
+		//bool A=prods->VerificarTipo(S);
+		if(vaux.size()!=0){
 		for(int i=0; i<vaux.size(); ++i){
-			m_grilla->AppendRows(1);
-			m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,0,to_string(vaux[i].codigo));
-			m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,1,c_to_wx(vaux[i].nombre));
-			m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,2,c_to_wx(vaux[i].marca));
-			m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,3,c_to_wx(vaux[i].tipo));
-			m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,4,to_string(vaux[i].stock));
-			m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,5,std_to_wx(to_string(vaux[i].precio)));
+			aux=vaux[i];
+			Ver(aux);
+		}
+		}
+		else{
+			wxMessageBox("Tipo Intexistente","Error");
+			Actualizar();
 		}
 	}
 	}

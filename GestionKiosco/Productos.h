@@ -46,6 +46,7 @@ public:
 	int DevolverTamanio();
 	void AgregarProducto(Producto aux);
 	void EliminarProducto( int codigo);
+	bool VerificarNombre(string nombre);
 	vector<Producto> Filtrar(string tipo); //Busca por tipo o Producto
 	Producto FiltrarPorCodigo(int codigo);
 	Producto FiltrarPorNombre(string nombre);

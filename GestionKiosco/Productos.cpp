@@ -5,6 +5,7 @@
 #include <string>
 #include <cstring>
 #include <tuple>
+#include <cctype>
 using namespace std;
 
 
@@ -90,6 +91,12 @@ void Productos::ActualizarStock(int codigo, int cantidad){
 }
 
 void Productos::AgregarProducto(Producto aux){
+	aux.nombre[0]=toupper(aux.nombre[0]);
+	aux.tipo[0]=toupper(aux.tipo[0]);
+	aux.marca[0]=toupper(aux.marca[0]);
+	for(int i=1; i<strlen(aux.nombre); ++i) aux.nombre[i]=tolower(aux.nombre[i]);
+	for(int i=1; i<strlen(aux.tipo); ++i) aux.tipo[i]=tolower(aux.tipo[i]);
+	for(int i=1; i<strlen(aux.marca); ++i) aux.marca[i]=tolower(aux.marca[i]);
 	VectorProductos.push_back(aux);
 	repo_productos.guardarNuevo(aux);
 }
@@ -118,6 +125,17 @@ Producto Productos::FiltrarPorCodigo(int codigo){
 	}
 	return aux;
 }
+bool Productos::VerificarNombre(string nombre){	
+	bool A=0;
+	for(int i=0; i<VectorProductos.size(); ++i){
+		if(nombre==VectorProductos[i].nombre){
+			return A=1;
+		}
+	}
+	return A;
+}
+
+
 Producto Productos::FiltrarPorNombre(string nombre){ 
 	//Se modificó la función para que le llegue una string determinando el tipo a Filtrar		int D;	
 	Producto aux;
@@ -160,7 +178,6 @@ void Productos::GuardarCambios(int indice){
 string Productos :: obtenerIdentificador(Producto auxiliar){
 	return to_string(auxiliar.codigo);
 }
-
 bool Productos :: existe(int codigo){
 	bool retorno = false;
 	for(int i=0;i<VectorProductos.size();i++) { 

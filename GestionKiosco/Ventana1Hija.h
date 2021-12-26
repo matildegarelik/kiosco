@@ -19,6 +19,7 @@ protected:
 	void to_consultas( wxCommandEvent& event )  override;
 	void to_ventas( wxCommandEvent& event )  override;
 	void Actualizar();
+	void Ver(Producto aux);
 	
 public:
 	Ventana1Hija(wxWindow *parent=NULL, Productos *prods=NULL);

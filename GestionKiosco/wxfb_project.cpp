@@ -79,7 +79,7 @@ Ventana1::Ventana1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 
 	// Grid
 	m_grilla->CreateGrid( 0, 6 );
-	m_grilla->EnableEditing( true );
+	m_grilla->EnableEditing( false );
 	m_grilla->EnableGridLines( true );
 	m_grilla->SetGridLineColour( wxColour( 0, 0, 0 ) );
 	m_grilla->EnableDragGridSize( false );
