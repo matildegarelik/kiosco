@@ -6,7 +6,18 @@
 #include "VentanaValidarHija.h"
 #include <string>
 #include <wx/wx.h>
+#include "Productos.h"
+#include <wx/string.h>
+#include <wx/arrstr.h>
 using namespace std;
+
+
+bool EsNumero(const string& str){
+	for (char const &c : str) {
+		if (std::isdigit(c) == 0) return false;
+	}
+	return true;
+}
 
 Ventana3Hija::Ventana3Hija(wxWindow *parent, Productos *prods) : Ventana3(parent) {
 	_prods=prods;
@@ -14,10 +25,12 @@ Ventana3Hija::Ventana3Hija(wxWindow *parent, Productos *prods) : Ventana3(parent
 	vector<Producto>::iterator A, B;
 	tie(A, B)=_prods->iteradores();
 	sort(A,B,OrdenarPorNombre);
+	wxArrayString lista_string;
 	for(int i=0;i<_prods->DevolverTamanio();i++) { 
-		m_lista_productos->Append(std_to_wx(_prods->VerNombre(i)));
+		lista_string.Add(std_to_wx(_prods->VerNombre(i)));
+//		m_lista_productos->Append(std_to_wx(_prods->VerNombre(i)));
 	}
-
+	m_lista_productos->Append(lista_string);
 }
 
 void Ventana3Hija::to_venta( wxCommandEvent& event )  {
@@ -73,11 +86,35 @@ Ventana3Hija::~Ventana3Hija() {
 
 
 void Ventana3Hija::AgregarProductoLista( wxCommandEvent& event )  {
-	int codigo = stoi(wx_to_std(m_codigo->GetValue()));	
+	int codigo;
+	int cantidad;
+	int seleccion = m_lista_productos->GetSelection();
+	string cod_string = wx_to_std(m_codigo->GetValue());
+	string cant_string = wx_to_std(m_cantidad->GetValue());
+	
 	Producto agregado;
 	
-	if((m_lista_productos->GetSelection() == wxNOT_FOUND ) and ( _prods->existe(codigo))){
-		
+	if((EsNumero(cod_string)) and !(m_codigo->IsEmpty())){
+		codigo = stoi(cod_string);	
+	}else{
+		if(!m_codigo->IsEmpty()){
+			codigo = -1;
+			wxMessageBox("Intento ingresar un codigo no numerico","Error");
+		};
+		codigo = -1;
+	}
+
+	if((EsNumero(cant_string)) and !(m_cantidad->IsEmpty())){
+		cantidad = stoi(cant_string);	
+	}else{
+		if(!m_cantidad->IsEmpty()){
+			codigo = -1;
+			wxMessageBox("Intento ingresar una cantidad no numerica","Error");
+		};
+		cantidad = -1;
+	}
+	if((m_lista_productos->GetSelection() == -1 ) and ( _prods->existe(codigo)) and (cantidad != -1)){
+	
 		agregado = _prods->BuscarProducto(codigo);
 		_pedido.agregarProducto(stoi(wx_to_std(m_codigo->GetValue())),stoi(wx_to_std(m_cantidad->GetValue())), *_prods);
 		
@@ -89,12 +126,13 @@ void Ventana3Hija::AgregarProductoLista( wxCommandEvent& event )  {
 		m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,2,c_to_wx(agregado.marca));
 		m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,3,m_cantidad->GetValue());
 		m_cantidad->SetValue("");
-		
+			
 	}else{
-		if( (m_lista_productos->GetSelection() != wxNOT_FOUND) and (m_codigo->IsEmpty()) ) {
+		if( (m_lista_productos->GetSelection() >= 0) and (codigo == -1) and (cantidad != -1) ) {
 			int pos = m_lista_productos->GetSelection();
 			
 			agregado = _prods->BuscarProducto(_prods->VerCodigo(pos));
+			//			cout<<agregado;
 			_pedido.agregarProducto(_prods->VerCodigo(pos),stoi(wx_to_std(m_cantidad->GetValue())), *_prods);
 			
 			m_grilla->AppendRows(1);
@@ -104,15 +142,16 @@ void Ventana3Hija::AgregarProductoLista( wxCommandEvent& event )  {
 			m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,2,c_to_wx(agregado.marca));
 			m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,3,m_cantidad->GetValue());
 			m_cantidad->SetValue("");
+			m_lista_productos->SetSelection(-1);
 		}else{
-			if((m_codigo->IsEmpty()) and (m_lista_productos->GetSelection() == wxNOT_FOUND)){
+			if((codigo == -1) and (m_lista_productos->GetSelection() < 0)){
 				wxMessageBox("Debe seleccionar un producto o ingresar el codigo del producto que busque","Error");
 			}else{
 				wxMessageBox("El codigo ingresado es erroneo o ah intentado ingresar un producto diferente al del codigo","Error");
 			}
 		}
 	}
-	
+
 	event.Skip();
 }
 
