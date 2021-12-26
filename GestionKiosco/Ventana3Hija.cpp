@@ -12,7 +12,7 @@
 using namespace std;
 
 
-bool EsNumero(const string& str){
+bool Ventana3Hija::EsNumero(const string& str){
 	for (char const &c : str) {
 		if (std::isdigit(c) == 0) return false;
 	}

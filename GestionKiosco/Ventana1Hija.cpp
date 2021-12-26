@@ -6,6 +6,7 @@
 #include "Ventana4HIja.h"
 #include "Ventana5Hija.h"
 #include "Ventana3Hija.h"
+#include "Ventana3Hija.h"
 #include "Productos.h"
 #include "wxfb_project.h"
 #include "ActualizarPrecioYEliminar.h"
@@ -37,6 +38,12 @@ void Ventana1Hija::Actualizar(){
 		m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,5,std_to_wx(to_string(prods->VerPrecio(i))));
 		//m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,5,std_to_wx("-"));
 	}
+}
+bool EsNumero(const string& str){
+	for (char const &c : str) {
+		if (std::isdigit(c) == 0) return false;
+	}
+	return true;
 }
 
 Ventana1Hija::~Ventana1Hija() {
@@ -125,14 +132,22 @@ void Ventana1Hija::OnEnterBuscarPor( wxCommandEvent& event )  {
 	vector<Producto>vaux;
 	if(!(m_buscar->IsEmpty())){
 	if(pos==0){
-		m_grilla->DeleteRows(0,m_grilla->GetColSize(0));
-		aux=prods->FiltrarPorCodigo(stoi(wx_to_std(m_buscar->GetValue())));
-		bool A=prods->existe(aux.codigo);
-		if(A==1){
-		Ver(aux);
+		string S=(wx_to_std(m_buscar->GetValue()));
+		//aux=prods->
+		if(EsNumero(S)){
+			m_grilla->DeleteRows(0,m_grilla->GetColSize(0));
+			aux=prods->FiltrarPorCodigo(stoi(wx_to_std(m_buscar->GetValue())));
+			bool A=prods->existe(aux.codigo);
+			if(A==1){
+				Ver(aux);
+			}
+			else{
+				wxMessageBox("Producto Inexistente","Error");
+				Actualizar();
+			}
 		}
 	else{
-		wxMessageBox("Producto Inexistente","Error");
+		wxMessageBox("Codigo Erroneo, Ingrese un Número","Error");
 		Actualizar();
 	}
 	}

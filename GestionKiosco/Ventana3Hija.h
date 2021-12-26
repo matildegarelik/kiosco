@@ -15,6 +15,7 @@ protected:
 	void GuardarArchivo( wxCommandEvent& event )  override;
 	void to_venta( wxCommandEvent& event )  override;
 	void to_stock( wxCommandEvent& event )  override;
+	bool EsNumero(const string& str);
 	
 public:
 	Ventana3Hija(wxWindow *parent=NULL, Productos *prods=NULL);
