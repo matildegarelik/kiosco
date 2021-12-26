@@ -3,6 +3,7 @@
 #include <string>
 #include "Productos.h"
 #include "VentanaValidarHija.h"
+#include <cctype>
 using namespace std;
 
 
@@ -36,3 +37,5 @@ bool Validar(wxWindow *parent, wxCommandEvent& event ,Productos *prods, T2 entid
 	}
 	return paso;
 }
+
+
