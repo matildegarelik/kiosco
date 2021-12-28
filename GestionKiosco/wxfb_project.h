@@ -58,6 +58,8 @@ class Ventana1 : public wxFrame
 		virtual void HacerPedidoBoton( wxCommandEvent& event ) { event.Skip(); }
 		virtual void FiadosBoton( wxCommandEvent& event ) { event.Skip(); }
 		virtual void ComboBoxOrdenarPor( wxCommandEvent& event ) { event.Skip(); }
+		virtual void OnKillFocus( wxFocusEvent& event ) { event.Skip(); }
+		virtual void OnFocus( wxFocusEvent& event ) { event.Skip(); }
 		virtual void OnEnterBuscarPor( wxCommandEvent& event ) { event.Skip(); }
 		virtual void DobleClickCellLeft( wxGridEvent& event ) { event.Skip(); }
 		virtual void AgregarProductoBoton( wxCommandEvent& event ) { event.Skip(); }
@@ -65,7 +67,7 @@ class Ventana1 : public wxFrame
 
 	public:
 
-		Ventana1( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 800,500 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
+		Ventana1( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 813,500 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
 
 		~Ventana1();
 
@@ -168,7 +170,7 @@ class Ventana2 : public wxFrame
 
 	public:
 
-		Ventana2( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 800,500 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
+		Ventana2( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 818,500 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
 
 		~Ventana2();
 
@@ -259,7 +261,7 @@ class Ventana3 : public wxFrame
 
 	public:
 
-		Ventana3( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 800,500 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
+		Ventana3( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 805,500 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
 
 		~Ventana3();
 
@@ -292,7 +294,7 @@ class Ventana4 : public wxFrame
 
 	public:
 
-		Ventana4( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 800,500 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
+		Ventana4( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 803,500 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
 
 		~Ventana4();
 
@@ -319,7 +321,7 @@ class Ventana5 : public wxFrame
 
 	public:
 
-		Ventana5( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 800,500 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
+		Ventana5( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 802,500 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
 
 		~Ventana5();
 
@@ -376,7 +378,7 @@ class Ventana6 : public wxFrame
 
 	public:
 
-		Ventana6( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 800,500 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
+		Ventana6( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 850,500 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
 
 		~Ventana6();
 

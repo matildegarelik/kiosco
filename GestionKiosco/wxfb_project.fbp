@@ -47,7 +47,7 @@
             <property name="minimum_size"></property>
             <property name="name">Ventana1</property>
             <property name="pos"></property>
-            <property name="size">800,500</property>
+            <property name="size">813,500</property>
             <property name="style">wxDEFAULT_FRAME_STYLE</property>
             <property name="subclass">; ; forward_declare</property>
             <property name="title"></property>
@@ -181,13 +181,13 @@
                                 <property name="dock_fixed">0</property>
                                 <property name="docking">Left</property>
                                 <property name="enabled">1</property>
-                                <property name="fg"></property>
+                                <property name="fg">wxSYS_COLOUR_BACKGROUND</property>
                                 <property name="floatable">1</property>
                                 <property name="font">Arial,90,700,18,74,0</property>
                                 <property name="gripper">0</property>
                                 <property name="hidden">0</property>
                                 <property name="id">wxID_ANY</property>
-                                <property name="label">Productos</property>
+                                <property name="label">PRODUCTOS</property>
                                 <property name="markup">0</property>
                                 <property name="max_size"></property>
                                 <property name="maximize_button">0</property>
@@ -241,7 +241,7 @@
                                 <property name="aui_row"></property>
                                 <property name="auth_needed">0</property>
                                 <property name="best_size"></property>
-                                <property name="bg"></property>
+                                <property name="bg">wxSYS_COLOUR_MENU</property>
                                 <property name="bitmap"></property>
                                 <property name="caption"></property>
                                 <property name="caption_visible">1</property>
@@ -689,7 +689,7 @@
                                 <property name="dock_fixed">0</property>
                                 <property name="docking">Left</property>
                                 <property name="enabled">1</property>
-                                <property name="fg"></property>
+                                <property name="fg">wxSYS_COLOUR_INACTIVECAPTION</property>
                                 <property name="floatable">1</property>
                                 <property name="font"></property>
                                 <property name="gripper">0</property>
@@ -725,13 +725,15 @@
                                 <property name="window_extra_style"></property>
                                 <property name="window_name"></property>
                                 <property name="window_style"></property>
+                                <event name="OnKillFocus">OnKillFocus</event>
+                                <event name="OnSetFocus">OnFocus</event>
                                 <event name="OnTextEnter">OnEnterBuscarPor</event>
                             </object>
                         </object>
                     </object>
                 </object>
                 <object class="sizeritem" expanded="0">
-                    <property name="border">5</property>
+                    <property name="border">0</property>
                     <property name="flag">wxALL|wxEXPAND</property>
                     <property name="proportion">1</property>
                     <object class="wxGrid" expanded="0">
@@ -746,7 +748,7 @@
                         <property name="autosize_cols">0</property>
                         <property name="autosize_rows">1</property>
                         <property name="best_size"></property>
-                        <property name="bg"></property>
+                        <property name="bg">wxSYS_COLOUR_WINDOW</property>
                         <property name="caption"></property>
                         <property name="caption_visible">1</property>
                         <property name="cell_bg"></property>
@@ -761,7 +763,7 @@
                         <property name="col_label_values">&quot;CÓDIGO&quot; &quot;PRODUCTO&quot; &quot;MARCA&quot; &quot;TIPO&quot; &quot;STOCK&quot; &quot;PRECIO&quot; &quot;&quot; &quot;&quot;</property>
                         <property name="col_label_vert_alignment">wxALIGN_CENTER</property>
                         <property name="cols">6</property>
-                        <property name="column_sizes">107,231,142,139,80,82</property>
+                        <property name="column_sizes">107,231,142,142,82,82</property>
                         <property name="context_help"></property>
                         <property name="context_menu">1</property>
                         <property name="default_pane">0</property>
@@ -774,7 +776,7 @@
                         <property name="drag_row_size">1</property>
                         <property name="editing">0</property>
                         <property name="enabled">1</property>
-                        <property name="fg"></property>
+                        <property name="fg">wxSYS_COLOUR_HIGHLIGHT</property>
                         <property name="floatable">1</property>
                         <property name="font"></property>
                         <property name="grid_line_color">0,0,0</property>
@@ -782,9 +784,9 @@
                         <property name="gripper">0</property>
                         <property name="hidden">0</property>
                         <property name="id">wxID_ANY</property>
-                        <property name="label_bg"></property>
+                        <property name="label_bg">wxSYS_COLOUR_HIGHLIGHT</property>
                         <property name="label_font"></property>
-                        <property name="label_text"></property>
+                        <property name="label_text">wxSYS_COLOUR_HIGHLIGHTTEXT</property>
                         <property name="margin_height">0</property>
                         <property name="margin_width">0</property>
                         <property name="max_size"></property>
@@ -801,7 +803,7 @@
                         <property name="permission">protected</property>
                         <property name="pin_button">1</property>
                         <property name="pos"></property>
-                        <property name="resize">Resizable</property>
+                        <property name="resize">Fixed</property>
                         <property name="row_label_horiz_alignment">wxALIGN_CENTER</property>
                         <property name="row_label_size">0</property>
                         <property name="row_label_values"></property>
@@ -1976,7 +1978,7 @@
                                 <property name="aui_row"></property>
                                 <property name="auth_needed">0</property>
                                 <property name="best_size"></property>
-                                <property name="bg"></property>
+                                <property name="bg">128,255,128</property>
                                 <property name="bitmap"></property>
                                 <property name="caption"></property>
                                 <property name="caption_visible">1</property>
@@ -2216,7 +2218,7 @@
                                 <property name="aui_row"></property>
                                 <property name="auth_needed">0</property>
                                 <property name="best_size"></property>
-                                <property name="bg">81,234,88</property>
+                                <property name="bg">128,255,128</property>
                                 <property name="bitmap"></property>
                                 <property name="caption"></property>
                                 <property name="caption_visible">1</property>
@@ -2366,7 +2368,7 @@
         <object class="Frame" expanded="0">
             <property name="aui_managed">0</property>
             <property name="aui_manager_style">wxAUI_MGR_DEFAULT</property>
-            <property name="bg"></property>
+            <property name="bg">140,203,255</property>
             <property name="center">wxBOTH</property>
             <property name="context_help"></property>
             <property name="context_menu">1</property>
@@ -2381,7 +2383,7 @@
             <property name="minimum_size"></property>
             <property name="name">Ventana2</property>
             <property name="pos"></property>
-            <property name="size">800,500</property>
+            <property name="size">818,500</property>
             <property name="style">wxDEFAULT_FRAME_STYLE</property>
             <property name="subclass">; ; forward_declare</property>
             <property name="title"></property>
@@ -2515,13 +2517,13 @@
                                 <property name="dock_fixed">0</property>
                                 <property name="docking">Left</property>
                                 <property name="enabled">1</property>
-                                <property name="fg"></property>
+                                <property name="fg">wxSYS_COLOUR_BTNTEXT</property>
                                 <property name="floatable">1</property>
                                 <property name="font">Arial,90,700,18,74,0</property>
                                 <property name="gripper">0</property>
                                 <property name="hidden">0</property>
                                 <property name="id">wxID_ANY</property>
-                                <property name="label">Ventas</property>
+                                <property name="label">VENTAS</property>
                                 <property name="markup">0</property>
                                 <property name="max_size"></property>
                                 <property name="maximize_button">0</property>
@@ -2999,10 +3001,10 @@
                         <property name="close_button">1</property>
                         <property name="col_label_horiz_alignment">wxALIGN_CENTER</property>
                         <property name="col_label_size"></property>
-                        <property name="col_label_values">&quot;Codigo&quot; &quot;Nombre&quot; &quot;Marca&quot; &quot;Cantidad&quot; &quot;Precio x Unidad&quot; &quot;ELIMINAR&quot;</property>
+                        <property name="col_label_values">&quot;CODIGO&quot; &quot;NOMBRE&quot; &quot;MARCA&quot; &quot;CANTIDAD&quot; &quot;PRECIO X UNIDAD&quot; &quot;ELIMINAR&quot;</property>
                         <property name="col_label_vert_alignment">wxALIGN_CENTER</property>
                         <property name="cols">6</property>
-                        <property name="column_sizes">146,201,173,80,93,88</property>
+                        <property name="column_sizes">146,201,173,80,109,82</property>
                         <property name="context_help"></property>
                         <property name="context_menu">1</property>
                         <property name="default_pane">0</property>
@@ -3013,7 +3015,7 @@
                         <property name="drag_col_size">1</property>
                         <property name="drag_grid_size">0</property>
                         <property name="drag_row_size">1</property>
-                        <property name="editing">1</property>
+                        <property name="editing">0</property>
                         <property name="enabled">1</property>
                         <property name="fg"></property>
                         <property name="floatable">1</property>
@@ -3023,9 +3025,9 @@
                         <property name="gripper">0</property>
                         <property name="hidden">0</property>
                         <property name="id">wxID_ANY</property>
-                        <property name="label_bg"></property>
+                        <property name="label_bg">wxSYS_COLOUR_HIGHLIGHT</property>
                         <property name="label_font"></property>
-                        <property name="label_text"></property>
+                        <property name="label_text">wxSYS_COLOUR_BTNHIGHLIGHT</property>
                         <property name="margin_height">0</property>
                         <property name="margin_width">0</property>
                         <property name="max_size"></property>
@@ -4120,7 +4122,7 @@
         <object class="Frame" expanded="0">
             <property name="aui_managed">0</property>
             <property name="aui_manager_style">wxAUI_MGR_DEFAULT</property>
-            <property name="bg">wxSYS_COLOUR_INACTIVECAPTION</property>
+            <property name="bg">140,203,255</property>
             <property name="center">wxBOTH</property>
             <property name="context_help"></property>
             <property name="context_menu">1</property>
@@ -4135,7 +4137,7 @@
             <property name="minimum_size"></property>
             <property name="name">Ventana3</property>
             <property name="pos"></property>
-            <property name="size">800,500</property>
+            <property name="size">805,500</property>
             <property name="style">wxDEFAULT_FRAME_STYLE</property>
             <property name="subclass">; ; forward_declare</property>
             <property name="title"></property>
@@ -4269,13 +4271,13 @@
                                 <property name="dock_fixed">0</property>
                                 <property name="docking">Left</property>
                                 <property name="enabled">1</property>
-                                <property name="fg"></property>
+                                <property name="fg">wxSYS_COLOUR_BACKGROUND</property>
                                 <property name="floatable">1</property>
-                                <property name="font">Baskerville Old Face,90,400,24,72,0</property>
+                                <property name="font">Arial,90,700,18,74,0</property>
                                 <property name="gripper">0</property>
                                 <property name="hidden">0</property>
                                 <property name="id">wxID_ANY</property>
-                                <property name="label">Hacer Pedido</property>
+                                <property name="label">HACER PEDIDO</property>
                                 <property name="markup">0</property>
                                 <property name="max_size"></property>
                                 <property name="maximize_button">0</property>
@@ -4416,9 +4418,9 @@
                         <property name="dock_fixed">0</property>
                         <property name="docking">Left</property>
                         <property name="enabled">1</property>
-                        <property name="fg"></property>
+                        <property name="fg">wxSYS_COLOUR_BACKGROUND</property>
                         <property name="floatable">1</property>
-                        <property name="font">Times New Roman,90,700,12,72,0</property>
+                        <property name="font">@Microsoft JhengHei,90,400,11,74,0</property>
                         <property name="gripper">0</property>
                         <property name="hidden">0</property>
                         <property name="id">wxID_ANY</property>
@@ -4486,7 +4488,7 @@
                                 <property name="dock_fixed">0</property>
                                 <property name="docking">Left</property>
                                 <property name="enabled">1</property>
-                                <property name="fg"></property>
+                                <property name="fg">wxSYS_COLOUR_BACKGROUND</property>
                                 <property name="floatable">1</property>
                                 <property name="font"></property>
                                 <property name="gripper">0</property>
@@ -4539,7 +4541,7 @@
                                 <property name="caption"></property>
                                 <property name="caption_visible">1</property>
                                 <property name="center_pane">0</property>
-                                <property name="choices"></property>
+                                <property name="choices">&quot;&quot;</property>
                                 <property name="close_button">1</property>
                                 <property name="context_help"></property>
                                 <property name="context_menu">1</property>
@@ -4611,7 +4613,7 @@
                                 <property name="dock_fixed">0</property>
                                 <property name="docking">Left</property>
                                 <property name="enabled">1</property>
-                                <property name="fg"></property>
+                                <property name="fg">wxSYS_COLOUR_BACKGROUND</property>
                                 <property name="floatable">1</property>
                                 <property name="font"></property>
                                 <property name="gripper">0</property>
@@ -4700,7 +4702,7 @@
                                 <property name="subclass">; ; forward_declare</property>
                                 <property name="toolbar_pane">0</property>
                                 <property name="tooltip"></property>
-                                <property name="validator_data_type">int</property>
+                                <property name="validator_data_type"></property>
                                 <property name="validator_style">wxFILTER_NONE</property>
                                 <property name="validator_type">wxDefaultValidator</property>
                                 <property name="validator_variable"></property>
@@ -4736,7 +4738,7 @@
                                 <property name="dock_fixed">0</property>
                                 <property name="docking">Left</property>
                                 <property name="enabled">1</property>
-                                <property name="fg"></property>
+                                <property name="fg">wxSYS_COLOUR_BACKGROUND</property>
                                 <property name="floatable">1</property>
                                 <property name="font"></property>
                                 <property name="gripper">0</property>
@@ -4937,7 +4939,7 @@
                         <property name="dock_fixed">0</property>
                         <property name="docking">Left</property>
                         <property name="enabled">1</property>
-                        <property name="fg"></property>
+                        <property name="fg">wxSYS_COLOUR_BACKGROUND</property>
                         <property name="floatable">1</property>
                         <property name="font"></property>
                         <property name="gripper">0</property>
@@ -5000,7 +5002,7 @@
                         <property name="close_button">1</property>
                         <property name="col_label_horiz_alignment">wxALIGN_CENTER</property>
                         <property name="col_label_size"></property>
-                        <property name="col_label_values">&quot;Codigo&quot; &quot;Producto&quot; &quot;Marca&quot; &quot;Cantidad&quot; &quot;&quot;</property>
+                        <property name="col_label_values">&quot;CODIGO&quot; &quot;PRODUCTO&quot; &quot;MARCA&quot; &quot;CANTIDAD&quot; &quot;&quot;</property>
                         <property name="col_label_vert_alignment">wxALIGN_CENTER</property>
                         <property name="cols">4</property>
                         <property name="column_sizes">216,249,207,107</property>
@@ -5014,7 +5016,7 @@
                         <property name="drag_col_size">1</property>
                         <property name="drag_grid_size">0</property>
                         <property name="drag_row_size">1</property>
-                        <property name="editing">1</property>
+                        <property name="editing">0</property>
                         <property name="enabled">1</property>
                         <property name="fg">wxSYS_COLOUR_HIGHLIGHT</property>
                         <property name="floatable">1</property>
@@ -5151,7 +5153,7 @@
         <object class="Frame" expanded="0">
             <property name="aui_managed">0</property>
             <property name="aui_manager_style">wxAUI_MGR_DEFAULT</property>
-            <property name="bg">wxSYS_COLOUR_INACTIVEBORDER</property>
+            <property name="bg">140,203,255</property>
             <property name="center">wxBOTH</property>
             <property name="context_help"></property>
             <property name="context_menu">1</property>
@@ -5166,7 +5168,7 @@
             <property name="minimum_size"></property>
             <property name="name">Ventana4</property>
             <property name="pos"></property>
-            <property name="size">800,500</property>
+            <property name="size">803,500</property>
             <property name="style">wxDEFAULT_FRAME_STYLE</property>
             <property name="subclass">; ; forward_declare</property>
             <property name="title"></property>
@@ -5306,7 +5308,7 @@
                                 <property name="gripper">0</property>
                                 <property name="hidden">0</property>
                                 <property name="id">wxID_ANY</property>
-                                <property name="label">Ingreso stock</property>
+                                <property name="label">INGRESO STOCK</property>
                                 <property name="markup">0</property>
                                 <property name="max_size"></property>
                                 <property name="maximize_button">0</property>
@@ -5845,7 +5847,7 @@
                         <property name="close_button">1</property>
                         <property name="col_label_horiz_alignment">wxALIGN_CENTER</property>
                         <property name="col_label_size"></property>
-                        <property name="col_label_values">&quot;Fecha&quot; &quot;Producto&quot; &quot;Marca&quot; &quot;Codigo&quot; &quot;Cantidad&quot; &quot;&quot;</property>
+                        <property name="col_label_values">&quot;FECHA&quot; &quot;PRODUCTO&quot; &quot;MARCA&quot; &quot;CÓDIGO&quot; &quot;CANTIDAD&quot; &quot;&quot;</property>
                         <property name="col_label_vert_alignment">wxALIGN_CENTER</property>
                         <property name="cols">5</property>
                         <property name="column_sizes">131,205,182,170,93</property>
@@ -5871,7 +5873,7 @@
                         <property name="id">wxID_ANY</property>
                         <property name="label_bg">wxSYS_COLOUR_HIGHLIGHT</property>
                         <property name="label_font"></property>
-                        <property name="label_text"></property>
+                        <property name="label_text">wxSYS_COLOUR_BTNHIGHLIGHT</property>
                         <property name="margin_height">0</property>
                         <property name="margin_width">0</property>
                         <property name="max_size"></property>
@@ -5910,7 +5912,7 @@
         <object class="Frame" expanded="0">
             <property name="aui_managed">0</property>
             <property name="aui_manager_style">wxAUI_MGR_DEFAULT</property>
-            <property name="bg"></property>
+            <property name="bg">140,203,255</property>
             <property name="center">wxBOTH</property>
             <property name="context_help"></property>
             <property name="context_menu">1</property>
@@ -5925,7 +5927,7 @@
             <property name="minimum_size"></property>
             <property name="name">Ventana5</property>
             <property name="pos"></property>
-            <property name="size">800,500</property>
+            <property name="size">802,500</property>
             <property name="style">wxDEFAULT_FRAME_STYLE</property>
             <property name="subclass">; ; forward_declare</property>
             <property name="title"></property>
@@ -6208,7 +6210,7 @@
                         <property name="close_button">1</property>
                         <property name="col_label_horiz_alignment">wxALIGN_CENTER</property>
                         <property name="col_label_size"></property>
-                        <property name="col_label_values">&quot;Cliente&quot; &quot;Fecha&quot; &quot;Total&quot; &quot;Pago?&quot; &quot;&quot;</property>
+                        <property name="col_label_values">&quot;CLIENTE&quot; &quot;FECHA&quot; &quot;TOTAL&quot; &quot;PAGÓ?&quot; &quot;&quot;</property>
                         <property name="col_label_vert_alignment">wxALIGN_CENTER</property>
                         <property name="cols">4</property>
                         <property name="column_sizes">208,223,228,121</property>
@@ -6232,9 +6234,9 @@
                         <property name="gripper">0</property>
                         <property name="hidden">0</property>
                         <property name="id">wxID_ANY</property>
-                        <property name="label_bg"></property>
+                        <property name="label_bg">wxSYS_COLOUR_HIGHLIGHT</property>
                         <property name="label_font"></property>
-                        <property name="label_text"></property>
+                        <property name="label_text">wxSYS_COLOUR_BTNHIGHLIGHT</property>
                         <property name="margin_height">0</property>
                         <property name="margin_width">0</property>
                         <property name="max_size"></property>
@@ -6388,7 +6390,7 @@
                                 <property name="aui_row"></property>
                                 <property name="auth_needed">0</property>
                                 <property name="best_size"></property>
-                                <property name="bg"></property>
+                                <property name="bg">128,255,128</property>
                                 <property name="bitmap"></property>
                                 <property name="caption"></property>
                                 <property name="caption_visible">1</property>
@@ -6472,7 +6474,7 @@
                                 <property name="aui_row"></property>
                                 <property name="auth_needed">0</property>
                                 <property name="best_size"></property>
-                                <property name="bg"></property>
+                                <property name="bg">255,128,128</property>
                                 <property name="bitmap"></property>
                                 <property name="caption"></property>
                                 <property name="caption_visible">1</property>
@@ -6538,7 +6540,7 @@
         <object class="Frame" expanded="0">
             <property name="aui_managed">0</property>
             <property name="aui_manager_style">wxAUI_MGR_DEFAULT</property>
-            <property name="bg">wxSYS_COLOUR_INACTIVEBORDER</property>
+            <property name="bg">140,203,255</property>
             <property name="center">wxBOTH</property>
             <property name="context_help"></property>
             <property name="context_menu">1</property>
@@ -6553,7 +6555,7 @@
             <property name="minimum_size"></property>
             <property name="name">Ventana6</property>
             <property name="pos"></property>
-            <property name="size">800,500</property>
+            <property name="size">850,500</property>
             <property name="style">wxDEFAULT_FRAME_STYLE</property>
             <property name="subclass">; ; forward_declare</property>
             <property name="title"></property>
@@ -6693,7 +6695,7 @@
                                 <property name="gripper">0</property>
                                 <property name="hidden">0</property>
                                 <property name="id">wxID_ANY</property>
-                                <property name="label">Consultas Historial</property>
+                                <property name="label">CONSULTAS HISTORIAL</property>
                                 <property name="markup">0</property>
                                 <property name="max_size"></property>
                                 <property name="maximize_button">0</property>
@@ -7051,7 +7053,7 @@
                         <property name="enabled">1</property>
                         <property name="fg"></property>
                         <property name="floatable">1</property>
-                        <property name="font"></property>
+                        <property name="font">Arial,90,700,9,74,0</property>
                         <property name="gripper">0</property>
                         <property name="hidden">0</property>
                         <property name="id">wxID_ANY</property>
@@ -7126,7 +7128,7 @@
                         <property name="drag_col_size">1</property>
                         <property name="drag_grid_size">0</property>
                         <property name="drag_row_size">1</property>
-                        <property name="editing">1</property>
+                        <property name="editing">0</property>
                         <property name="enabled">1</property>
                         <property name="fg"></property>
                         <property name="floatable">1</property>
@@ -7136,9 +7138,9 @@
                         <property name="gripper">0</property>
                         <property name="hidden">0</property>
                         <property name="id">wxID_ANY</property>
-                        <property name="label_bg"></property>
+                        <property name="label_bg">wxSYS_COLOUR_HIGHLIGHT</property>
                         <property name="label_font"></property>
-                        <property name="label_text"></property>
+                        <property name="label_text">wxSYS_COLOUR_HIGHLIGHTTEXT</property>
                         <property name="margin_height">0</property>
                         <property name="margin_width">0</property>
                         <property name="max_size"></property>
@@ -7174,7 +7176,7 @@
                 </object>
             </object>
         </object>
-        <object class="Dialog" expanded="1">
+        <object class="Dialog" expanded="0">
             <property name="aui_managed">0</property>
             <property name="aui_manager_style">wxAUI_MGR_DEFAULT</property>
             <property name="bg">wxSYS_COLOUR_INACTIVEBORDER</property>

@@ -127,13 +127,14 @@ void Ventana1Hija::Ver(Producto aux){
 }
 
 void Ventana1Hija::OnEnterBuscarPor( wxCommandEvent& event )  {
+	//EVT_COMMAND(wxID_ANY, TEXT_CTRL_CLICKED, MyPanel::OnFocusEvent);
+	
 	int pos=m_choiceBuscarPor->GetSelection();
 	Producto aux;
 	vector<Producto>vaux;
 	if(!(m_buscar->IsEmpty())){
 	if(pos==0){
 		string S=(wx_to_std(m_buscar->GetValue()));
-		//aux=prods->
 		if(EsNumero(S)){
 			m_grilla->DeleteRows(0,m_grilla->GetColSize(0));
 			aux=prods->FiltrarPorCodigo(stoi(wx_to_std(m_buscar->GetValue())));
@@ -184,6 +185,22 @@ void Ventana1Hija::OnEnterBuscarPor( wxCommandEvent& event )  {
 	}
 	}
 	else Actualizar();
+	event.Skip();
+}
+
+void Ventana1Hija::OnFocus( wxFocusEvent& event )  {
+	string S;
+	S=wx_to_std(m_buscar->GetValue());
+	if(S=="Buscar:") m_buscar->SetValue("");
+	m_buscar->SetForegroundColour(*wxBLACK);
+	event.Skip();
+}
+
+void Ventana1Hija::OnKillFocus( wxFocusEvent& event )  {
+	string S;
+	S=wx_to_std(m_buscar->GetValue());
+	if(S=="") m_buscar->SetValue("Buscar:");
+	m_buscar->SetForegroundColour(*wxLIGHT_GREY);
 	event.Skip();
 }
 
