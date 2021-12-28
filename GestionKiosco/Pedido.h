@@ -14,6 +14,7 @@ public:
 	Pedido();
 	void agregarProducto(int cod, int cant, Productos &prod);
 	void eliminarProducto(int cod,Productos &prod);
+	void eliminarProducto(int pos);
 	void vaciarVectores();
 	int getTamanio();
 	void armarArchivoTexto();

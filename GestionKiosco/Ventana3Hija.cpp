@@ -42,7 +42,7 @@ void Ventana3Hija::to_venta( wxCommandEvent& event )  {
 	
 	VentanaValidarHija Ventana_val(this);
 	
-	if(_pedido.getTamanio() == 0){
+	if(m_pedido.getTamanio() == 0){
 		Ventana2HIja *Ventana_Nueva = new Ventana2HIja(NULL, _prods);
 		Close();
 		Ventana_Nueva->Show();
@@ -64,7 +64,7 @@ void Ventana3Hija::to_stock( wxCommandEvent& event )  {
 	
 	VentanaValidarHija Ventana_val(this);
 
-	if(_pedido.getTamanio() == 0){
+	if(m_pedido.getTamanio() == 0){
 		Ventana4HIja *Ventana_Nueva = new Ventana4HIja(NULL, _prods);
 		Close();
 		Ventana_Nueva->Show();
@@ -116,7 +116,7 @@ void Ventana3Hija::AgregarProductoLista( wxCommandEvent& event )  {
 	if((m_lista_productos->GetSelection() == 0 ) and ( _prods->existe(codigo)) and (cantidad != -1)){
 	
 		agregado = _prods->BuscarProducto(codigo);
-		_pedido.agregarProducto(stoi(wx_to_std(m_codigo->GetValue())),stoi(wx_to_std(m_cantidad->GetValue())), *_prods);
+		m_pedido.agregarProducto(stoi(wx_to_std(m_codigo->GetValue())),stoi(wx_to_std(m_cantidad->GetValue())), *_prods);
 		
 		m_grilla->AppendRows(1);
 		//m_grilla->SetSelectionMode(wxGrid::wxGridSelectRows);
@@ -125,6 +125,7 @@ void Ventana3Hija::AgregarProductoLista( wxCommandEvent& event )  {
 		m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,1,c_to_wx(agregado.nombre));
 		m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,2,c_to_wx(agregado.marca));
 		m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,3,m_cantidad->GetValue());
+		m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,4,"X");
 		m_cantidad->SetValue("");
 			
 	}else{
@@ -133,7 +134,7 @@ void Ventana3Hija::AgregarProductoLista( wxCommandEvent& event )  {
 			
 			agregado = _prods->BuscarProducto(_prods->VerCodigo(pos));
 			//			cout<<agregado;
-			_pedido.agregarProducto(_prods->VerCodigo(pos),stoi(wx_to_std(m_cantidad->GetValue())), *_prods);
+			m_pedido.agregarProducto(_prods->VerCodigo(pos),stoi(wx_to_std(m_cantidad->GetValue())), *_prods);
 			
 			m_grilla->AppendRows(1);
 			
@@ -141,6 +142,7 @@ void Ventana3Hija::AgregarProductoLista( wxCommandEvent& event )  {
 			m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,1,c_to_wx(agregado.nombre));
 			m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,2,c_to_wx(agregado.marca));
 			m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,3,m_cantidad->GetValue());
+			m_grilla->SetCellValue(m_grilla->GetNumberRows()-1,4,"X");
 			m_cantidad->SetValue("");
 			m_lista_productos->SetSelection(0);
 		}else{
@@ -156,16 +158,24 @@ void Ventana3Hija::AgregarProductoLista( wxCommandEvent& event )  {
 }
 
 void Ventana3Hija::GuardarArchivo( wxCommandEvent& event )  {
-	_pedido.armarArchivoTexto();
+	m_pedido.armarArchivoTexto();
 	wxMessageBox("Muy Bien");
 	
-	m_grilla->DeleteRows(0,_pedido.getTamanio());
-	_pedido.vaciarVectores();
+	m_grilla->DeleteRows(0,m_pedido.getTamanio());
+	m_pedido.vaciarVectores();
 	event.Skip();
 }
 
 
 void Ventana3Hija::ClickDerechoProducto( wxGridEvent& event )  {
+	event.Skip();
+}
+
+void Ventana3Hija::Eliminar( wxGridEvent& event )  {
+	if(event.GetCol()==4){
+		m_pedido.eliminarProducto(event.GetRow());
+		m_grilla->DeleteRows(event.GetRow());
+	}
 	event.Skip();
 }
 

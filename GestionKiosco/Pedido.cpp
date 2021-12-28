@@ -77,12 +77,16 @@ void Pedido :: eliminarProducto(int cod, Productos &prod){
 		for(int i=0;i<lista_pedido.size();i++) { 
 			if(lista_pedido[i].codigo == cod){
 				lista_pedido.erase(lista_pedido.begin()+i);
+				cantidades.erase(cantidades.begin()+i);
 			}
 		}
 	}
 	
 }
-
+void Pedido ::eliminarProducto(int pos){
+	lista_pedido.erase(lista_pedido.begin()+pos);
+	cantidades.erase(cantidades.begin()+pos);
+}
 int Pedido :: getTamanio(){
 	return cantidades.size();
 }

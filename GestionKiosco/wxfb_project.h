@@ -255,6 +255,7 @@ class Ventana3 : public wxFrame
 		virtual void to_venta( wxCommandEvent& event ) { event.Skip(); }
 		virtual void to_stock( wxCommandEvent& event ) { event.Skip(); }
 		virtual void AgregarProductoLista( wxCommandEvent& event ) { event.Skip(); }
+		virtual void Eliminar( wxGridEvent& event ) { event.Skip(); }
 		virtual void ClickDerechoProducto( wxGridEvent& event ) { event.Skip(); }
 		virtual void GuardarArchivo( wxCommandEvent& event ) { event.Skip(); }
 

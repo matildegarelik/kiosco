@@ -181,7 +181,7 @@
                                 <property name="dock_fixed">0</property>
                                 <property name="docking">Left</property>
                                 <property name="enabled">1</property>
-                                <property name="fg">wxSYS_COLOUR_BACKGROUND</property>
+                                <property name="fg">wxSYS_COLOUR_WINDOWTEXT</property>
                                 <property name="floatable">1</property>
                                 <property name="font">Arial,90,700,18,74,0</property>
                                 <property name="gripper">0</property>
@@ -4119,7 +4119,7 @@
                 </object>
             </object>
         </object>
-        <object class="Frame" expanded="0">
+        <object class="Frame" expanded="1">
             <property name="aui_managed">0</property>
             <property name="aui_manager_style">wxAUI_MGR_DEFAULT</property>
             <property name="bg">140,203,255</property>
@@ -4147,7 +4147,7 @@
             <property name="window_name"></property>
             <property name="window_style">wxTAB_TRAVERSAL</property>
             <property name="xrc_skip_sizer">1</property>
-            <object class="wxBoxSizer" expanded="0">
+            <object class="wxBoxSizer" expanded="1">
                 <property name="minimum_size"></property>
                 <property name="name">bSizer16</property>
                 <property name="orient">wxVERTICAL</property>
@@ -4271,7 +4271,7 @@
                                 <property name="dock_fixed">0</property>
                                 <property name="docking">Left</property>
                                 <property name="enabled">1</property>
-                                <property name="fg">wxSYS_COLOUR_BACKGROUND</property>
+                                <property name="fg">wxSYS_COLOUR_WINDOWTEXT</property>
                                 <property name="floatable">1</property>
                                 <property name="font">Arial,90,700,18,74,0</property>
                                 <property name="gripper">0</property>
@@ -4418,9 +4418,9 @@
                         <property name="dock_fixed">0</property>
                         <property name="docking">Left</property>
                         <property name="enabled">1</property>
-                        <property name="fg">wxSYS_COLOUR_BACKGROUND</property>
+                        <property name="fg">wxSYS_COLOUR_BTNTEXT</property>
                         <property name="floatable">1</property>
-                        <property name="font">@Microsoft JhengHei,90,400,11,74,0</property>
+                        <property name="font">Arial,90,400,11,74,0</property>
                         <property name="gripper">0</property>
                         <property name="hidden">0</property>
                         <property name="id">wxID_ANY</property>
@@ -4488,7 +4488,7 @@
                                 <property name="dock_fixed">0</property>
                                 <property name="docking">Left</property>
                                 <property name="enabled">1</property>
-                                <property name="fg">wxSYS_COLOUR_BACKGROUND</property>
+                                <property name="fg">wxSYS_COLOUR_BTNTEXT</property>
                                 <property name="floatable">1</property>
                                 <property name="font"></property>
                                 <property name="gripper">0</property>
@@ -4613,7 +4613,7 @@
                                 <property name="dock_fixed">0</property>
                                 <property name="docking">Left</property>
                                 <property name="enabled">1</property>
-                                <property name="fg">wxSYS_COLOUR_BACKGROUND</property>
+                                <property name="fg">wxSYS_COLOUR_BTNTEXT</property>
                                 <property name="floatable">1</property>
                                 <property name="font"></property>
                                 <property name="gripper">0</property>
@@ -4738,7 +4738,7 @@
                                 <property name="dock_fixed">0</property>
                                 <property name="docking">Left</property>
                                 <property name="enabled">1</property>
-                                <property name="fg">wxSYS_COLOUR_BACKGROUND</property>
+                                <property name="fg">wxSYS_COLOUR_BTNTEXT</property>
                                 <property name="floatable">1</property>
                                 <property name="font"></property>
                                 <property name="gripper">0</property>
@@ -4939,7 +4939,7 @@
                         <property name="dock_fixed">0</property>
                         <property name="docking">Left</property>
                         <property name="enabled">1</property>
-                        <property name="fg">wxSYS_COLOUR_BACKGROUND</property>
+                        <property name="fg">wxSYS_COLOUR_BTNTEXT</property>
                         <property name="floatable">1</property>
                         <property name="font"></property>
                         <property name="gripper">0</property>
@@ -5002,10 +5002,10 @@
                         <property name="close_button">1</property>
                         <property name="col_label_horiz_alignment">wxALIGN_CENTER</property>
                         <property name="col_label_size"></property>
-                        <property name="col_label_values">&quot;CODIGO&quot; &quot;PRODUCTO&quot; &quot;MARCA&quot; &quot;CANTIDAD&quot; &quot;&quot;</property>
+                        <property name="col_label_values">&quot;CODIGO&quot; &quot;PRODUCTO&quot; &quot;MARCA&quot; &quot;CANTIDAD&quot; &quot;ELIMINAR&quot; &quot;&quot;</property>
                         <property name="col_label_vert_alignment">wxALIGN_CENTER</property>
-                        <property name="cols">4</property>
-                        <property name="column_sizes">216,249,207,107</property>
+                        <property name="cols">5</property>
+                        <property name="column_sizes">124,249,207,107,80</property>
                         <property name="context_help"></property>
                         <property name="context_menu">1</property>
                         <property name="default_pane">0</property>
@@ -5060,6 +5060,7 @@
                         <property name="window_extra_style"></property>
                         <property name="window_name"></property>
                         <property name="window_style"></property>
+                        <event name="OnGridCellLeftClick">Eliminar</event>
                         <event name="OnGridLabelRightClick">ClickDerechoProducto</event>
                     </object>
                 </object>

@@ -8,8 +8,9 @@ class Ventana3Hija : public Ventana3 {
 	
 private:
 	Productos *_prods;
-	Pedido _pedido;
+	Pedido m_pedido;
 protected:
+	void Eliminar( wxGridEvent& event )  override;
 	void ClickDerechoProducto( wxGridEvent& event )  override;
 	void AgregarProductoLista( wxCommandEvent& event )  override;
 	void GuardarArchivo( wxCommandEvent& event )  override;

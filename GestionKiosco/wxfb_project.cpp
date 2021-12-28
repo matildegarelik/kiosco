@@ -30,7 +30,7 @@ Ventana1::Ventana1( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	m_staticText14 = new wxStaticText( this, wxID_ANY, wxT("PRODUCTOS"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText14->Wrap( -1 );
 	m_staticText14->SetFont( wxFont( 18, wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false, wxT("Arial") ) );
-	m_staticText14->SetForegroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_BACKGROUND ) );
+	m_staticText14->SetForegroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_WINDOWTEXT ) );
 
 	bSizer15->Add( m_staticText14, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
 
@@ -398,7 +398,7 @@ Ventana2::Ventana2( wxWindow* parent, wxWindowID id, const wxString& title, cons
 
 	// Grid
 	m_grilla->CreateGrid( 0, 6 );
-	m_grilla->EnableEditing( true );
+	m_grilla->EnableEditing( false );
 	m_grilla->EnableGridLines( true );
 	m_grilla->EnableDragGridSize( false );
 	m_grilla->SetMargins( 0, 0 );
@@ -614,7 +614,7 @@ Ventana3::Ventana3( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	m_staticText15 = new wxStaticText( this, wxID_ANY, wxT("HACER PEDIDO"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText15->Wrap( -1 );
 	m_staticText15->SetFont( wxFont( 18, wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false, wxT("Arial") ) );
-	m_staticText15->SetForegroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_BACKGROUND ) );
+	m_staticText15->SetForegroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_WINDOWTEXT ) );
 
 	bSizer17->Add( m_staticText15, 0, wxALL, 5 );
 
@@ -629,8 +629,8 @@ Ventana3::Ventana3( wxWindow* parent, wxWindowID id, const wxString& title, cons
 
 	m_staticText31 = new wxStaticText( this, wxID_ANY, wxT("Seleccione el producto y su cantidad o busque a traves de su codigo"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText31->Wrap( -1 );
-	m_staticText31->SetFont( wxFont( 11, wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, wxT("@Microsoft JhengHei") ) );
-	m_staticText31->SetForegroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_BACKGROUND ) );
+	m_staticText31->SetFont( wxFont( 11, wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, wxT("Arial") ) );
+	m_staticText31->SetForegroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_BTNTEXT ) );
 
 	bSizer16->Add( m_staticText31, 0, wxALL, 5 );
 
@@ -639,7 +639,7 @@ Ventana3::Ventana3( wxWindow* parent, wxWindowID id, const wxString& title, cons
 
 	m_texto1 = new wxStaticText( this, wxID_ANY, wxT("Producto:"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_texto1->Wrap( -1 );
-	m_texto1->SetForegroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_BACKGROUND ) );
+	m_texto1->SetForegroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_BTNTEXT ) );
 
 	bSizer10->Add( m_texto1, 0, wxALL, 5 );
 
@@ -651,7 +651,7 @@ Ventana3::Ventana3( wxWindow* parent, wxWindowID id, const wxString& title, cons
 
 	m_staticText8 = new wxStaticText( this, wxID_ANY, wxT("Codigo: "), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText8->Wrap( -1 );
-	m_staticText8->SetForegroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_BACKGROUND ) );
+	m_staticText8->SetForegroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_BTNTEXT ) );
 
 	bSizer10->Add( m_staticText8, 0, wxALL, 5 );
 
@@ -660,7 +660,7 @@ Ventana3::Ventana3( wxWindow* parent, wxWindowID id, const wxString& title, cons
 
 	m_staticText9 = new wxStaticText( this, wxID_ANY, wxT("Cantidad: "), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText9->Wrap( -1 );
-	m_staticText9->SetForegroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_BACKGROUND ) );
+	m_staticText9->SetForegroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_BTNTEXT ) );
 
 	bSizer10->Add( m_staticText9, 0, wxALL, 5 );
 
@@ -675,31 +675,33 @@ Ventana3::Ventana3( wxWindow* parent, wxWindowID id, const wxString& title, cons
 
 	m_staticText10 = new wxStaticText( this, wxID_ANY, wxT("Ultimos ingresos:"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText10->Wrap( -1 );
-	m_staticText10->SetForegroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_BACKGROUND ) );
+	m_staticText10->SetForegroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_BTNTEXT ) );
 
 	bSizer16->Add( m_staticText10, 0, wxALL, 5 );
 
 	m_grilla = new wxGrid( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0 );
 
 	// Grid
-	m_grilla->CreateGrid( 0, 4 );
-	m_grilla->EnableEditing( true );
+	m_grilla->CreateGrid( 0, 5 );
+	m_grilla->EnableEditing( false );
 	m_grilla->EnableGridLines( true );
 	m_grilla->EnableDragGridSize( false );
 	m_grilla->SetMargins( 0, 0 );
 
 	// Columns
-	m_grilla->SetColSize( 0, 216 );
+	m_grilla->SetColSize( 0, 124 );
 	m_grilla->SetColSize( 1, 249 );
 	m_grilla->SetColSize( 2, 207 );
 	m_grilla->SetColSize( 3, 107 );
+	m_grilla->SetColSize( 4, 80 );
 	m_grilla->EnableDragColMove( false );
 	m_grilla->EnableDragColSize( true );
 	m_grilla->SetColLabelValue( 0, wxT("CODIGO") );
 	m_grilla->SetColLabelValue( 1, wxT("PRODUCTO") );
 	m_grilla->SetColLabelValue( 2, wxT("MARCA") );
 	m_grilla->SetColLabelValue( 3, wxT("CANTIDAD") );
-	m_grilla->SetColLabelValue( 4, wxEmptyString );
+	m_grilla->SetColLabelValue( 4, wxT("ELIMINAR") );
+	m_grilla->SetColLabelValue( 5, wxEmptyString );
 	m_grilla->SetColLabelAlignment( wxALIGN_CENTER, wxALIGN_CENTER );
 
 	// Rows
@@ -736,6 +738,7 @@ Ventana3::Ventana3( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	m_btn_to_venta->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Ventana3::to_venta ), NULL, this );
 	m_btn_to_stock->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Ventana3::to_stock ), NULL, this );
 	m_botonAgregar->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Ventana3::AgregarProductoLista ), NULL, this );
+	m_grilla->Connect( wxEVT_GRID_CELL_LEFT_CLICK, wxGridEventHandler( Ventana3::Eliminar ), NULL, this );
 	m_grilla->Connect( wxEVT_GRID_LABEL_RIGHT_CLICK, wxGridEventHandler( Ventana3::ClickDerechoProducto ), NULL, this );
 	m_botonGuardar->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Ventana3::GuardarArchivo ), NULL, this );
 }
@@ -746,6 +749,7 @@ Ventana3::~Ventana3()
 	m_btn_to_venta->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Ventana3::to_venta ), NULL, this );
 	m_btn_to_stock->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Ventana3::to_stock ), NULL, this );
 	m_botonAgregar->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Ventana3::AgregarProductoLista ), NULL, this );
+	m_grilla->Disconnect( wxEVT_GRID_CELL_LEFT_CLICK, wxGridEventHandler( Ventana3::Eliminar ), NULL, this );
 	m_grilla->Disconnect( wxEVT_GRID_LABEL_RIGHT_CLICK, wxGridEventHandler( Ventana3::ClickDerechoProducto ), NULL, this );
 	m_botonGuardar->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Ventana3::GuardarArchivo ), NULL, this );
 
