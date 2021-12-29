@@ -19,6 +19,7 @@ bool Application::OnInit() {
 	wxInitAllImageHandlers();
 	Ventana1Hija *win = new Ventana1Hija(NULL, &prods);
 	win->Show();
+	::ShowWindow(::GetConsoleWindow(), SW_HIDE);
 	return true;
 }
 

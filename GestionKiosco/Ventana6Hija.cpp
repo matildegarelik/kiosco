@@ -148,19 +148,14 @@ void Ventana6Hija::ConsultarHistorial( wxCommandEvent& event )  {
 	
 	case 4: //Detalle factura
 		{
-			Compra buscada = hist.buscar_compra(stoi(wx_to_std(m_param->GetValue())));
+			
 			m_param->Enable();
 			m_grilla->AppendRows(1);
 			m_grilla->SetCellBackgroundColour(0,0,wxColour(213, 219, 219));
 			m_grilla->SetCellBackgroundColour(0,1,wxColour(213, 219, 219));
 			m_grilla->SetCellBackgroundColour(0,2,wxColour(213, 219, 219));
 			m_grilla->SetCellBackgroundColour(0,3,wxColour(213, 219, 219));
-			string f = to_string(buscada.f.dia)+'/'+to_string(buscada.f.mes)+'/'+to_string(buscada.f.anio);
 			
-			m_grilla->SetCellValue(0,0,"FECHA: "+f);
-			m_grilla->SetCellValue(0,1,"CLIENTE: " + c_to_wx(buscada.cliente));
-			m_grilla->SetCellValue(0,2,"CODIGO: "+to_string(buscada.cod_factura));
-			m_grilla->SetCellValue(0,3,"TOTAL: $"+to_string(buscada.total));
 			
 			m_grilla->AppendRows(1);
 			m_grilla->SetCellBackgroundColour(1,0,*wxLIGHT_GREY);
@@ -175,6 +170,12 @@ void Ventana6Hija::ConsultarHistorial( wxCommandEvent& event )  {
 			if(m_param->IsEmpty()){
 				wxMessageBox("Por favor ingrese un codigo de factura","Aviso");
 			}else{
+				Compra buscada = hist.buscar_compra(stoi(wx_to_std(m_param->GetValue())));
+				string f = to_string(buscada.f.dia)+'/'+to_string(buscada.f.mes)+'/'+to_string(buscada.f.anio);
+				m_grilla->SetCellValue(0,0,"FECHA: "+f);
+				m_grilla->SetCellValue(0,1,"CLIENTE: " + c_to_wx(buscada.cliente));
+				m_grilla->SetCellValue(0,2,"CODIGO: "+to_string(buscada.cod_factura));
+				m_grilla->SetCellValue(0,3,"TOTAL: $"+to_string(buscada.total));
 				vector<DetalleYFecha> dets = hist.armar_factura(stoi(wx_to_std(m_param->GetValue())));
 				for(DetalleYFecha &d: dets){
 					m_grilla->AppendRows(1);
