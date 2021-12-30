@@ -19,7 +19,7 @@ bool Application::OnInit() {
 	wxInitAllImageHandlers();
 	Ventana1Hija *win = new Ventana1Hija(NULL, &prods);
 	win->Show();
-	::ShowWindow(::GetConsoleWindow(), SW_HIDE);
+	::ShowWindow(::GetConsoleWindow(), SW_HIDE); //Oculta la consola
 	return true;
 }
 

@@ -114,7 +114,6 @@ tuple<vector<Producto>::iterator,vector<Producto>::iterator> Productos::iterador
 	}
 
 Producto Productos::FiltrarPorCodigo(int codigo){ 
-	//Se modificó la función para que le llegue una string determinando el tipo a Filtrar		int D;
 	Producto aux;
 	for(int i=0; i<VectorProductos.size(); ++i){
 		int A=VectorProductos[i].codigo;
@@ -136,8 +135,7 @@ bool Productos::VerificarNombre(string nombre){
 }
 
 
-Producto Productos::FiltrarPorNombre(string nombre){ 
-	//Se modificó la función para que le llegue una string determinando el tipo a Filtrar		int D;	
+Producto Productos::FiltrarPorNombre(string nombre){ 	
 	Producto aux;
 	for(int i=0; i<VectorProductos.size(); ++i){
 		string A=VectorProductos[i].nombre;
